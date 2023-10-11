@@ -1,0 +1,11 @@
+API/Shoporium.Web/bin/
+API/Shoporium.Web/obj/
+API/Shoporium.Business/bin/
+API/Shoporium.Business/obj/
+API/Shoporium.Data/bin/
+API/Shoporium.Data/obj/
+API/Shoporium.Entities/bin/
+API/Shoporium.Entities/obj/
+*.user
+*.DotSettings
+API/.vs/
