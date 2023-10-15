@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Shoporium.Data._EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<ShoporiumContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration["Data:ShoporiumDb:ConnectionString"],
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure();
+        }));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -14,6 +25,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ShoporiumContext>();
+    dbContext.Database.Migrate();
 }
 
 app.UseHttpsRedirection();

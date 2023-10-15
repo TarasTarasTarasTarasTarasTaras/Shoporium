@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shoporium.Data._EntityFramework.Models;
 
 namespace Shoporium.Data._EntityFramework
 {
