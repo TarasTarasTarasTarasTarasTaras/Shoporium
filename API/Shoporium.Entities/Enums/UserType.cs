@@ -2,8 +2,9 @@
 {
     public enum UserType
     {
-        User = 1,
-        Shop = 2,
-        UserAndShop = 3
+        Account = 1,
+        User = 2,
+        Shop = 3,
+        UserAndShop = 4
     }
 }
