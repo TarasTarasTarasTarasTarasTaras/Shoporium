@@ -22,15 +22,25 @@ namespace Shoporium.Business.Logins
             _refreshTokenRepository = refreshTokenRepository;
         }
 
-        public (string accessToken, string refreshToken) Authenticate(LoginModelDTO model, string ipAddress)
+        public void Register(RegisterDTO model)
         {
+            var account = _accountFacade.GetAccountByEmail(model.Email);
+            if (account != null && account.IsEmailVerified)
+                throw new ArgumentException();
+
+            _accountFacade.Register(model);
+        }
+
+        public (string accessToken, string refreshToken) Authenticate(LoginDTO model, string ipAddress, bool afterRegistration = false)
+        {
+            // todo: check count of accounts with not verified email
             var account = _accountFacade.GetAccountByEmail(model.Email);
 
             if (account == null || !_accountFacade.IsValidAccountCredentials(account.Id, model.Password))
                 throw new ArgumentException();
                 //throw new UnauthorizedException(Resources.Account.Login.InvalidUser);
 
-            if (!account!.IsEmailVerified)
+            if (!account!.IsEmailVerified && !afterRegistration)
                 throw new ArgumentException();
                 //throw new EmailIsNotConfirmedException();
 

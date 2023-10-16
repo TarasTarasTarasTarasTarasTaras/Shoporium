@@ -21,6 +21,11 @@ namespace Shoporium.Business.Accounts
             _loginRepository = loginRepository;
         }
 
+        public void Register(RegisterDTO model)
+        {
+            _accountRepository.Register(model);
+        }
+
         public AccountDTO? GetAccountByEmail(string email)
         {
             return _accountRepository.GetAccountByEmail(email);
@@ -39,7 +44,7 @@ namespace Shoporium.Business.Accounts
 
             loginDetail.LastLoginAttemptUtc = DateTime.Now;
             loginDetail.FailedLoginAttempts = isValid ? 0 : loginDetail.FailedLoginAttempts + 1;
-            _loginRepository.UpdateLoginDetail(loginDetail);
+            _loginRepository.UpdateLoginDetail(loginDetail.LoginDetailId, loginDetail.LastLoginAttemptUtc.Value, loginDetail.FailedLoginAttempts);
 
             return isValid;
         }

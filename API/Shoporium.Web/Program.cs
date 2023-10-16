@@ -12,7 +12,6 @@ using Shoporium.Data.Logins;
 using Shoporium.Data.RefreshTokens;
 using Shoporium.Entities.Options;
 using Shoporium.Web.Helpers;
-using Shoporium.Web.Mapper;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

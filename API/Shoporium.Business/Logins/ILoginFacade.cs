@@ -5,7 +5,8 @@ namespace Shoporium.Business.Logins
 {
     public interface ILoginFacade
     {
-        (string accessToken, string refreshToken) Authenticate(LoginModelDTO model, string ipAddress);
+        void Register(RegisterDTO model);
+        (string accessToken, string refreshToken) Authenticate(LoginDTO model, string ipAddress, bool afterRegistration = false);
         (string accessToken, string refreshToken) GetTokens(UserType userType, long id, string ipAddress);
         void RemoveExpiredRefreshTokens(DateTime utcNow);
     }

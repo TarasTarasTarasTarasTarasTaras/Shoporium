@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.Identity.Client;
 using Shoporium.Data._EntityFramework;
+using Shoporium.Data._EntityFramework.Models;
 using Shoporium.Entities.DTO.Account;
 using Shoporium.Entities.Enums;
 
@@ -14,6 +16,23 @@ namespace Shoporium.Data.Accounts
         {
             Context = context;
             _mapper = mapper;
+        }
+
+        public void Register(RegisterDTO model)
+        {
+            var account = _mapper.Map<Account>(model);
+            account.Status = Status.Active;
+            account.UserType = UserType.Account;
+            Context.Accounts.Add(account);
+            Context.SaveChanges();
+
+            var loginDetail = new LoginDetail()
+            {
+                AccountId = account.Id,
+                Password = model.Password
+            };
+            Context.LoginDetails.Add(loginDetail);
+            Context.SaveChanges();
         }
 
         public AccountDTO? GetAccountByEmail(string email)

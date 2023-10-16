@@ -5,6 +5,6 @@ namespace Shoporium.Data.Logins
     public interface ILoginRepository
     {
         LoginDetailDTO? GetLoginDetail(long accountId);
-        void UpdateLoginDetail(LoginDetailDTO login);
+        void UpdateLoginDetail(long loginDetailId, DateTime lastLoginAttemptUtc, int failedLoginAttempts);
     }
 }

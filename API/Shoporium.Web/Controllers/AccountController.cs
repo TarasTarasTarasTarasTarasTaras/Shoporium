@@ -19,14 +19,26 @@ namespace Shoporium.Web.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("register")]
+        public ActionResult Register([FromBody] RegisterModel request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            _loginFacade.Register(_mapper.Map<RegisterDTO>(request));
+
+            var tokens = _loginFacade.Authenticate(_mapper.Map<LoginDTO>(request), GetIpAddress(), true);
+            return Ok(new LoginResult(tokens.accessToken, tokens.refreshToken));
+        }
+
+        [AllowAnonymous]
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginModel request)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var tokens = _loginFacade.Authenticate(_mapper.Map<LoginModelDTO>(request), GetIpAddress());
-
+            var tokens = _loginFacade.Authenticate(_mapper.Map<LoginDTO>(request), GetIpAddress());
             return Ok(new LoginResult(tokens.accessToken, tokens.refreshToken));
         }
 

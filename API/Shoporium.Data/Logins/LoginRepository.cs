@@ -24,10 +24,15 @@ namespace Shoporium.Data.Logins
             return loginDetail == null ? null : _mapper.Map<LoginDetailDTO>(loginDetail);
         }
 
-        public void UpdateLoginDetail(LoginDetailDTO login)
+        public void UpdateLoginDetail(long loginDetailId, DateTime lastLoginAttemptUtc, int failedLoginAttempts)
         {
-            var entity = _mapper.Map<LoginDetail>(login);
-            Context.LoginDetails.Update(entity);
+            var entity = Context.LoginDetails.FirstOrDefault(l => l.LoginDetailId == loginDetailId);
+
+            if (entity == null)
+                throw new KeyNotFoundException("Update login detail failed. Login detail is not found.");
+
+            entity.LastLoginAttemptUtc = lastLoginAttemptUtc;
+            entity.FailedLoginAttempts = failedLoginAttempts;
             Context.SaveChanges();
         }
     }

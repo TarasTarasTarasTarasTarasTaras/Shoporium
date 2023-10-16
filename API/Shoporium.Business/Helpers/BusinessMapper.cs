@@ -9,9 +9,16 @@ namespace Shoporium.Business.Helpers
         public BusinessMapper()
         {
             CreateMap<AccountDTO, Account>().ReverseMap();
-            CreateMap<LoginDetailDTO, LoginDetail>().ReverseMap();
+
+            CreateMap<LoginDetailDTO, LoginDetail>()
+                .ReverseMap()
+            .ForPath(_ => _.PasswordHash, opt => opt.MapFrom(src => src.Password));
+
             CreateMap<TokenDTO, Token>().ReverseMap();
+
             CreateMap<RefreshTokenDTO, RefreshToken>().ReverseMap();
+
+            CreateMap<RegisterDTO, Account>();
         }
     }
 }
