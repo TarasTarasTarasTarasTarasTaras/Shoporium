@@ -14,7 +14,7 @@ namespace Shoporium.Entities.DTO.Account
         {
             get
             {
-                if (AccountId > 0) return UserType.Account;
+                if (AccountId > 0) return UserType.User;
 
                 return null;
             }

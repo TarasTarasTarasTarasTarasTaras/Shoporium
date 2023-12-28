@@ -30,7 +30,7 @@ namespace Shoporium.Business.Auth
         {
             switch (role)
             {
-                case UserType.Account:
+                case UserType.User:
                     return new AccountAuthManager(_jwtTokenOptions, _refreshTokenRepository, _accountRepository);
                 default:
                     throw new ArgumentException("Invalid authentication type");

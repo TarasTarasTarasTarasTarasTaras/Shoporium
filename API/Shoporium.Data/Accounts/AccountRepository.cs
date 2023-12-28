@@ -22,7 +22,7 @@ namespace Shoporium.Data.Accounts
         {
             var account = _mapper.Map<Account>(model);
             account.Status = Status.Active;
-            account.UserType = UserType.Account;
+            account.UserType = UserType.User;
             Context.Accounts.Add(account);
             Context.SaveChanges();
 

@@ -3,10 +3,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shoporium.Business.Logins;
 using Shoporium.Entities.DTO.Account;
+using Shoporium.Web.Extensions;
 using Shoporium.Web.Models.Account;
+using System.Security.Claims;
 
 namespace Shoporium.Web.Controllers
 {
+    [Route("api/[controller]")]
+    [Authorize]
+    [ApiController]
     public class AccountController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -40,6 +45,33 @@ namespace Shoporium.Web.Controllers
 
             var tokens = _loginFacade.Authenticate(_mapper.Map<LoginDTO>(request), GetIpAddress());
             return Ok(new LoginResult(tokens.accessToken, tokens.refreshToken));
+        }
+
+        [HttpPost("refresh-token")]
+        public ActionResult RefreshToken([FromBody] RefreshTokenRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.RefreshToken)) return Unauthorized();
+
+            var refreshTokenDto = _loginFacade.GetRefreshToken(request.RefreshToken, GetIpAddress());
+            if (refreshTokenDto == null) return Unauthorized();
+
+            var (accessToken, refreshToken) = _loginFacade.RefreshTokens(refreshTokenDto);
+            return Ok(new LoginResult(accessToken, refreshToken));
+        }
+
+        [HttpGet("user")]
+        public ActionResult GetCurrentUser()
+        {
+            var res = new LoginResult
+            {
+                Id = User.GetId(),
+                FirstName = User.FindFirstValue("FirstName"),
+                LastName = User.FindFirstValue("LastName"),
+                Role = User.FindFirstValue(ClaimTypes.Role),
+                Email = User.FindFirstValue(ClaimTypes.Email)
+            };
+
+            return Ok(res);
         }
 
         private string GetIpAddress()

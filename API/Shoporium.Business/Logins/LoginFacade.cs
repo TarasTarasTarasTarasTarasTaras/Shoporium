@@ -40,11 +40,10 @@ namespace Shoporium.Business.Logins
                 throw new ArgumentException();
                 //throw new UnauthorizedException(Resources.Account.Login.InvalidUser);
 
-            if (!account!.IsEmailVerified && !afterRegistration)
-                throw new ArgumentException();
+            //if (!account!.IsEmailVerified && !afterRegistration)
                 //throw new EmailIsNotConfirmedException();
 
-            var tokens = GetTokens(UserType.Account, account.Id, ipAddress);
+            var tokens = GetTokens(UserType.User, account.Id, ipAddress);
 
             //_logger.LogInformationWithUserId("User logged in the system.", user.UserId);
             return tokens;
@@ -56,14 +55,25 @@ namespace Shoporium.Business.Logins
             return authManager.Authenticate(id, FormatIpAddress(ipAddress), DateTime.UtcNow);
         }
 
+        public RefreshTokenDTO? GetRefreshToken(string token, string ipAddress)
+        {
+            return _refreshTokenRepository.GetRefreshToken(token, FormatIpAddress(ipAddress));
+        }
+
+        public (string accessToken, string refreshToken) RefreshTokens(RefreshTokenDTO refreshToken)
+        {
+            var authManager = _authManagerFactory.GetAuthManager(refreshToken.Type);
+            return authManager.Authenticate((refreshToken.ActualId ?? 0), FormatIpAddress(refreshToken.IpAddress), DateTime.UtcNow);
+        }
+
         public void RemoveExpiredRefreshTokens(DateTime utcNow)
         {
             _refreshTokenRepository.RemoveExpiredRefreshTokens(utcNow);
         }
 
-        private static string? FormatIpAddress(string ipAddress)
+        private static string FormatIpAddress(string ipAddress)
         {
-            return ipAddress?.Split(':')[0];
+            return ipAddress?.Split(':')[0] ?? "";
         }
     }
 }

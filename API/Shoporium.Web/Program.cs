@@ -21,6 +21,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+var allowedOrigins = builder.Configuration.GetSection("AllowCorsFromOrigin").Get<string[]>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+      "CorsPolicy",
+      builder => builder.WithOrigins(allowedOrigins!)
+      .AllowAnyMethod()
+      .AllowAnyHeader()
+      .AllowCredentials());
+});
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ShoporiumContext>(options =>
@@ -64,12 +76,12 @@ builder.Services.AddAuthentication(x =>
     x.SaveToken = true;
     x.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidIssuer = jwtTokenOptions.Issuer,
+        ValidateIssuer = false,
+        //ValidIssuer = jwtTokenOptions.Issuer,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtTokenOptions.Secret)),
         ValidAudience = jwtTokenOptions.Audience,
-        ValidateAudience = true,
+        ValidateAudience = false,
         ValidateLifetime = true,
     };
     x.Events = new JwtBearerEvents()
@@ -110,6 +122,8 @@ using (var serviceScope = app.Services.CreateScope())
     var dbContext = serviceScope.ServiceProvider.GetRequiredService<ShoporiumContext>();
     dbContext.Database.Migrate();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
