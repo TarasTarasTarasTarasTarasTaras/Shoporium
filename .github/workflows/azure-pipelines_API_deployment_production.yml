@@ -11,7 +11,7 @@ name: Build and deploy ASP.Net Core app to an Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: ShoporiumAPI
-  AZURE_WEBAPP_PACKAGE_PATH: './API'
+  AZURE_WEBAPP_PACKAGE_PATH: './API/Shoporium.Web'
   DOTNET_VERSION: '7'
 
 on:
