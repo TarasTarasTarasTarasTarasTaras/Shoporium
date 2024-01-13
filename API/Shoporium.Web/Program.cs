@@ -13,8 +13,42 @@ using Shoporium.Data.RefreshTokens;
 using Shoporium.Entities.Options;
 using Shoporium.Web.Helpers;
 using System.Text;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration.AzureKeyVault;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//if (builder.Environment.IsProduction())
+//{
+    var keyVaultUrl = builder.Configuration.GetSection("KeyVault:KeyVaultURL");
+    var keyVaultClientId = builder.Configuration.GetSection("KeyVault:ClientId");
+    var keyVaultClientSecret = builder.Configuration.GetSection("KeyVault:ClientSecret");
+    var keyVaultDirectoryId = builder.Configuration.GetSection("KeyVault:DirectoryID");
+
+    var credential = new ClientSecretCredential(keyVaultDirectoryId.Value!.ToString(), keyVaultClientId.Value!.ToString(), keyVaultClientSecret.Value!.ToString());
+    builder.Configuration.AddAzureKeyVault(keyVaultUrl.Value!.ToString(), keyVaultClientId.Value!.ToString(), keyVaultClientSecret.Value!.ToString(), new DefaultKeyVaultSecretManager());
+
+    var client = new SecretClient(new Uri(keyVaultUrl.Value!.ToString()), credential);
+
+//}
+
+//if (builder.Environment.IsProduction())
+//{
+//   builder.Configuration.AddAzureKeyVault(
+//       new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+//       new DefaultAzureCredential());
+//}
+
+//if (builder.Environment.IsProduction())
+//{
+//    var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
+//    builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
+//}
+//else
+//{
+//    builder.Configuration.AddUserSecrets<Program>();
+//}
 
 // Add services to the container.
 
@@ -33,7 +67,7 @@ builder.Services.AddCors(options =>
       .AllowCredentials());
 });
 
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ShoporiumContext>(options =>
     options.UseSqlServer(
@@ -111,11 +145,18 @@ builder.Services.AddHostedService<JwtRefreshTokenCache>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+//app.UseSwagger();
+//app.UseSwaggerUI(c =>
+//{
+//    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+//});
 
 using (var serviceScope = app.Services.CreateScope())
 {
