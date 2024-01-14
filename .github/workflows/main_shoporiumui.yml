@@ -26,10 +26,13 @@ jobs:
           cd UI/Shoporium.SPA
           npm install
           npm run build --if-present
-          cd ../..
 
+      - name: Install 7-Zip
+        run: |
+          choco install 7zip
+          
       - name: Zip Artifacts
-        run: zip releaze.zip ./* -r
+        run: 7z a -r release.zip ./*
           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -51,7 +54,8 @@ jobs:
           name: node-app
 
       - name: Unzip Artifacts
-        run: unzip release.zip
+        run: |
+          7z x release.zip -orelease
       
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
