@@ -8,7 +8,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+      - API
 jobs:
   build:
     runs-on: windows-latest
@@ -38,7 +38,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Production'
+      name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
@@ -52,6 +52,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ShoporiumAPI'
-          slot-name: 'Production'
-          package: './API'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4762BD8DB26148CD8084AE637BE2BCA6 }}
+          slot-name: 'production'
+          package: .
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_8fd9b0a5e2b346bbb7d0ff80ca219931 }}
