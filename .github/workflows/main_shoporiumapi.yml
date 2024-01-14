@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'ShoporiumAPI'
           slot-name: 'Production'
-          package: .
+          package: ./API
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4762BD8DB26148CD8084AE637BE2BCA6 }}
