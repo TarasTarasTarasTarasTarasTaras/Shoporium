@@ -14,7 +14,7 @@
     "src/app/app.component.ts"
   ],
   "include": [
-    "src/**/*.d.ts",
+    "./src/",
     "../node_modules/@wtw/**/*",
     "node_modules/jqwidgets-scripts/jqwidgets-ts/**/*.ts"
   ]
