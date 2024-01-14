@@ -1,19 +1,14 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": ["node"]
   },
   "files": [
     "src/main.ts",
-    "src/environments/environment.ts",
-    "src/app/app.module.ts",
-    "src/app/app.component.ts"
+    "src/polyfills.ts"
   ],
   "include": [
-    "./src/",
-    "../node_modules/@wtw/**/*",
-    "node_modules/jqwidgets-scripts/jqwidgets-ts/**/*.ts"
+    "src/**/*.d.ts"
   ]
 }
