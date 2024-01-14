@@ -46,22 +46,26 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: node-app
 
-      - name: Unzip Artifacts
-        run: |
-          7z x release.zip
-      
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: 'ShoporiumUI'
-          slot-name: 'Production'
-          package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0D30B09AE18944CBA3FD38C800401FBB }}
+    steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v3
+      with:
+        name: node-app
+
+    - name: Unzip Artifacts
+      run: |
+        7z x release.zip
+
+    - name: Copy web.config to deployment folder
+      run: |
+        copy .\UI\Shoporium.SPA\src\web.config .\   # Змініть шлях, якщо необхідно
+
+    - name: 'Deploy to Azure Web App'
+      uses: azure/webapps-deploy@v2
+      id: deploy-to-webapp
+      with:
+        app-name: 'ShoporiumUI'
+        slot-name: 'Production'
+        package: .
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0D30B09AE18944CBA3FD38C800401FBB }}
