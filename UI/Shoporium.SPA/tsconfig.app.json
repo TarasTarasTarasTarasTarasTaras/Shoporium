@@ -7,8 +7,6 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts",
-    "src/zone-flags.ts",
     "src/environments/environment.ts",
     "src/app/app.module.ts",
     "src/app/app.component.ts"
