@@ -26,6 +26,7 @@ jobs:
           cd UI/Shoporium.SPA
           npm install
           npm run build --if-present
+          cd ../..
 
       - name: Zip Artifacts
         run: zip releaze.zip ./* -r
