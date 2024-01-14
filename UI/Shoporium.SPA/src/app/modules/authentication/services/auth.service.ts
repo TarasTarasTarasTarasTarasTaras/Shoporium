@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { AgentCTKService } from '../../core/services/ctk.service';
 import { LoginResult } from '../models/login-result';
 
 @Injectable({
@@ -12,9 +11,6 @@ export class AuthService {
 
   updateCurrentUser(x: LoginResult) {
     this.setLocalStorage(x);
-
-    const agentCtkService = this.injector.get(AgentCTKService);
-    agentCtkService.resetCTK();
   }
 
   private setLocalStorage(x: LoginResult) {
