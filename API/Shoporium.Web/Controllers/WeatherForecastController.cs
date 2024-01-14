@@ -29,5 +29,11 @@ namespace Shoporium.Web.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("test")]
+        public ActionResult Test()
+        {
+            return Ok("test");
+        }
     }
 }
