@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - ShoporiumUI
 
 on:
@@ -29,7 +32,7 @@ jobs:
           choco install 7zip
           
       - name: Zip Artifacts
-        run: 7z a -r release.zip ./UI/Shoporium.SPA/*
+        run: 7z a -r release.zip ./*
           
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -50,11 +53,15 @@ jobs:
       with:
         name: node-app
 
+    - name: Unzip Artifacts
+      run: |
+        7z x release.zip
+        
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       id: deploy-to-webapp
       with:
         app-name: 'ShoporiumUI'
         slot-name: 'Production'
-        package: ${{ github.workspace }}/node-app/release.zip
+        package: .\UI\Shoporium.SPA
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0D30B09AE18944CBA3FD38C800401FBB }}
