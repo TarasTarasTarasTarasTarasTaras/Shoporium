@@ -13,10 +13,10 @@ import { LoginResult } from '../models/login-result';
 })
 export class AccountService {
 
-  private readonly apiUrl = `${environment.azureApiUrl}account`;
+  private readonly apiUrl = `${environment.apiUrl}account`;
   private timer: Subscription;
 
-  private _accountSubject: BehaviorSubject<Account | null> = new BehaviorSubject<Account>(null);
+  private _accountSubject: BehaviorSubject<Account> = new BehaviorSubject<Account>(null);
   public account$: Observable<Account> = this._accountSubject.asObservable();
 
   private storageEventListener(event: StorageEvent) {

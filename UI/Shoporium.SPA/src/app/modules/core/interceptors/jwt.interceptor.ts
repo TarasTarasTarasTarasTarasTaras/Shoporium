@@ -9,7 +9,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const accessToken = localStorage.getItem('access_token');
-        const isApiUrl = request.url.startsWith(environment.azureApiUrl);
+        const isApiUrl = request.url.startsWith(environment.azureApiUrl) || request.url.startsWith(environment.apiUrl);
 
         if (accessToken && isApiUrl) {
             request = request.clone({

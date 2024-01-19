@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
 
   private redirectAfterLogin() {
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log(returnUrl)
     this.router.navigate([returnUrl]);
   }
 
