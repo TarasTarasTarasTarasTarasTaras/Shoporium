@@ -13,7 +13,7 @@ import { LoginResult } from '../models/login-result';
 })
 export class AccountService {
 
-  private readonly apiUrl = `${environment.azureApiUrl}account`;
+  private readonly apiUrl = `${environment.apiUrl}account`;
   private timer: Subscription;
 
   private _accountSubject: BehaviorSubject<Account> = new BehaviorSubject<Account>(null);
@@ -33,7 +33,6 @@ export class AccountService {
     }
   }
 
-
   constructor(private http: HttpClient,
     private router: Router) {
     window.addEventListener('storage', this.storageEventListener.bind(this));
@@ -44,7 +43,6 @@ export class AccountService {
   }
 
   login(email: string, password: string) {
-    console.log(`${this.apiUrl}/login`)
     return this.http.post<LoginResult>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true }).pipe(
       concatMap((tokens: any) => {
         this.setLocalStorage(tokens);

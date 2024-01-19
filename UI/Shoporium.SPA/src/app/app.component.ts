@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './modules/authentication/services/account.service';
 import { Account } from './modules/authentication/models/account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,9 @@ export class AppComponent implements OnInit {
 
   currentUserName: string;
 
-  constructor(private accountService: AccountService) { }
+  constructor(
+    private router: Router,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.accountService.account$.subscribe(
@@ -20,5 +23,14 @@ export class AppComponent implements OnInit {
         this.currentUserName = res.firstName;
       }
     );
+  }
+
+  authorize() {
+    this.router.navigate(['account/login']);
+  }
+
+  logout() {
+    this.accountService.logout();
+    this.currentUserName = '';
   }
 }

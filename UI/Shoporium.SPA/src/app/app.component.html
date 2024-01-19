@@ -2,6 +2,13 @@ shoporium
 
 <div *ngIf="currentUserName">
     FirstName: {{ currentUserName }}
+
+    <button mat-raised-button color="primary" (click)="logout()">Вийти</button>
+</div>
+
+<div *ngIf="!currentUserName">
+    <button mat-raised-button color="primary" (click)="authorize()">Авторизуватись</button>
+    <button mat-raised-button color="primary">Зареєструватись</button>
 </div>
 
 <router-outlet></router-outlet>

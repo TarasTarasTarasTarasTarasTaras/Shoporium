@@ -28,14 +28,6 @@ button {
     margin-top: 8px;
 }
 
-.hint {
-    font-size: 13px;
-}
-
-.link {
-    color: rgb(0, 110, 255);
-}
-
 .forgot-password {
     color: #5279b4;
     font-size: 13px;
@@ -43,23 +35,6 @@ button {
 }
 
 .forgot-password:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.link:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.resend-activation-email {
-    color: #5279b4;
-    font-size: 13px;
-    margin-top: 5px;
-    display: block;
-}
-
-.resend-activation-email:hover {
     text-decoration: underline;
     cursor: pointer;
 }

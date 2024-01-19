@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { catchError, EMPTY, Subscription } from 'rxjs';
 import { AccountService } from '../../services/account.service';
 import { Account } from '../../models/account';
@@ -13,7 +12,6 @@ import { Account } from '../../models/account';
 })
 
 export class LoginComponent implements OnInit {
-
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
@@ -22,7 +20,6 @@ export class LoginComponent implements OnInit {
   private subscription: Subscription;
 
   loading = false;
-  // alert: Alert;
   account: Account;
   
   constructor(
@@ -50,7 +47,6 @@ export class LoginComponent implements OnInit {
 
   private redirectAfterLogin() {
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    console.log(returnUrl)
     this.router.navigate([returnUrl]);
   }
 
@@ -62,25 +58,12 @@ export class LoginComponent implements OnInit {
     let email: string = this.f['email'].value;
     let password: string = this.f['password'].value;
 
-    console.log('login')
     this.accountService.login(email, password)
       .subscribe(() => {
           this.redirectAfterLogin();
         }),
         catchError(error => {
-          console.log(error)
-          // this.displayError(error);
           return EMPTY;
         });
   }
-
-  // displayError(error) {
-  //   if (error?.emailIsNotConfirmed) {
-  //     this.emailIsNotConfirmed = true;
-  //     this.alert = new Alert(AlertType.Error, error.message);
-  //     return;
-  //   }
-
-  //   this.alert = new Alert(AlertType.Error, error);
-  // }
 }

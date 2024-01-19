@@ -7,6 +7,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccountService } from './modules/authentication/services/account.service';
 import { JwtInterceptor } from './modules/core/interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './modules/core/interceptors/error.interceptor';
+import { MaterialModule } from './shared/material.module';
+import { appInitializer } from 'src/_helpers/app.initializer';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,11 @@ import { ErrorInterceptor } from './modules/core/interceptors/error.interceptor'
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [
-    // { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // {
