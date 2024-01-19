@@ -13,7 +13,7 @@ import { LoginResult } from '../models/login-result';
 })
 export class AccountService {
 
-  private readonly apiUrl = `${environment.apiUrl}account`;
+  private readonly apiUrl = `${environment.azureApiUrl}account`;
   private timer: Subscription;
 
   private _accountSubject: BehaviorSubject<Account> = new BehaviorSubject<Account>(null);
