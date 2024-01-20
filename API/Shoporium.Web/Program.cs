@@ -9,6 +9,7 @@ using Shoporium.Business.Helpers;
 using Shoporium.Business.Logins;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data.Accounts;
+using Shoporium.Data.GraphQL;
 using Shoporium.Data.Logins;
 using Shoporium.Data.RefreshTokens;
 using Shoporium.Entities.Options;
@@ -50,6 +51,13 @@ builder.Services.AddDbContext<ShoporiumContext>(options =>
         {
             sqlOptions.EnableRetryOnFailure();
         }));
+
+builder.Services.AddGraphQLServer()
+    .AddQueryType<GraphQLQuery>()
+    .AddProjections()
+    .AddFiltering()
+    .AddSorting()
+    .AddAuthorization();
 
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(mc =>
@@ -148,5 +156,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGraphQL("/graphql");
 
 app.Run();
