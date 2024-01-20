@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shoporium.Data._EntityFramework;
 
@@ -11,9 +12,11 @@ using Shoporium.Data._EntityFramework;
 namespace Shoporium.Data.Migrations
 {
     [DbContext(typeof(ShoporiumContext))]
-    partial class ShoporiumContextModelSnapshot : ModelSnapshot
+    [Migration("20240120110441_AddedProducts")]
+    partial class AddedProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,78 +152,6 @@ namespace Shoporium.Data.Migrations
                     b.HasIndex("MainCategoryId");
 
                     b.ToTable("ProductCategory");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Електроніка"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Хобі та спорт"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Одяг, взуття та аксесуари"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Дитячі товари"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Краса та здоров'я"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Дім і сад"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Транспорт"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Будівництво та ремонт"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Обладнання та сировина"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Тварини і рослини"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Нерухомість"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Робота"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Послуги та бізнес"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Продукти харчування"
-                        });
                 });
 
             modelBuilder.Entity("Shoporium.Data._EntityFramework.Entities.RefreshToken", b =>

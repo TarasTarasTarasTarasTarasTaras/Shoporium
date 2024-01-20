@@ -1,6 +1,6 @@
 ﻿using Shoporium.Entities.Enums;
 
-namespace Shoporium.Data._EntityFramework.Models
+namespace Shoporium.Data._EntityFramework.Entities
 {
     public class Account
     {
@@ -13,6 +13,10 @@ namespace Shoporium.Data._EntityFramework.Models
         public Status Status { get; set; }
         public bool IsEmailVerified { get; set; }
         public bool IsMobileVerified { get; set; }
+
+
         public virtual LoginDetail LoginDetail { get; set; } = null!;
+
+        public virtual IEnumerable<Product> Products { get; set; } = Enumerable.Empty<Product>();
     }
 }

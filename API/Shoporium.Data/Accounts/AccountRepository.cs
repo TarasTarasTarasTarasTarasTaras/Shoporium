@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.Identity.Client;
 using Shoporium.Data._EntityFramework;
-using Shoporium.Data._EntityFramework.Models;
+using Shoporium.Data._EntityFramework.Entities;
 using Shoporium.Entities.DTO.Account;
 using Shoporium.Entities.Enums;
 

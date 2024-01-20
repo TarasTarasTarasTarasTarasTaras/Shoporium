@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Shoporium.Data._EntityFramework;
-using Shoporium.Data._EntityFramework.Models;
 using Shoporium.Entities.DTO.Account;
 
 namespace Shoporium.Data.Logins

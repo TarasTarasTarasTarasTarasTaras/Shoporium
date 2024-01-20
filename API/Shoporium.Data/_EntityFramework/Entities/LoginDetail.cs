@@ -1,6 +1,4 @@
-﻿using Shoporium.Entities.Enums;
-
-namespace Shoporium.Data._EntityFramework.Models
+﻿namespace Shoporium.Data._EntityFramework.Entities
 {
     public class LoginDetail
     {

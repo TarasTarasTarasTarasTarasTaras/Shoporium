@@ -1,4 +1,4 @@
-﻿namespace Shoporium.Data._EntityFramework.Models
+﻿namespace Shoporium.Data._EntityFramework.Entities
 {
     public class RefreshToken
     {
