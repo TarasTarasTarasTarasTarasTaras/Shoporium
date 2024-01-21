@@ -6,13 +6,13 @@ namespace Shoporium.Data.GraphQL
 {
     public class GraphQLQuery
     {
-        [UseProjection]
-        [UseFiltering]
-        [UseSorting]
-        [Authorize]
-        public IQueryable<Product> GetProducts([Service] ShoporiumContext context)
-        {
-            return context.Products;
-        }
+        //[UseProjection]
+        //[UseFiltering]
+        //[UseSorting]
+        //[Authorize]
+        //public IQueryable<Product> GetProducts([Service] ShoporiumContext context)
+        //{
+        //    return context.Products;
+        //}
     }
 }

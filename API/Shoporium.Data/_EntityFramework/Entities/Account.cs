@@ -17,6 +17,6 @@ namespace Shoporium.Data._EntityFramework.Entities
 
         public virtual LoginDetail LoginDetail { get; set; } = null!;
 
-        public virtual IEnumerable<Product> Products { get; set; } = Enumerable.Empty<Product>();
+        //public virtual IEnumerable<Product> Products { get; set; } = Enumerable.Empty<Product>();
     }
 }

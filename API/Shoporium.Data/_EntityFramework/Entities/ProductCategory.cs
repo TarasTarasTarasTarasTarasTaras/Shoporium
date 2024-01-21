@@ -7,9 +7,9 @@
         
         public int? MainCategoryId { get; set; }
         public ProductCategory? MainCategory { get; set; }
-
-
-        public virtual IEnumerable<Product> Products { get; set; } = Enumerable.Empty<Product>();
-        public virtual IEnumerable<ProductCategory> Subcategories { get; set; } = Enumerable.Empty<ProductCategory>();
+    
+    
+        public virtual IEnumerable<Product>? Products { get; set; }
+        public virtual IEnumerable<ProductCategory>? Subcategories { get; set; }
     }
 }

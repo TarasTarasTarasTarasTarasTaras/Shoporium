@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Shoporium.Data._EntityFramework;
 
 namespace Shoporium.Web.Controllers
 {
@@ -8,14 +9,16 @@ namespace Shoporium.Web.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ShoporiumContext _context;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ShoporiumContext context, ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -33,7 +36,7 @@ namespace Shoporium.Web.Controllers
         [HttpGet("test")]
         public ActionResult Test()
         {
-            return Ok("test");
+            return Ok(_context.ProductCategories.OrderBy(p => p.Id).Take(50).ToList());
         }
     }
 }
