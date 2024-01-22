@@ -29,6 +29,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['account/login']);
   }
 
+  register() {
+    this.router.navigate(['account/register']);
+  }
+
   logout() {
     this.accountService.logout();
     this.currentUserName = '';

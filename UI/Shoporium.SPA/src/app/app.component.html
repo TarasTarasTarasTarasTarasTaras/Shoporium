@@ -8,7 +8,7 @@ shoporium
 
 <div *ngIf="!currentUserName">
     <button mat-raised-button color="primary" (click)="authorize()">Авторизуватись</button>
-    <button mat-raised-button color="primary">Зареєструватись</button>
+    <button mat-raised-button color="primary" (click)="register()">Зареєструватись</button>
 </div>
 
 <router-outlet></router-outlet>

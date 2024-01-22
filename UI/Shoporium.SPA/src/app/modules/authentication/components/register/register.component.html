@@ -1,0 +1,31 @@
+<div class="registerDiv">
+  <h2 class="register-header">Реєстрація</h2>
+
+  <form class="form-register" [formGroup]="form">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Ім'я</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Прізвище</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Номер телефону</mat-label>
+      <input matInput formControlName="mobileNumber">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Пароль</mat-label>
+      <input matInput formControlName="password" type="password">
+    </mat-form-field>
+    <button mat-stroked-button (click)="register()" class="full-width">Зареєструватись</button>
+  </form>
+</div>

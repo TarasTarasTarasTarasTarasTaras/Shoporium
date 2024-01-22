@@ -6,10 +6,12 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from 'src/app/shared/material.module';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

@@ -52,6 +52,16 @@ export class AccountService {
     );
   }
 
+  register(model) {
+    return this.http.post<LoginResult>(`${this.apiUrl}/register`, model, { withCredentials: true }).pipe(
+      concatMap((tokens: any) => {
+        this.setLocalStorage(tokens);
+        this.startTokenTimer();
+        return this.getCurrentUser()
+      })
+    );
+  }
+
   logout(useReturnUrl: boolean = true) {
     this.clearLocalStorage();
     this._accountSubject.next(null);

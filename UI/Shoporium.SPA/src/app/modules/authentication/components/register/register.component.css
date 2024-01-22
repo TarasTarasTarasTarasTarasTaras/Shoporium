@@ -1,0 +1,29 @@
+.register-header {
+    text-align: center
+}
+
+.registerDiv {
+    padding: 24px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 11px 0 rgba(62, 77, 89, 0.34);
+    background-color: #f7f7f7;
+    width: 340px;
+    margin: 200px auto;
+    height: auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+button {
+    color: #5279b4;
+}
+
+.form-register {
+    margin-top: 15px;
+}
+
+.block-input {
+    margin-top: 8px;
+}
