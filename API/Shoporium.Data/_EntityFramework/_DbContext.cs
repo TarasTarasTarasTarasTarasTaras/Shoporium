@@ -14,12 +14,12 @@ namespace Shoporium.Data._EntityFramework
         {
         }
 
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<LoginDetail> LoginDetails { get; set; }
-        public DbSet<Token> Tokens { get; set; }
-        public DbSet<RefreshToken> RefreshTokens { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<LoginDetail> LoginDetails { get; set; }
+        public virtual DbSet<Token> Tokens { get; set; }
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -981,7 +981,7 @@ namespace Shoporium.Data._EntityFramework
                 new ProductCategory { Id = 844, MainCategoryId = 10, Name = "Товари для рослин" },
                 new ProductCategory { Id = 845, MainCategoryId = 10, Name = "Бюро знахідок" },
                 new ProductCategory { Id = 846, MainCategoryId = 10, Name = "Віддам даром" },
-                new ProductCategory { Id = 847, MainCategoryId = 10, Name = "В'зка тварин" },
+                new ProductCategory { Id = 847, MainCategoryId = 10, Name = "В'язка тварин" },
                 new ProductCategory { Id = 848, MainCategoryId = 10, Name = "Тварини і рослини, інше" },
 
                 new ProductCategory { Id = 849, MainCategoryId = 834, Name = "Акваріумні рибки" },

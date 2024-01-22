@@ -47,7 +47,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ShoporiumContext>(options =>
-    options.UseSqlServer(
+    options.UseLazyLoadingProxies().UseSqlServer(
         builder.Configuration["Data:ShoporiumDb:ConnectionString"],
         sqlOptions =>
         {

@@ -36,7 +36,11 @@ namespace Shoporium.Web.Controllers
         [HttpGet("test")]
         public ActionResult Test()
         {
-            return Ok(_context.ProductCategories.OrderBy(p => p.Id).Take(50).ToList());
+            // run it
+            _context.ProductCategories.First(i => i.Id == 847).Name = "В'язка тварин";
+            _context.SaveChanges();
+
+            return Ok(_context.ProductCategories.Skip(10).Take(50).ToList());
         }
     }
 }

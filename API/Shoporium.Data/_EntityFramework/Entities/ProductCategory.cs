@@ -6,7 +6,7 @@
         public string Name { get; set; } = string.Empty;
         
         public int? MainCategoryId { get; set; }
-        public ProductCategory? MainCategory { get; set; }
+        public virtual ProductCategory? MainCategory { get; set; }
     
     
         public virtual IEnumerable<Product>? Products { get; set; }

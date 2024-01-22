@@ -5157,7 +5157,7 @@ namespace Shoporium.Data.Migrations
                         {
                             Id = 847,
                             MainCategoryId = 10,
-                            Name = "В'зка тварин"
+                            Name = "В'язка тварин"
                         },
                         new
                         {
