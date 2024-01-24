@@ -1,4 +1,4 @@
 export const environment = {
-    apiUrl: 'https://localhost:7291/api/',
-    azureApiUrl: 'https://shoporiumapi.azurewebsites.net/'
+    baseUrl: 'https://shoporiumapi.azurewebsites.net/',
+    apiUrl: 'https://shoporiumapi.azurewebsites.net/api/'
 };

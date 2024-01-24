@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from './modules/authentication/services/account.service';
 import { Account } from './modules/authentication/models/account';
 import { Router } from '@angular/router';
+import { Apollo, gql } from 'apollo-angular';
+
+const productCategories = gql`query GetProductCategories {
+  productCategories {
+    name
+  }
+}`;
 
 @Component({
   selector: 'app-root',
@@ -12,10 +19,17 @@ export class AppComponent implements OnInit {
   title = 'Shoporium.SPA';
 
   currentUserName: string;
+  productCategories;
 
   constructor(
+    private apollo: Apollo,
     private router: Router,
-    private accountService: AccountService) { }
+    private accountService: AccountService) {
+      apollo.query({ query: productCategories }).subscribe(res => {
+        this.productCategories = res.data;
+        console.log(res)
+      })
+    }
 
   ngOnInit(): void {
     this.accountService.account$.subscribe(

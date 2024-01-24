@@ -9,6 +9,7 @@ import { JwtInterceptor } from './modules/core/interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './modules/core/interceptors/error.interceptor';
 import { MaterialModule } from './shared/material.module';
 import { appInitializer } from 'src/_helpers/app.initializer';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { appInitializer } from 'src/_helpers/app.initializer';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    GraphQLModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
