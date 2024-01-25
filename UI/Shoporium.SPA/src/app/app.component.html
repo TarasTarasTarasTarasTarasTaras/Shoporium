@@ -11,8 +11,10 @@ shoporium
     <button mat-raised-button color="primary" (click)="register()">Зареєструватись</button>
 </div>
 
-<div *ngFor="let productCategory of productCategories.productCategories">
-    {{ productCategory.name }}
+<div *ngIf="productCategories">
+    <div *ngFor="let productCategory of productCategories.productCategories">
+        {{ productCategory.name }}
+    </div>
 </div>
 
 <router-outlet></router-outlet>
