@@ -3,6 +3,11 @@ import { AccountService } from './modules/authentication/services/account.servic
 import { Account } from './modules/authentication/models/account';
 import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
+import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+let apiUrl = environment.baseUrl;
+
 
 const productCategories = gql`query GetProductCategories {
   productCategories {
@@ -23,11 +28,11 @@ export class AppComponent implements OnInit {
 
   constructor(
     private apollo: Apollo,
+    private http: HttpClient,
     private router: Router,
     private accountService: AccountService) {
-      apollo.query({ query: productCategories }).subscribe(res => {
+      this.apollo.query({ query: productCategories }).subscribe(res => {
         this.productCategories = res.data;
-        console.log(res)
       })
     }
 
@@ -50,5 +55,36 @@ export class AppComponent implements OnInit {
   logout() {
     this.accountService.logout();
     this.currentUserName = '';
+  }
+
+  msg?: string;
+  progressbar:number=0
+
+  uploadedFile = (files:any)=>{
+    if(files.length===0){
+      return;
+    }
+
+    let filecollection : File[] =files;
+    const formData = new FormData();
+
+    Array.from(filecollection).map((file,index)=>{
+      return formData.append('file' + index, file, file.name)
+    }); 
+
+    this.http.post('https://localhost:7291/weatherforecast/upload',formData, {reportProgress: true, observe:'events'})
+      .subscribe({
+        next:(event)=>{
+          if(event.type === HttpEventType.UploadProgress) {  
+            if(event?.loaded && event?.total) {
+              this.progressbar = Math.round(100 * event.loaded / event.total)
+            }
+          }
+          else if (event.type === HttpEventType.Response) {
+            this.msg = 'Upload successfully completed..!';
+          }
+        },
+        error: (err:HttpErrorResponse)=> console.log(err)
+      });
   }
 }

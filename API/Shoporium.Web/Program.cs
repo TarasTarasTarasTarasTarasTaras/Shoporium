@@ -7,6 +7,7 @@ using Shoporium.Business.Accounts;
 using Shoporium.Business.Auth;
 using Shoporium.Business.Helpers;
 using Shoporium.Business.Logins;
+using Shoporium.Business.Services;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data.Accounts;
 using Shoporium.Data.GraphQL;
@@ -14,6 +15,7 @@ using Shoporium.Data.Logins;
 using Shoporium.Data.RefreshTokens;
 using Shoporium.Entities.Options;
 using Shoporium.Web.Helpers;
+using Stripe;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +63,12 @@ builder.Services.AddGraphQLServer()
     .AddSorting()
     .AddAuthorization();
 
+var azureOptionsSection = builder.Configuration.GetSection(AzureOptions.Azure);
+builder.Services.Configure<AzureOptions>(azureOptionsSection);
+var azureOptions = new AzureOptions();
+azureOptionsSection.Bind(azureOptions);
+builder.Services.AddSingleton(azureOptions);
+
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(mc =>
 {
@@ -70,6 +78,8 @@ var mapperConfig = new MapperConfiguration(mc =>
 
 var mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+
+builder.Services.AddScoped<IAzureService, AzureService>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();

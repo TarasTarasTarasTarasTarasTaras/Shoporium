@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Shoporium.Business.Services;
 using Shoporium.Data._EntityFramework;
 
 namespace Shoporium.Web.Controllers
@@ -14,11 +15,19 @@ namespace Shoporium.Web.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly ShoporiumContext _context;
+        private readonly IAzureService _azureService;
+        private readonly IConfiguration _configuration;
 
-        public WeatherForecastController(ShoporiumContext context, ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(
+            IConfiguration configuration,
+            IAzureService azureService,
+            ShoporiumContext context,
+            ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
             _context = context;
+            _azureService = azureService;
+            _configuration = configuration;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -41,6 +50,30 @@ namespace Shoporium.Web.Controllers
             _context.SaveChanges();
 
             return Ok(_context.ProductCategories.Skip(10).Take(50).ToList());
+        }
+
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadFiles()
+        {
+            var fromFiles = Request.Form.Files;
+
+            if (fromFiles == null || fromFiles.Count == 0)
+                return BadRequest("No files uploaded.");
+
+            var containerName = _configuration["AzureContainerStorageName"];
+
+            foreach (var file in fromFiles)
+            {
+                if (file.Length == 0)
+                {
+                    // Optionally, handle the case where a file has no content
+                    continue;
+                }
+
+                await _azureService.UploadBlobAsync(containerName!, file.FileName, file);
+            }
+
+            return Ok("Files uploaded successfully.");
         }
     }
 }

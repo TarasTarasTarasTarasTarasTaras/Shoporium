@@ -6,15 +6,36 @@ shoporium
     <button mat-raised-button color="primary" (click)="logout()">Вийти</button>
 </div>
 
-<div *ngIf="!currentUserName">
+<div *ngIf="!currentUserName" style="margin-bottom: 50px;">
     <button mat-raised-button color="primary" (click)="authorize()">Авторизуватись</button>
     <button mat-raised-button color="primary" (click)="register()">Зареєструватись</button>
 </div>
+
+<div *ngIf="currentUserName" style="margin-bottom: 50px;">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-3">
+            <input type="file" #file placeholder="Select File" (change)="uploadedFile(file.files)" style="display: none;" multiple>
+            <button type="button" class="btn btn-primary" (click)="file.click()">Upload Multiple File</button>
+        </div>
+        <div class="col-md-4">
+            <span class="Upload" *ngIf="progressbar > 0 ">
+              {{  progressbar }} %  Successfully Uploaded Files
+            </span>
+            <span class="Upload" *ngIf="msg">
+                {{ msg }} 
+                </span>
+            
+        </div>
+    </div>
+</div>
+
 
 <div *ngIf="productCategories">
     <div *ngFor="let productCategory of productCategories.productCategories">
         {{ productCategory.name }}
     </div>
 </div>
+
+
 
 <router-outlet></router-outlet>
