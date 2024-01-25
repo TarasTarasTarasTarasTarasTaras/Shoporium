@@ -1,6 +1,6 @@
-﻿using Shoporium.Data.Accounts;
-using Shoporium.Data.RefreshTokens;
-using Shoporium.Entities.DTO.Account;
+﻿using Shoporium.Data.RefreshTokens;
+using Shoporium.Data.Users;
+using Shoporium.Entities.DTO.Users;
 using Shoporium.Entities.Options;
 using System.Security.Claims;
 
@@ -8,33 +8,33 @@ namespace Shoporium.Business.Auth
 {
     public class AccountAuthManager : AuthManager
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IUserRepository _userRepository;
 
         public AccountAuthManager(
             JwtTokenOptions jwtTokenOptions,
             IRefreshTokenRepository refreshTokenRepository,
-            IAccountRepository accountRepository)
+            IUserRepository userRepository)
             : base(jwtTokenOptions, refreshTokenRepository)
         {
-            _accountRepository = accountRepository;
+            _userRepository = userRepository;
         }
 
         protected override Claim[] GenerateClaims(long id)
         {
-            var account = _accountRepository.GetAccount(id);
-            if (account == null)
+            var user = _userRepository.GetUser(id);
+            if (user == null)
                 throw new KeyNotFoundException($"Account {id} doesn't exist.");
 
             var claims = new List<Claim>()
             {
-                new(ClaimTypes.NameIdentifier, account.Id.ToString()),
-                new("CurrentAccountId", account.Id.ToString()),
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new("CurrentUserId", user.Id.ToString()),
 
-                new(ClaimTypes.Email, account.Email),
-                new("FirstName", account.FirstName),
-                new("LastName", account.LastName),
+                new(ClaimTypes.Email, user.Email),
+                new("FirstName", user.FirstName),
+                new("LastName", user.LastName),
 
-                new(ClaimTypes.Role, account.UserType.ToString())
+                new(ClaimTypes.Role, user.UserType.ToString())
             };
 
             return claims.ToArray();
@@ -44,7 +44,7 @@ namespace Shoporium.Business.Auth
         {
             return new RefreshTokenDTO()
             {
-                AccountId = id
+                UserId = id
             };
         }
     }

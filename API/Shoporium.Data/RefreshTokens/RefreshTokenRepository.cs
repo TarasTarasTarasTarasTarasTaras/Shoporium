@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data._EntityFramework.Entities;
-using Shoporium.Entities.DTO.Account;
+using Shoporium.Entities.DTO.Users;
 
 namespace Shoporium.Data.RefreshTokens
 {
@@ -45,7 +45,7 @@ namespace Shoporium.Data.RefreshTokens
         public void SaveRefreshToken(RefreshTokenDTO token)
         {
             var existingToken = Context.RefreshTokens
-                .FirstOrDefault(_ => _.AccountId == token.AccountId &&
+                .FirstOrDefault(_ => _.UserId == token.UserId &&
                                      _.IpAddress == token.IpAddress);
 
             if (existingToken != null)

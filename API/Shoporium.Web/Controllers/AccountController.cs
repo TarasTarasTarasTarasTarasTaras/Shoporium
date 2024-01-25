@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shoporium.Business.Logins;
-using Shoporium.Entities.DTO.Account;
+using Shoporium.Entities.DTO.Users;
 using Shoporium.Web.Extensions;
-using Shoporium.Web.Models.Account;
+using Shoporium.Web.Models.User;
 using System.Security.Claims;
 
 namespace Shoporium.Web.Controllers

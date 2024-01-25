@@ -3,19 +3,20 @@ using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Shoporium.Business.Accounts;
 using Shoporium.Business.Auth;
 using Shoporium.Business.Helpers;
 using Shoporium.Business.Logins;
 using Shoporium.Business.Services;
+using Shoporium.Business.Stores;
+using Shoporium.Business.Users;
 using Shoporium.Data._EntityFramework;
-using Shoporium.Data.Accounts;
 using Shoporium.Data.GraphQL;
 using Shoporium.Data.Logins;
 using Shoporium.Data.RefreshTokens;
+using Shoporium.Data.Stores;
+using Shoporium.Data.Users;
 using Shoporium.Entities.Options;
 using Shoporium.Web.Helpers;
-using Stripe;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -81,12 +82,14 @@ builder.Services.AddSingleton(mapper);
 
 builder.Services.AddScoped<IAzureService, AzureService>();
 
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
-builder.Services.AddScoped<IAccountFacade, AccountFacade>();
+builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ILoginFacade, LoginFacade>();
+builder.Services.AddScoped<IStoreFacade, StoreFacade>();
 builder.Services.AddScoped<IAuthManagerFactory, AuthManagerFactory>();
 
 #region Jwt authentication configuration

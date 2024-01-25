@@ -1,4 +1,4 @@
-﻿using Shoporium.Entities.DTO.Account;
+﻿using Shoporium.Entities.DTO.Users;
 using Shoporium.Entities.Enums;
 
 namespace Shoporium.Business.Logins

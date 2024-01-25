@@ -1,4 +1,4 @@
-﻿using Shoporium.Entities.DTO.Account;
+﻿using Shoporium.Entities.DTO.Users;
 
 namespace Shoporium.Data.RefreshTokens
 {

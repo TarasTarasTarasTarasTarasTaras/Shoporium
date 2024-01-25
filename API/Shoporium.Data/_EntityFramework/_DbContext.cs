@@ -14,15 +14,36 @@ namespace Shoporium.Data._EntityFramework
         {
         }
 
-        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<LoginDetail> LoginDetails { get; set; }
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+
+        public virtual DbSet<Store> Stores { get; set; }
+        public virtual DbSet<StoreCategory> StoreCategories { get; set; }
+
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<StoreCategory>().HasData(
+                new StoreCategory { Id = 1, Name = "Електроніка" },
+                new StoreCategory { Id = 2, Name = "Хобі та спорт" },
+                new StoreCategory { Id = 3, Name = "Одяг, взуття та аксесуари" },
+                new StoreCategory { Id = 4, Name = "Дитячі товари" },
+                new StoreCategory { Id = 5, Name = "Краса та здоров'я" },
+                new StoreCategory { Id = 6, Name = "Дім і сад" },
+                new StoreCategory { Id = 7, Name = "Транспорт" },
+                new StoreCategory { Id = 8, Name = "Будівництво та ремонт" },
+                new StoreCategory { Id = 9, Name = "Обладнання та сировина" },
+                new StoreCategory { Id = 10, Name = "Тварини і рослини" },
+                new StoreCategory { Id = 11, Name = "Нерухомість" },
+                new StoreCategory { Id = 12, Name = "Робота" },
+                new StoreCategory { Id = 13, Name = "Послуги та бізнес" },
+                new StoreCategory { Id = 14, Name = "Продукти харчування" },
+                new StoreCategory { Id = 15, Name = "Інше" });
+
             modelBuilder.Entity<ProductCategory>().HasData(
                 new ProductCategory { Id = 1, Name = "Електроніка" },
                 new ProductCategory { Id = 2, Name = "Хобі та спорт" },

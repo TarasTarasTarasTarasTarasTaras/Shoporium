@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Shoporium.Data.RefreshTokens;
-using Shoporium.Entities.DTO.Account;
+using Shoporium.Entities.DTO.Users;
 using Shoporium.Entities.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

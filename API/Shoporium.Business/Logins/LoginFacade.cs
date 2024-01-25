@@ -1,49 +1,49 @@
 ﻿using Shoporium.Business.Auth;
-using Shoporium.Business.Accounts;
-using Shoporium.Entities.DTO.Account;
 using Shoporium.Entities.Enums;
 using Shoporium.Data.RefreshTokens;
+using Shoporium.Entities.DTO.Users;
+using Shoporium.Business.Users;
 
 namespace Shoporium.Business.Logins
 {
     public class LoginFacade : ILoginFacade
     {
-        private readonly IAccountFacade _accountFacade;
+        private readonly IUserFacade _userFacade;
         private readonly IAuthManagerFactory _authManagerFactory;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
 
         public LoginFacade(
-            IAccountFacade accountFacade,
+            IUserFacade userFacade,
             IAuthManagerFactory authManagerFactory,
             IRefreshTokenRepository refreshTokenRepository)
         {
-            _accountFacade = accountFacade;
+            _userFacade = userFacade;
             _authManagerFactory = authManagerFactory;
             _refreshTokenRepository = refreshTokenRepository;
         }
 
         public void Register(RegisterDTO model)
         {
-            var account = _accountFacade.GetAccountByEmail(model.Email);
-            if (account != null && account.IsEmailVerified)
+            var user = _userFacade.GetUserByEmail(model.Email);
+            if (user != null && user.IsEmailVerified)
                 throw new ArgumentException();
 
-            _accountFacade.Register(model);
+            _userFacade.Register(model);
         }
 
         public (string accessToken, string refreshToken) Authenticate(LoginDTO model, string ipAddress, bool afterRegistration = false)
         {
             // todo: check count of accounts with not verified email
-            var account = _accountFacade.GetAccountByEmail(model.Email);
+            var user = _userFacade.GetUserByEmail(model.Email);
 
-            if (account == null || !_accountFacade.IsValidAccountCredentials(account.Id, model.Password))
+            if (user == null || !_userFacade.IsValidUserCredentials(user.Id, model.Password))
                 throw new ArgumentException();
                 //throw new UnauthorizedException(Resources.Account.Login.InvalidUser);
 
             //if (!account!.IsEmailVerified && !afterRegistration)
                 //throw new EmailIsNotConfirmedException();
 
-            var tokens = GetTokens(UserType.User, account.Id, ipAddress);
+            var tokens = GetTokens(UserType.User, user.Id, ipAddress);
 
             //_logger.LogInformationWithUserId("User logged in the system.", user.UserId);
             return tokens;

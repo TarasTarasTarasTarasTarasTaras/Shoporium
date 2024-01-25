@@ -8,7 +8,7 @@
         public bool IsActive { get; set; }
         public DateTime ExpirationDateUtc { get; set; }
         public DateTime CreatedOn { get; set; }
-        public long AccountId { get; set; }
-        public virtual Account Account { get; set; } = null!;
+        public long UserId { get; set; }
+        public virtual User? User { get; set; }
     }
 }

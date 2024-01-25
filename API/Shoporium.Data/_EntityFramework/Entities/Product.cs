@@ -1,19 +1,21 @@
-﻿namespace Shoporium.Data._EntityFramework.Entities
+﻿using Shoporium.Entities.Enums;
+
+namespace Shoporium.Data._EntityFramework.Entities
 {
     public class Product
     {
-        // add price and status
-
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public ProductStatus Status { get; set; }
         public int NumberOfViews { get; set; }
         public DateTime CreatedDate { get; set; }
         
         public int CategoryId { get; set; }
         public virtual ProductCategory? Category { get; set; }
         
-        public long AccountId { get; set; }
-        public virtual Account? Account { get; set; }
+        public long StoreId { get; set; }
+        public virtual Store? Store { get; set; }
     }
 }

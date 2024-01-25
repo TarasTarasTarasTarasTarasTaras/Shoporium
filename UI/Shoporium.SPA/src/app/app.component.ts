@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
       return formData.append('file' + index, file, file.name)
     }); 
 
-    this.http.post('https://localhost:7291/weatherforecast/upload',formData, {reportProgress: true, observe:'events'})
+    this.http.post(`${environment.baseUrl}weatherforecast/upload`,formData, {reportProgress: true, observe:'events'})
       .subscribe({
         next:(event)=>{
           if(event.type === HttpEventType.UploadProgress) {  

@@ -6,7 +6,7 @@
         public string IpAddress { get; set; } = string.Empty;
         public string TokenString { get; set; } = string.Empty;
         public DateTime ExpirationTimeUtc { get; set; }
-        public long? AccountId { get; set; }
-        public virtual Account Account { get; set; } = null!;
+        public long? UserId { get; set; }
+        public virtual User? User { get; set; }
     }
 }

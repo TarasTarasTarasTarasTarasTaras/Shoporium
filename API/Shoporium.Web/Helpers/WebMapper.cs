@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using Shoporium.Entities.DTO.Account;
-using Shoporium.Web.Models.Account;
+using Shoporium.Entities.DTO.Stores;
+using Shoporium.Entities.DTO.Users;
+using Shoporium.Web.Models.Stores;
+using Shoporium.Web.Models.User;
 
 namespace Shoporium.Web.Helpers
 {
@@ -11,6 +13,7 @@ namespace Shoporium.Web.Helpers
             CreateMap<LoginModel, LoginDTO>();
             CreateMap<RegisterModel, RegisterDTO>();
             CreateMap<RegisterModel, LoginDTO>();
+            CreateMap<StoreDTO, CreateStoreModel>().ReverseMap();
         }
     }
 }

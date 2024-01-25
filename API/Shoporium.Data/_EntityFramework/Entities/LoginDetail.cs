@@ -6,7 +6,7 @@
         public string Password { get; set; } = string.Empty;
         public DateTime? LastLoginAttemptUtc { get; set; }
         public int FailedLoginAttempts { get; set; }
-        public long AccountId { get; set; }
-        public virtual Account Account { get; set; } = null!;
+        public long UserId { get; set; }
+        public virtual User User { get; set; } = null!;
     }
 }

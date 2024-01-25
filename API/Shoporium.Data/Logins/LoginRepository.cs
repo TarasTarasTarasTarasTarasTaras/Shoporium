@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Shoporium.Data._EntityFramework;
-using Shoporium.Entities.DTO.Account;
+using Shoporium.Entities.DTO.Users;
 
 namespace Shoporium.Data.Logins
 {
@@ -15,10 +15,10 @@ namespace Shoporium.Data.Logins
             _mapper = mapper;
         }
 
-        public LoginDetailDTO? GetLoginDetail(long accountId)
+        public LoginDetailDTO? GetLoginDetail(long userId)
         {
             var loginDetail = Context.LoginDetails
-                .FirstOrDefault(x => x.AccountId == accountId);
+                .FirstOrDefault(x => x.UserId == userId);
 
             return loginDetail == null ? null : _mapper.Map<LoginDetailDTO>(loginDetail);
         }

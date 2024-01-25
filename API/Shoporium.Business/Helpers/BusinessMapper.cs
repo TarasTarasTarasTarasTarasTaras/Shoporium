@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Shoporium.Data._EntityFramework.Entities;
-using Shoporium.Entities.DTO.Account;
+using Shoporium.Entities.DTO.Stores;
+using Shoporium.Entities.DTO.Users;
 
 namespace Shoporium.Business.Helpers
 {
@@ -8,7 +9,7 @@ namespace Shoporium.Business.Helpers
     {
         public BusinessMapper()
         {
-            CreateMap<AccountDTO, Account>().ReverseMap();
+            CreateMap<UserDTO, User>().ReverseMap();
 
             CreateMap<LoginDetailDTO, LoginDetail>()
                 .ReverseMap()
@@ -18,7 +19,9 @@ namespace Shoporium.Business.Helpers
 
             CreateMap<RefreshTokenDTO, RefreshToken>().ReverseMap();
 
-            CreateMap<RegisterDTO, Account>();
+            CreateMap<RegisterDTO, User>();
+
+            CreateMap<StoreDTO, Store>().ReverseMap();
         }
     }
 }

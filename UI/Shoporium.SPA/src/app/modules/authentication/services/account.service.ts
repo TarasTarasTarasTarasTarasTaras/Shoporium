@@ -12,7 +12,6 @@ import { LoginResult } from '../models/login-result';
   providedIn: 'root'
 })
 export class AccountService {
-
   private readonly apiUrl = `${environment.apiUrl}account`;
   private timer: Subscription;
 
@@ -33,7 +32,8 @@ export class AccountService {
     }
   }
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private router: Router) {
     window.addEventListener('storage', this.storageEventListener.bind(this));
   }
