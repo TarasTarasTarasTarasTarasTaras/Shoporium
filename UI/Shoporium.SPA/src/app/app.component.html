@@ -1,15 +1,4 @@
-shoporium
-
-<div *ngIf="currentUserName">
-    FirstName: {{ currentUserName }}
-
-    <button mat-raised-button color="primary" (click)="logout()">Вийти</button>
-</div>
-
-<div *ngIf="!currentUserName" style="margin-bottom: 50px;">
-    <button mat-raised-button color="primary" (click)="authorize()">Авторизуватись</button>
-    <button mat-raised-button color="primary" (click)="register()">Зареєструватись</button>
-</div>
+<app-header></app-header>
 
 <div *ngIf="currentUserName" style="margin-bottom: 50px;">
     <div class="row" style="margin-bottom: 20px;">
@@ -29,6 +18,18 @@ shoporium
     </div>
 </div>
 
+<div class="main">
+    <div class="label">Розділи на сервісі Shoporium</div>
+
+    <div class="category-container">
+        <div class="category" *ngFor="let category of productCategories">
+           <img src="../assets/icons/categories/{{ category.iconName }}" class="icon" alt="{{ category.name }} Icon">
+            <span>{{ category.name }}</span>
+        </div>
+    </div>
+</div>
+
+  
 
 <!-- <div *ngIf="productCategories">
     <div *ngFor="let productCategory of productCategories.productCategories">

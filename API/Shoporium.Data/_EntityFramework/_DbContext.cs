@@ -45,20 +45,20 @@ namespace Shoporium.Data._EntityFramework
                 new StoreCategory { Id = 15, Name = "Інше" });
 
             modelBuilder.Entity<ProductCategory>().HasData(
-                new ProductCategory { Id = 1, Name = "Електроніка" },
-                new ProductCategory { Id = 2, Name = "Хобі та спорт" },
-                new ProductCategory { Id = 3, Name = "Одяг, взуття та аксесуари" },
-                new ProductCategory { Id = 4, Name = "Дитячі товари" },
-                new ProductCategory { Id = 5, Name = "Краса та здоров'я" },
-                new ProductCategory { Id = 6, Name = "Дім і сад" },
-                new ProductCategory { Id = 7, Name = "Транспорт" },
-                new ProductCategory { Id = 8, Name = "Будівництво та ремонт" },
-                new ProductCategory { Id = 9, Name = "Обладнання та сировина" },
-                new ProductCategory { Id = 10, Name = "Тварини і рослини" },
-                new ProductCategory { Id = 11, Name = "Нерухомість" },
-                new ProductCategory { Id = 12, Name = "Робота" },
-                new ProductCategory { Id = 13, Name = "Послуги та бізнес" },
-                new ProductCategory { Id = 14, Name = "Продукти харчування" },
+                new ProductCategory { Id = 1, Name = "Електроніка", IconName = "electronic-icon.png" },
+                new ProductCategory { Id = 2, Name = "Хобі та спорт", IconName = "hobbie-icon.png" },
+                new ProductCategory { Id = 3, Name = "Одяг, взуття та аксесуари", IconName = "clothes-icon.png" },
+                new ProductCategory { Id = 4, Name = "Дитячі товари", IconName = "childrens-icon.png" },
+                new ProductCategory { Id = 5, Name = "Краса та здоров'я", IconName = "health-icon.png" },
+                new ProductCategory { Id = 6, Name = "Дім і сад", IconName = "house-icon.png" },
+                new ProductCategory { Id = 7, Name = "Транспорт", IconName = "transport-icon.png" },
+                new ProductCategory { Id = 8, Name = "Будівництво та ремонт", IconName = "construction-icon.png" },
+                new ProductCategory { Id = 9, Name = "Обладнання та сировина", IconName = "equipment-icon.png" },
+                new ProductCategory { Id = 10, Name = "Тварини і рослини", IconName = "pets-icon.png" },
+                new ProductCategory { Id = 11, Name = "Нерухомість", IconName = "real-estate-icon.png" },
+                new ProductCategory { Id = 12, Name = "Робота", IconName = "job-icon.png" },
+                new ProductCategory { Id = 13, Name = "Послуги та бізнес", IconName = "business-icon.png" },
+                new ProductCategory { Id = 14, Name = "Продукти харчування", IconName = "food-icon.png" },
 
                 #region Електроніка
                 new ProductCategory { Id = 15, MainCategoryId = 1, Name = "Телефони та аксесуари" },
@@ -137,7 +137,7 @@ namespace Shoporium.Data._EntityFramework
                 new ProductCategory { Id = 80, MainCategoryId = 22, Name = "MP-3 плеєри" },
                 new ProductCategory { Id = 81, MainCategoryId = 22, Name = "Радіоприймачі" },
                 new ProductCategory { Id = 82, MainCategoryId = 22, Name = "Комплектуючі для аудіотехніки" },
-            #endregion
+                #endregion
 
                 #region Хобі та спорт
                 new ProductCategory { Id = 83, MainCategoryId = 2, Name = "Полювання та рибальство" },

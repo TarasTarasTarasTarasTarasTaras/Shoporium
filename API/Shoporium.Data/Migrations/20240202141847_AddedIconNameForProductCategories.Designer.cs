@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shoporium.Data._EntityFramework;
 
@@ -11,9 +12,11 @@ using Shoporium.Data._EntityFramework;
 namespace Shoporium.Data.Migrations
 {
     [DbContext(typeof(ShoporiumContext))]
-    partial class ShoporiumContextModelSnapshot : ModelSnapshot
+    [Migration("20240202141847_AddedIconNameForProductCategories")]
+    partial class AddedIconNameForProductCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

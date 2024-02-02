@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from './modules/authentication/services/account.service';
-import { Account } from './modules/authentication/models/account';
-import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-let apiUrl = environment.baseUrl;
-
-
-const productCategories = gql`query GetProductCategories {
-  productCategories {
-    name
+const productCategoriesQuery = gql`
+  query GetProductCategories {
+  productCategories(where: { iconName: {neq: ""} }) {
+    name,
+    iconName
   }
-}`;
+}
+`;
+
+
+// const productCategories = gql`query GetProductCategories {
+//   productCategories {
+//     name,
+//     iconName
+//   }
+// }`;
 
 @Component({
   selector: 'app-root',
@@ -28,33 +33,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     private apollo: Apollo,
-    private http: HttpClient,
-    private router: Router,
-    private accountService: AccountService) {
-      this.apollo.query({ query: productCategories }).subscribe(res => {
-        this.productCategories = res.data;
+    private http: HttpClient) {
+      this.apollo.query({ query: productCategoriesQuery }).subscribe((res: any) => {
+        this.productCategories = res.data.productCategories;
+        console.log(res)
       })
     }
 
   ngOnInit(): void {
-    this.accountService.account$.subscribe(
-      (res: Account) => {
-        this.currentUserName = res.firstName;
-      }
-    );
-  }
-
-  authorize() {
-    this.router.navigate(['account/login']);
-  }
-
-  register() {
-    this.router.navigate(['account/register']);
-  }
-
-  logout() {
-    this.accountService.logout();
-    this.currentUserName = '';
   }
 
   msg?: string;
@@ -65,7 +51,7 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    let filecollection : File[] =files;
+    let filecollection : File[] = files;
     const formData = new FormData();
 
     Array.from(filecollection).map((file,index)=>{

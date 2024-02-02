@@ -1,1 +1,31 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@font-face {
+    font-family: Montserrat;
+    src: url("/assets/font/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Caveat;
+    src: url("/assets/font/Caveat-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Onest;
+    src: url("/assets/font/Onest-VariableFont_wght.ttf") format("truetype");
+}
+
+html, body { 
+    height: 100%;
+}
+
+body { 
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

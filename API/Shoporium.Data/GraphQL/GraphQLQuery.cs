@@ -18,7 +18,6 @@ namespace Shoporium.Data.GraphQL
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        [Authorize]
         public IQueryable<ProductCategory> GetProductCategories([Service] ShoporiumContext context)
         {
             return context.ProductCategories;

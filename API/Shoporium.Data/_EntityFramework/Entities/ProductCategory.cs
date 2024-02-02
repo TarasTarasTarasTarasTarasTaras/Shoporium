@@ -4,7 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        
+        public string IconName { get; set; } = string.Empty;
+
         public int? MainCategoryId { get; set; }
         public virtual ProductCategory? MainCategory { get; set; }
     
