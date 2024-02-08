@@ -48,6 +48,8 @@ export class CreateStoreComponent implements OnInit {
     const file = event.target.files[0];
     this.form.get(controlName)?.setValue(file);
 
+    if (!this.form.dirty) this.form.markAsDirty();
+
     const reader = new FileReader();
     reader.onload = () => {
       if (controlName === 'mainPhoto') {
@@ -66,7 +68,7 @@ export class CreateStoreComponent implements OnInit {
     formData.append('mainPhoto', this.form.value.mainPhoto);
     formData.append('backgroundPhoto', this.form.value.backgroundPhoto);
     formData.append('categoryId', this.form.value.categoryId.toString());
-    formData.append('otherCategoryName', this.form.value.otherCategoryName);
+    if (this.form.value.otherCategoryName) formData.append('otherCategoryName', this.form.value.otherCategoryName);
 
     this.storeService.createStore(formData).subscribe(res => {
 

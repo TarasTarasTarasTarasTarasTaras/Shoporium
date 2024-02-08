@@ -47,4 +47,8 @@ export class StoreDetailsComponent implements OnInit {
   get category(): string {
     return this.storeCategories.find(c => c.id == this.store.categoryId)?.name;
   }
+
+  get isPhotoSelected(): boolean {
+    return this.store.mainPhoto || this.store.downloadedMainPhoto || this.store.backgroundPhoto || this.store.downloadedBackgroundPhoto;
+  }
 }

@@ -9,7 +9,7 @@
   
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Опис магазину</mat-label>
-      <input matInput formControlName="description">
+      <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
 
     <div class="block-input">
@@ -37,13 +37,13 @@
       <div class="label">Задній фон магазину</div>
       <input type="file" (change)="onFileSelected($event, 'backgroundPhoto')" accept="image/*">
     </div>
-  
-    <button mat-stroked-button (click)="submit()" class="full-width">Створити</button>
-  </form>  
+    </form>  
 </div>
 
 <div class="preview-store" *ngIf="form.dirty">
   <h2 class="header">Ваш магазин матиме такий вигляд</h2>
 
   <app-store-details [store]="store"></app-store-details>
+
+  <button mat-stroked-button (click)="submit()" class="full-width">Створити</button>
 </div>

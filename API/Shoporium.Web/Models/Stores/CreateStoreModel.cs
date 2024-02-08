@@ -11,6 +11,7 @@ namespace Shoporium.Web.Models.Stores
         public string Description { get; set; } = string.Empty;
 
         public int CategoryId { get; set; }
+        [Required(AllowEmptyStrings = true)]
         public string OtherCategoryName { get; set; } = string.Empty;
 
         public StoreStatus Status { get; set; }

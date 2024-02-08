@@ -1,12 +1,23 @@
 <div class="store-container" *ngIf="store">
-  <div class="store-background">
-    <img *ngIf="store.backgroundPhoto" [src]="store.backgroundPhoto" alt="Background Photo">
-    <img *ngIf="store.downloadedBackgroundPhoto" src="data:image/png;base64,{{ store.downloadedBackgroundPhoto }}" alt="Background Photo">
+  <div *ngIf="isPhotoSelected" class="store-background">
+    <div>
+      <ng-container *ngIf="store.downloadedBackgroundPhoto; else elseBackgroundPhotoBlock">
+        <img src="data:image/png;base64,{{ store.downloadedBackgroundPhoto }}" alt="Background Photo">
+      </ng-container>
+      <ng-template #elseBackgroundPhotoBlock>
+        <img *ngIf="store.backgroundPhoto" [src]="store.backgroundPhoto" alt="Background Photo">
+      </ng-template>
+    </div>    
 
     <div class="store-photo">
-      <img *ngIf="store.mainPhoto" [src]="store.mainPhoto" alt="Background Photo">
-      <img *ngIf="store.downloadedMainPhoto" src="data:image/png;base64,{{ store.downloadedMainPhoto }}" alt="Main Photo">
+      <ng-container *ngIf="store.downloadedMainPhoto; else elseMainPhotoBlock">
+        <img src="data:image/png;base64,{{ store.downloadedMainPhoto }}" alt="Main Photo">
+      </ng-container>
+      <ng-template #elseMainPhotoBlock>
+        <img *ngIf="store.mainPhoto" [src]="store.mainPhoto" alt="Main Photo">
+      </ng-template>
     </div>
+    
   </div>
 
   <div class="store-name">
