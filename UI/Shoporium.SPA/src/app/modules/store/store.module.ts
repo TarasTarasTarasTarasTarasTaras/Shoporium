@@ -7,10 +7,14 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { StoreRoutingModule } from './store-routing.module';
 import { AllStoresComponent } from './components/all-stores/all-stores.component';
 import { CreateStoreComponent } from './components/create-store/create-store.component';
+import { MyStoresComponent } from './components/my-stores/my-stores.component';
+import { StoreDetailsComponent } from './components/store-details/store-details.component';
 
 @NgModule({
   declarations: [
+    MyStoresComponent,
     AllStoresComponent,
+    StoreDetailsComponent,
     CreateStoreComponent
   ],
   imports: [

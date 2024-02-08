@@ -1,0 +1,70 @@
+.header {
+    text-align: center
+}
+
+.createDiv, .preview-store {
+    padding: 24px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 11px 0 rgba(62, 77, 89, 0.34);
+    background-color: #f7f7f7;
+    width: 70%;
+    margin: 50px auto;
+    height: auto;
+    max-width: 850px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+button {
+    color: #5279b4;
+}
+
+.form-create {
+    margin-top: 15px;
+}
+
+.block-input {
+    margin-top: 8px;
+}
+
+.forgot-password {
+    color: #5279b4;
+    font-size: 13px;
+    display: block;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+  }
+
+  .block {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .label {
+    width: 180px;
+    display: inline-block;
+  }
+
+  .preview-store {
+    margin-top: 50px;
+  }

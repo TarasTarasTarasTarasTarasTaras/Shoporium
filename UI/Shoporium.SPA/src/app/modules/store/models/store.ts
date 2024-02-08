@@ -1,12 +1,29 @@
 import { StoreStatus } from "./store-status";
 
-export interface Store {
+export class Store {
+    id: number;
     name: string;
     description: string;
+
     mainPhoto: string;
     backgroundPhoto: string;
+
+    categoryId: number;
     otherCategoryName: string | null;
+
+    downloadedMainPhoto;
+    downloadedBackgroundPhoto;
     // status: StoreStatus;
     // userId: number;
     // categoryId: number;
+
+    constructor(id: number, name: string, description: string, mainPhoto, backgroundPhoto, categoryId: number, otherCategoryName: string | null) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.mainPhoto = mainPhoto;
+        this.backgroundPhoto = backgroundPhoto;
+        this.categoryId = categoryId;
+        this.otherCategoryName = otherCategoryName;
+    }
 }

@@ -1,0 +1,23 @@
+<div class="store-container" *ngIf="store">
+  <div class="store-background">
+    <img *ngIf="store.backgroundPhoto" [src]="store.backgroundPhoto" alt="Background Photo">
+    <img *ngIf="store.downloadedBackgroundPhoto" src="data:image/png;base64,{{ store.downloadedBackgroundPhoto }}" alt="Background Photo">
+
+    <div class="store-photo">
+      <img *ngIf="store.mainPhoto" [src]="store.mainPhoto" alt="Background Photo">
+      <img *ngIf="store.downloadedMainPhoto" src="data:image/png;base64,{{ store.downloadedMainPhoto }}" alt="Main Photo">
+    </div>
+  </div>
+
+  <div class="store-name">
+    <h3>{{ store.name }}</h3>
+  </div>
+
+  <div *ngIf="category" class="store-name">
+    <h4>Категорія магазину: {{ category }}</h4>
+  </div>
+
+  <div class="store-description">
+    <p>{{ store.description }}</p>
+  </div>
+</div>

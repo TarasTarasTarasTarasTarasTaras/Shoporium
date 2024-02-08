@@ -13,7 +13,11 @@ namespace Shoporium.Web.Helpers
             CreateMap<LoginModel, LoginDTO>();
             CreateMap<RegisterModel, RegisterDTO>();
             CreateMap<RegisterModel, LoginDTO>();
-            CreateMap<StoreDTO, CreateStoreModel>().ReverseMap();
+
+            CreateMap<StoreDTO, CreateStoreModel>()
+                .ReverseMap()
+                .ForPath(_ => _.MainPhoto, opt => opt.MapFrom(src => src.MainPhoto == null ? "" : src.MainPhoto.FileName))
+                .ForPath(_ => _.BackgroundPhoto, opt => opt.MapFrom(src => src.BackgroundPhoto == null ? "" : src.BackgroundPhoto.FileName));
         }
     }
 }

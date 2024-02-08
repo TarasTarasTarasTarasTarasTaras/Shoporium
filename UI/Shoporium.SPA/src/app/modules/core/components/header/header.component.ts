@@ -40,4 +40,8 @@ export class HeaderComponent implements OnInit {
     this.accountService.logout();
     this.currentUserName = '';
   }
+
+  myStores() {
+    this.router.navigate(['store/my']);
+  }
 }

@@ -1,13 +1,49 @@
-<form class="form-login" [formGroup]="form">
-  <mat-form-field class="full-width" appearance="fill">
+<div class="createDiv">
+  <h2 class="header">Створення нового магазину</h2>
+
+  <form class="form-create" [formGroup]="form">
+    <mat-form-field class="full-width" appearance="outline">
       <mat-label>Назва магазину</mat-label>
       <input matInput formControlName="name">
-  </mat-form-field>
-
-  <mat-form-field class="full-width" appearance="fill">
+    </mat-form-field>
+  
+    <mat-form-field class="full-width" appearance="outline">
       <mat-label>Опис магазину</mat-label>
       <input matInput formControlName="description">
-  </mat-form-field>
+    </mat-form-field>
 
-  <button mat-stroked-button (click)="submit()" class="full-width">Створити</button>
-</form>
+    <div class="block-input">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Категорія магазину</mat-label>
+        <mat-select formControlName="categoryId" (selectionChange)="onCategoryChange()">
+          <mat-option *ngFor="let category of storeCategories" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field *ngIf="form.value.categoryId == otherCategoryId" class="full-width" appearance="outline">
+      <mat-label>Категорія магазину</mat-label>
+      <input matInput formControlName="otherCategoryName">
+    </mat-form-field>
+  
+    <div class="block">
+      <div class="label">Головне фото магазину</div>
+      <input type="file" (change)="onFileSelected($event, 'mainPhoto')" accept="image/*">
+    </div>
+
+    <div class="block">
+      <div class="label">Задній фон магазину</div>
+      <input type="file" (change)="onFileSelected($event, 'backgroundPhoto')" accept="image/*">
+    </div>
+  
+    <button mat-stroked-button (click)="submit()" class="full-width">Створити</button>
+  </form>  
+</div>
+
+<div class="preview-store" *ngIf="form.dirty">
+  <h2 class="header">Ваш магазин матиме такий вигляд</h2>
+
+  <app-store-details [store]="store"></app-store-details>
+</div>

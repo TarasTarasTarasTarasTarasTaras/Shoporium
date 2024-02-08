@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Shoporium.Entities.Options;
 
@@ -11,11 +8,12 @@ namespace Shoporium.Business.Services
 {
     public class AzureService : IAzureService
     {
-        private readonly AzureOptions _configuration;
+        private readonly AzureOptions _azureOptions;
         private readonly ILogger<AzureService> _logger;
-        public AzureService(AzureOptions configuration, ILogger<AzureService> logger)
+
+        public AzureService(AzureOptions azureOptions, ILogger<AzureService> logger)
         {
-            _configuration = configuration;
+            _azureOptions = azureOptions;
             _logger = logger;
         }
 
@@ -23,7 +21,7 @@ namespace Shoporium.Business.Services
         {
             try
             {
-                var container = new BlobContainerClient(_configuration.StorageConnectionString, containerName);
+                var container = new BlobContainerClient(_azureOptions.StorageConnectionString, containerName);
                 var blobClient = container.GetBlobClient(blobName);
 
                 if (await blobClient.ExistsAsync())
@@ -43,7 +41,7 @@ namespace Shoporium.Business.Services
 
         public async Task<bool> ExistsBlob(string containerName, string blobName)
         {
-            var container = new BlobContainerClient(_configuration.StorageConnectionString, containerName);
+            var container = new BlobContainerClient(_azureOptions.StorageConnectionString, containerName);
             var blobClient = container.GetBlobClient(blobName);
 
             return await blobClient.ExistsAsync();
@@ -53,7 +51,7 @@ namespace Shoporium.Business.Services
         {
             try
             {
-                var container = new BlobContainerClient(_configuration.StorageConnectionString, containerName);
+                var container = new BlobContainerClient(_azureOptions.StorageConnectionString, containerName);
                 var blobClient = container.GetBlobClient(blobName);
 
                 if (!(await blobClient.ExistsAsync()))
@@ -77,7 +75,7 @@ namespace Shoporium.Business.Services
                 if (string.IsNullOrEmpty(path))
                     return;
 
-                var container = new BlobContainerClient(_configuration.StorageConnectionString, containerName);
+                var container = new BlobContainerClient(_azureOptions.StorageConnectionString, containerName);
                 var blobs = container.GetBlobsByHierarchy(prefix: path);
                 if (!blobs.Any()) return;
 
@@ -102,7 +100,7 @@ namespace Shoporium.Business.Services
             if (string.IsNullOrEmpty(path))
                 return false;
 
-            var container = new BlobContainerClient(_configuration.StorageConnectionString, containerName);
+            var container = new BlobContainerClient(_azureOptions.StorageConnectionString, containerName);
             var blobs = container.GetBlobsByHierarchy(prefix: path);
             return blobs.Any();
         }

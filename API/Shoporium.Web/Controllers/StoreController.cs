@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shoporium.Business.Services;
 using Shoporium.Business.Stores;
 using Shoporium.Entities.DTO.Stores;
 using Shoporium.Web.Extensions;
@@ -15,26 +16,57 @@ namespace Shoporium.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IStoreFacade _storeFacade;
+        private readonly IAzureService _azureService;
+        private readonly IConfiguration _configuration;
 
-        public StoreController(IMapper mapper, IStoreFacade storeFacade)
+        public StoreController(
+            IMapper mapper,
+            IStoreFacade storeFacade,
+            IAzureService azureService,
+            IConfiguration configuration)
         {
             _mapper = mapper;
             _storeFacade = storeFacade;
+            _azureService = azureService;
+            _configuration = configuration;
         }
 
         [HttpPost]
-        public ActionResult Create(CreateStoreModel model)
+        public async Task<ActionResult> Create([FromForm] CreateStoreModel model)
         {
             model.UserId = User.GetId();
             _storeFacade.CreateStore(_mapper.Map<StoreDTO>(model));
+
+            var containerName = _configuration["AzureContainerStorageName"]!;
+
+            if (model.MainPhoto != null)
+                await _azureService.UploadBlobAsync(containerName, $"stores/{model.Name}/{model.MainPhoto.FileName}", model.MainPhoto);
+
+            if (model.BackgroundPhoto != null)
+                await _azureService.UploadBlobAsync(containerName, $"stores/{model.Name}/{model.BackgroundPhoto.FileName}", model.BackgroundPhoto);
+
             return Ok();
+        }
+
+        [HttpGet("my")]
+        public async Task<ActionResult> GetMyStores()
+        {
+            var test = await _storeFacade.GetMyStores(User.GetId());
+            return Ok(await _storeFacade.GetMyStores(User.GetId()));
         }
 
         [HttpGet("all")]
         [AllowAnonymous]
-        public ActionResult GetAll()
+        public ActionResult GetAllStores()
         {
             return Ok(_storeFacade.GetAllStores());
+        }
+
+        [HttpGet("details/{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> GetStoreDetails(int id)
+        {
+            return Ok(await _storeFacade.GetStoreDetails(id));
         }
     }
 }

@@ -16,16 +16,24 @@ namespace Shoporium.Data.Stores
             _mapper = mapper;
         }
 
+        public IEnumerable<StoreDTO> GetMyStores(long userId)
+        {
+            return _mapper.Map<IEnumerable<StoreDTO>>(Context.Stores.Where(s => s.UserId == userId));
+        }
+
         public IEnumerable<StoreDTO> GetAllStores()
         {
             return _mapper.Map<IEnumerable<StoreDTO>>(Context.Stores);
         }
 
+        public StoreDTO GetStoreDetails(int storeId)
+        {
+            return _mapper.Map<StoreDTO>(Context.Stores.FirstOrDefault(s => s.Id == storeId));
+        }
+
         public void CreateStore(StoreDTO model)
         {
             var entity = _mapper.Map<Store>(model);
-            entity.CategoryId = 1;
-
             Context.Stores.Add(entity);
             Context.SaveChanges();
         }
