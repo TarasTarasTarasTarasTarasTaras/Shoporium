@@ -60,7 +60,7 @@ namespace Shoporium.Web.Controllers
             if (fromFiles == null || fromFiles.Count == 0)
                 return BadRequest("No files uploaded.");
 
-            var containerName = _configuration["AzureContainerStorageName"];
+            var containerName = _configuration["AWSBucketName"];
 
             foreach (var file in fromFiles)
             {

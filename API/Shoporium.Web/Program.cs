@@ -1,3 +1,4 @@
+using Amazon.S3;
 using AutoMapper;
 using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -91,6 +92,9 @@ builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ILoginFacade, LoginFacade>();
 builder.Services.AddScoped<IStoreFacade, StoreFacade>();
 builder.Services.AddScoped<IAuthManagerFactory, AuthManagerFactory>();
+
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
 
 #region Jwt authentication configuration
 

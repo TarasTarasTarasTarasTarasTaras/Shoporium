@@ -37,7 +37,7 @@ namespace Shoporium.Web.Controllers
             model.UserId = User.GetId();
             _storeFacade.CreateStore(_mapper.Map<StoreDTO>(model));
 
-            var containerName = _configuration["AzureContainerStorageName"]!;
+            var containerName = _configuration["AWSBucketName"]!;
 
             if (model.MainPhoto != null)
                 await _azureService.UploadBlobAsync(containerName, $"stores/{model.Name}/{model.MainPhoto.FileName}", model.MainPhoto);

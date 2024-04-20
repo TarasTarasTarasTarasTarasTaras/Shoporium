@@ -76,7 +76,7 @@ export class CreateStoreComponent implements OnInit {
   }
 
   get otherCategoryId(): number {
-    return this.storeCategories.find(s => s.name == 'Інше').id;
+    return this.storeCategories?.find(s => s.name == 'Інше').id;
   }
 
   onCategoryChange(): void {

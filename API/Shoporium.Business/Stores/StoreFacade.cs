@@ -28,7 +28,7 @@ namespace Shoporium.Business.Stores
             await Task.WhenAll(stores
                 .Select(async store =>
                 {
-                    var containerName = _configuration["AzureContainerStorageName"]!;
+                    var containerName = _configuration["AWSBucketName"]!;
 
                     if (!string.IsNullOrEmpty(store.MainPhoto))
                     {
@@ -58,7 +58,7 @@ namespace Shoporium.Business.Stores
         {
             var store = _storeRepository.GetStoreDetails(storeId);
 
-            var containerName = _configuration["AzureContainerStorageName"]!;
+            var containerName = _configuration["AWSBucketName"]!;
             if (!string.IsNullOrEmpty(store.MainPhoto))
             {
                 store.DownloadedMainPhoto = await _azureService.DownloadBlobAsync(containerName, $"stores/{store.Name}/{store.MainPhoto}");
