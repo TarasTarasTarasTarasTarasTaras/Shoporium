@@ -1,49 +1,57 @@
-<div class="createDiv">
-  <h2 class="header">Створення нового магазину</h2>
-
-  <form class="form-create" [formGroup]="form">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Назва магазину</mat-label>
-      <input matInput formControlName="name">
-    </mat-form-field>
+<div class="main-block">
+  <div class="createDiv">
+    <h2 class="header">Створення нового магазину</h2>
   
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Опис магазину</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-
-    <div class="block-input">
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Категорія магазину</mat-label>
-        <mat-select formControlName="categoryId" (selectionChange)="onCategoryChange()">
-          <mat-option *ngFor="let category of storeCategories" [value]="category.id">
-            {{category.name}}
-          </mat-option>
-        </mat-select>
+    <form class="form-create" [formGroup]="form">
+      <mat-form-field class="full-width border-gray">
+        <mat-label>Назва магазину</mat-label>
+        <input matInput formControlName="name">
       </mat-form-field>
-    </div>
-
-    <mat-form-field *ngIf="form.value.categoryId == otherCategoryId" class="full-width" appearance="outline">
-      <mat-label>Категорія магазину</mat-label>
-      <input matInput formControlName="otherCategoryName">
-    </mat-form-field>
+    
+      <mat-form-field class="full-width border-gray">
+        <mat-label>Опис магазину</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
   
-    <div class="block">
-      <div class="label">Головне фото магазину</div>
-      <input type="file" (change)="onFileSelected($event, 'mainPhoto')" accept="image/*">
+      <div class="block-input">
+        <mat-form-field class="full-width border-gray">
+          <mat-label>Категорія магазину</mat-label>
+          <mat-select formControlName="categoryId" (selectionChange)="onCategoryChange()">
+            <mat-option *ngFor="let category of storeCategories" [value]="category.id">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <mat-form-field *ngIf="form.value.categoryId == otherCategoryId" class="full-width border-gray">
+        <mat-label>Категорія магазину</mat-label>
+        <input matInput formControlName="otherCategoryName">
+      </mat-form-field>
+    
+      <div class="block">
+        <div class="label">Головне фото магазину</div>
+        <input type="file" (change)="onFileSelected($event, 'mainPhoto')" accept="image/*">
+      </div>
+  
+      <div class="block">
+        <div class="label">Задній фон магазину</div>
+        <input type="file" (change)="onFileSelected($event, 'backgroundPhoto')" accept="image/*">
+      </div>
+      </form>  
+  </div>
+  
+  <div class="preview-store">
+    <div class="info" *ngIf="!form.dirty">
+      Коли ви почнете заповнювати дані, тут відображатиметься попередній вигляд Вашого магазину
     </div>
-
-    <div class="block">
-      <div class="label">Задній фон магазину</div>
-      <input type="file" (change)="onFileSelected($event, 'backgroundPhoto')" accept="image/*">
+    
+    <div *ngIf="form.dirty">
+      <h2 class="header">Ваш магазин матиме такий вигляд</h2>
+  
+      <app-store-details [store]="store"></app-store-details>
     </div>
-    </form>  
+  </div>
 </div>
 
-<div class="preview-store" *ngIf="form.dirty">
-  <h2 class="header">Ваш магазин матиме такий вигляд</h2>
-
-  <app-store-details [store]="store"></app-store-details>
-
-  <button mat-stroked-button (click)="submit()" class="full-width">Створити</button>
-</div>
+<button mat-stroked-button (click)="submit()" class="create-btn">Створити Магазин</button>

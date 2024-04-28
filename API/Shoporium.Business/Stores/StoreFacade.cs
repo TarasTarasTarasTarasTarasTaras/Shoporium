@@ -49,9 +49,10 @@ namespace Shoporium.Business.Stores
             return _storeRepository.GetAllStores();
         }
 
-        public void CreateStore(StoreDTO model)
+        public int CreateStore(StoreDTO model)
         {
-            _storeRepository.CreateStore(model);
+            var storeId = _storeRepository.CreateStore(model);
+            return storeId;
         }
 
         public async Task<StoreDTO> GetStoreDetails(int storeId)

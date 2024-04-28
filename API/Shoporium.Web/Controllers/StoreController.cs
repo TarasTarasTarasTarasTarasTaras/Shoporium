@@ -35,7 +35,7 @@ namespace Shoporium.Web.Controllers
         public async Task<ActionResult> Create([FromForm] CreateStoreModel model)
         {
             model.UserId = User.GetId();
-            _storeFacade.CreateStore(_mapper.Map<StoreDTO>(model));
+            var storeId = _storeFacade.CreateStore(_mapper.Map<StoreDTO>(model));
 
             var containerName = _configuration["AWSBucketName"]!;
 

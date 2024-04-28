@@ -34,3 +34,6 @@
     object-fit: cover;
   }
   
+  .store-name {
+    margin-bottom: 20px;
+  }

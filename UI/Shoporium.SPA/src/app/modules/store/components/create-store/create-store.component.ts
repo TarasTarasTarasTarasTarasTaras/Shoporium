@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StoreService } from '../../services/store.service';
 import { Store } from '../../models/store';
 import { Apollo, gql } from 'apollo-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-store',
@@ -33,6 +34,7 @@ export class CreateStoreComponent implements OnInit {
   });
 
   constructor(
+    private router: Router,
     private apollo: Apollo,
     private storeService: StoreService) { }
 
@@ -71,7 +73,8 @@ export class CreateStoreComponent implements OnInit {
     if (this.form.value.otherCategoryName) formData.append('otherCategoryName', this.form.value.otherCategoryName);
 
     this.storeService.createStore(formData).subscribe(res => {
-
+      console.log(res)
+      this.router.navigate(['store/my']);
     })
   }
 

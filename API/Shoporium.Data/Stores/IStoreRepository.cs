@@ -4,7 +4,7 @@ namespace Shoporium.Data.Stores
 {
     public interface IStoreRepository
     {
-        void CreateStore(StoreDTO model);
+        int CreateStore(StoreDTO model);
         IEnumerable<StoreDTO> GetMyStores(long userId);
         StoreDTO GetStoreDetails(int storeId);
         IEnumerable<StoreDTO> GetAllStores();

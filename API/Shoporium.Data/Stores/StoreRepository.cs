@@ -31,11 +31,13 @@ namespace Shoporium.Data.Stores
             return _mapper.Map<StoreDTO>(Context.Stores.FirstOrDefault(s => s.Id == storeId));
         }
 
-        public void CreateStore(StoreDTO model)
+        public int CreateStore(StoreDTO model)
         {
             var entity = _mapper.Map<Store>(model);
             Context.Stores.Add(entity);
             Context.SaveChanges();
+
+            return entity.Id;
         }
     }
 }
