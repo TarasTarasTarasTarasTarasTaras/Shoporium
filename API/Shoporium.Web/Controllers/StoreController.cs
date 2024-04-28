@@ -16,13 +16,13 @@ namespace Shoporium.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IStoreFacade _storeFacade;
-        private readonly IAzureService _azureService;
+        private readonly IAWSService _azureService;
         private readonly IConfiguration _configuration;
 
         public StoreController(
             IMapper mapper,
             IStoreFacade storeFacade,
-            IAzureService azureService,
+            IAWSService azureService,
             IConfiguration configuration)
         {
             _mapper = mapper;

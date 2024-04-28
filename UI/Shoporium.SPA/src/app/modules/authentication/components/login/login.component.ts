@@ -14,7 +14,7 @@ import { Account } from '../../models/account';
 export class LoginComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
+    password: new FormControl('')//Validators.required)
   });
 
   private subscription: Subscription;
@@ -65,5 +65,9 @@ export class LoginComponent implements OnInit {
         catchError(error => {
           return EMPTY;
         });
+  }
+
+  register() {
+    this.router.navigate(['account/register']);
   }
 }

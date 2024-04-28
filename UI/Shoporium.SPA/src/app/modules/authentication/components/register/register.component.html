@@ -1,31 +1,51 @@
-<div class="registerDiv">
-  <h2 class="register-header">Реєстрація</h2>
+<div class="container">
+  <div class="photo-panel">
+    <img src="../../../../../assets/images/auth.png">
+  </div>
 
-  <form class="form-register" [formGroup]="form">
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Ім'я</mat-label>
-      <input matInput formControlName="firstName">
-    </mat-form-field>
+  <div class="form-panel">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title class="header">Реєстрація в Shoporium</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="login-form" [formGroup]="form">
+          <h5>Введіть свої дані нижче</h5>
 
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Прізвище</mat-label>
-      <input matInput formControlName="lastName">
-    </mat-form-field>
+          <mat-form-field class="full-width border-gray">
+            <mat-label>Ім'я</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
+      
+          <mat-form-field class="full-width border-gray">
+            <mat-label>Прізвище</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
+      
+          <mat-form-field class="full-width border-gray">
+            <mat-label>Номер телефону</mat-label>
+            <input matInput formControlName="mobileNumber">
+          </mat-form-field>
 
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Номер телефону</mat-label>
-      <input matInput formControlName="mobileNumber">
-    </mat-form-field>
+          <mat-form-field class="full-width border-gray">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
 
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email">
-    </mat-form-field>
+          <mat-form-field class="full-width border-gray">
+            <mat-label>Пароль</mat-label>
+            <input matInput formControlName="password" type="password" />
+          </mat-form-field>
 
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Пароль</mat-label>
-      <input matInput formControlName="password" type="password">
-    </mat-form-field>
-    <button mat-stroked-button (click)="register()" class="full-width">Зареєструватись</button>
-  </form>
+          <div class="auth">
+            <button mat-raised-button color="primary" class="login-btn" (click)="register()">
+              Зареєструватись
+            </button>
+          </div>
+
+          <p class="login-link">Вже маєте акаунт? <span class="link" (click)="login()">Авторизуватись</span></p>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

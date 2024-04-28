@@ -15,11 +15,12 @@
     src: url("/assets/font/Onest-VariableFont_wght.ttf") format("truetype");
 }
 
-html, body { 
+html,
+body {
     height: 100%;
 }
 
-body { 
+body {
     margin: 0;
     background-color: #f7f7f7;
 }
@@ -31,15 +32,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(135deg, #FE5F75 0%, #FC9842 100%);
+    /* background-image: linear-gradient(135deg, #FE5F75 0%, #FC9842 100%); */
     z-index: -1; /* Move the background behind other content */
   }
   
   .content {
-    /* padding: 20px; */
-    overflow-y: auto; /* Enable vertical scrolling */
-    height: 100vh; /* Set the height to fill the viewport */
-  }
+    overflow-y: auto;
+    height: 100vh;
+}
 
 * {
     box-sizing: border-box;

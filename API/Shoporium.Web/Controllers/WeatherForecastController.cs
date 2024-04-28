@@ -15,12 +15,12 @@ namespace Shoporium.Web.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly ShoporiumContext _context;
-        private readonly IAzureService _azureService;
+        private readonly IAWSService _azureService;
         private readonly IConfiguration _configuration;
 
         public WeatherForecastController(
             IConfiguration configuration,
-            IAzureService azureService,
+            IAWSService azureService,
             ShoporiumContext context,
             ILogger<WeatherForecastController> logger)
         {

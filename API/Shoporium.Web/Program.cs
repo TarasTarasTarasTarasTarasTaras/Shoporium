@@ -81,7 +81,7 @@ var mapperConfig = new MapperConfiguration(mc =>
 var mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-builder.Services.AddScoped<IAzureService, AzureService>();
+builder.Services.AddScoped<IAWSService, AWSService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();

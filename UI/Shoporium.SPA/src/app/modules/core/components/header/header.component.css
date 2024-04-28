@@ -1,24 +1,27 @@
 .first {
     display: flex;
     height: 50px;
+    padding-bottom: 30px;
+    background-color: black;
 }
 
 .second {
     display: flex;
-    background-color: rgb(255, 202, 117);
-    height: 58.5px;
+    height: 88.5px;
     justify-content: space-between;
+    padding-top: 30px;
+    border-bottom: 1px solid gray;
 }
 
 .label {
     font-size: 30px;
     font-family: Caveat;
     margin: 4px auto;
-    color: rgb(197, 75, 14);
+    color: white;
 }
 
 h1 {
-    color: rgb(197, 75, 14);
+    color: black;
     font-size: 23px;
     font-family: Montserrat;
     margin-left: 35px;
@@ -27,7 +30,7 @@ h1 {
 }
 
 h1:hover {
-    color: rgb(172, 62, 8);
+    color: rgb(219, 68, 68);
     font-size: 23px;
     margin-top: 13px;
 }
@@ -67,7 +70,8 @@ span {
     border-color: transparent;
     border-radius: 4px;
 }
-input.InputBox{
+
+input.InputBox {
     font-family: "lucida grande", "Lucida Sans Unicode", tahoma, sans-serif;
     color: #333;
     font-size: 15px;
@@ -101,7 +105,8 @@ input[type=text] {
     padding: 10px 25px;
 }
 
-body .Button, body .button {
+body .Button,
+body .button {
     background-color: #1268b3;
     background-image: none;
 }
@@ -111,7 +116,10 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-.Button, .Button:hover, .Button:focus, .Button:active {
+.Button,
+.Button:hover,
+.Button:focus,
+.Button:active {
     text-shadow: none;
     border-color: transparent;
 }
@@ -143,12 +151,12 @@ input[type="submit"] {
 
 .button-link {
     font-size: 17px;
-    color: rgb(197, 75, 14) !important;
+    color: black !important;
     margin-top: 12px;
 }
 
 .button-link:hover {
-    color: rgb(172, 62, 8) !important;
+    color: rgb(219, 68, 68) !important;
 }
 
 .flex {
@@ -158,4 +166,39 @@ input[type="submit"] {
 .username {
     color: black;
     margin-right: 25px;
+}
+
+.search-container {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    height: 40px;
+    margin: auto 50px auto 0;
+}
+
+.search-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #e6e6e6;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding-right: 40px;
+}
+
+.search-container button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 7px;
 }

@@ -8,12 +8,12 @@ namespace Shoporium.Business.Stores
     public class StoreFacade : IStoreFacade
     {
         private readonly IStoreRepository _storeRepository;
-        private readonly IAzureService _azureService;
+        private readonly IAWSService _azureService;
         private readonly IConfiguration _configuration;
 
         public StoreFacade(
             IStoreRepository storeRepository,
-            IAzureService azureService,
+            IAWSService azureService,
             IConfiguration configuration)
         {
             _configuration = configuration;

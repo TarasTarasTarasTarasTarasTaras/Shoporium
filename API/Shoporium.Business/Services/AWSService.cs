@@ -6,12 +6,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace Shoporium.Business.Services
 {
-    public class AzureService : IAzureService
+    public class AWSService : IAWSService
     {
         private readonly IAmazonS3 _s3Client;
         private readonly IConfiguration _configuration;
 
-        public AzureService(IConfiguration configuration)
+        public AWSService(IConfiguration configuration)
         {
             _configuration = configuration;
 
