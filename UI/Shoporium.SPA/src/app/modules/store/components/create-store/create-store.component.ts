@@ -72,9 +72,8 @@ export class CreateStoreComponent implements OnInit {
     formData.append('categoryId', this.form.value.categoryId.toString());
     if (this.form.value.otherCategoryName) formData.append('otherCategoryName', this.form.value.otherCategoryName);
 
-    this.storeService.createStore(formData).subscribe(res => {
-      console.log(res)
-      this.router.navigate(['store/my']);
+    this.storeService.createStore(formData).subscribe(storeId => {
+      this.router.navigate([`store/details/${storeId}`]);
     })
   }
 

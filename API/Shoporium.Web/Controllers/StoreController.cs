@@ -45,7 +45,7 @@ namespace Shoporium.Web.Controllers
             if (model.BackgroundPhoto != null)
                 await _azureService.UploadBlobAsync(containerName, $"stores/{model.Name}/{model.BackgroundPhoto.FileName}", model.BackgroundPhoto);
 
-            return Ok();
+            return Ok(storeId);
         }
 
         [HttpGet("my")]
