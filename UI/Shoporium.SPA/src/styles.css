@@ -15,6 +15,16 @@
     src: url("/assets/font/Onest-VariableFont_wght.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: Inter;
+    src: url("/assets/font/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("/assets/font/Poppins-Regular.ttf") format("truetype");
+}
+
 html,
 body {
     height: 100%;

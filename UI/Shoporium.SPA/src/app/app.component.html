@@ -1,4 +1,6 @@
-<app-header></app-header>
+<header>
+    <app-header></app-header>
+</header>
 
 <div *ngIf="currentUserName" style="margin-bottom: 50px;">
     <div class="row" style="margin-bottom: 20px;">
@@ -18,16 +20,14 @@
     </div>
 </div>
 
-
-
-  
-
 <!-- <div *ngIf="productCategories">
     <div *ngFor="let productCategory of productCategories.productCategories">
         {{ productCategory.name }}
     </div>
 </div> -->
 
-
-
 <router-outlet></router-outlet>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

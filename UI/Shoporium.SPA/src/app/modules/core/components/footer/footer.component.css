@@ -1,0 +1,32 @@
+.footer {
+    background-color: #000000;
+    padding: 80px 135px 0;
+    height: 440px;
+    color: white;
+    font-family: montserrat;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.content-item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px
+}
+
+h2 {
+    padding-bottom: 20px;
+}
+
+.value {
+    padding-bottom: 10px;
+}
+
+.rights {
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 70px;
+}

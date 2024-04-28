@@ -36,6 +36,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['account/register']);
   }
 
+  about() {
+    this.router.navigate(['about']);
+  }
+
   logout() {
     this.accountService.logout();
     this.currentUserName = '';

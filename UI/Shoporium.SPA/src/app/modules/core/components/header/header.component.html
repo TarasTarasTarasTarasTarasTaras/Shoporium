@@ -1,46 +1,44 @@
-<header>
-  <div class="first">
-    <p class="label">Вигідна знижка на перше замовлення!</p>
+<div class="first">
+  <p class="label">Вигідна знижка на перше замовлення!</p>
+</div>
+
+<div class="second">
+  <div>
+    <h1>Shoporium</h1>
   </div>
 
-  <div class="second">
-    <div>
-      <h1>Shoporium</h1>
+  <div class="flex">  
+    <div *ngIf="!currentUserName" style="margin-bottom: 50px;">
+      <button mat-button class="button-link">Home</button>
+      <button mat-button class="button-link">Контакти</button>
+      <button mat-button class="button-link" (click)="about()">Про нас</button>
+      <button mat-button class="button-link" (click)="authorize()">Увійти</button>
+      <button mat-button class="button-link" (click)="register()">Зареєструватись</button>
     </div>
 
-    <div class="flex">  
-      <div *ngIf="!currentUserName" style="margin-bottom: 50px;">
-        <button mat-button class="button-link">Home</button>
-        <button mat-button class="button-link">Контакти</button>
-        <button mat-button class="button-link">Про нас</button>
-        <button mat-button class="button-link" (click)="authorize()">Увійти</button>
-        <button mat-button class="button-link" (click)="register()">Зареєструватись</button>
-      </div>
-
-      <div *ngIf="currentUserName">
-        <button mat-button class="button-link">Home</button>
-        <button mat-button class="button-link">Контакти</button>
-        <button mat-button class="button-link">Про нас</button>
-        <button mat-button class="button-link username" (click)="myStores()">Мої магазини</button>
-        <button mat-button class="button-link username">{{ currentUserName }}</button>
-        <button mat-button class="button-link" (click)="logout()">Вийти</button>
-      </div>
+    <div *ngIf="currentUserName">
+      <button mat-button class="button-link">Home</button>
+      <button mat-button class="button-link">Контакти</button>
+      <button mat-button class="button-link" (click)="about()">Про нас</button>
+      <button mat-button class="button-link username" (click)="myStores()">Мої магазини</button>
+      <button mat-button class="button-link username">{{ currentUserName }}</button>
+      <button mat-button class="button-link" (click)="logout()">Вийти</button>
     </div>
-
-    <div class="search-container">
-      <input type="text" placeholder="Що ви шукаєте?" />
-      <a class="button" class="search-icon">
-        <img src="../../../../../assets/images/icon_search.png" alt="Button">
-      </a>
-    </div>    
-
-    <!-- <div class="bbbootstrap">
-      <div class="container">
-        <form>
-          <input type="text" id="Form_Search" value="" placeholder="Я хочу купити ..." role="searchbox" class="InputBox" autocomplete="off"/>
-          <input type="submit" id="Form_Go" class="Button" value="Пошук" />
-        </form>
-      </div>
-    </div> -->
   </div>
-</header>
+
+  <div class="search-container">
+    <input type="text" placeholder="Що ви шукаєте?" />
+    <a class="button" class="search-icon">
+      <img src="../../../../../assets/images/icon_search.png" alt="Button">
+    </a>
+  </div>    
+
+  <!-- <div class="bbbootstrap">
+    <div class="container">
+      <form>
+        <input type="text" id="Form_Search" value="" placeholder="Я хочу купити ..." role="searchbox" class="InputBox" autocomplete="off"/>
+        <input type="submit" id="Form_Go" class="Button" value="Пошук" />
+      </form>
+    </div>
+  </div> -->
+</div>
