@@ -1,4 +1,4 @@
-<div class="store-container" *ngIf="store">
+<div class="store-container" *ngIf="store" [ngStyle]="isNotPreview ? {'display': 'flex'} : {}">
   <div *ngIf="isPhotoSelected" class="store-background">
     <div class="img-info">
       <ng-container *ngIf="store.downloadedBackgroundPhoto; else elseBackgroundPhotoBlock">
@@ -32,4 +32,8 @@
       <p>{{ store.description }}</p>
     </div>
   </div>
+</div>
+
+<div class="owner-block">
+  <button mat-stroked-button class="button" *ngIf="isOwner">Додати новий товар</button>  
 </div>

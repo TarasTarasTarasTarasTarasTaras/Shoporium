@@ -41,7 +41,6 @@
 .background-image img {
     width: 100%;
     height: 140px;
-    object-fit: cover;
     border-radius: 8px;
     z-index: 0;
 }
@@ -49,7 +48,12 @@
 .create-store-button {
     display: block;
     margin: 20px auto 0;
-    background-color: pink;
+    background-color: rgb(219, 68, 68);
+    color: white;
+}
+
+.create-btn:hover {
+    background-color: rgb(192, 53, 53);
 }
 
 .store-image {

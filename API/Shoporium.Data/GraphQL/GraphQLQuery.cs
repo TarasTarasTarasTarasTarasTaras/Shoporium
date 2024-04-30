@@ -10,15 +10,6 @@ namespace Shoporium.Data.GraphQL
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        [Authorize]
-        public IQueryable<Product> GetProducts([Service] ShoporiumContext context)
-        {
-            return context.Products;
-        }
-
-        [UseProjection]
-        [UseFiltering]
-        [UseSorting]
         public IQueryable<ProductCategory> GetProductCategories([Service] ShoporiumContext context)
         {
             return context.ProductCategories;
@@ -40,6 +31,16 @@ namespace Shoporium.Data.GraphQL
         {
             var userId = Convert.ToInt64(user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             return context.Stores.Where(s => s.UserId == userId);
+        }
+
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        [Authorize]
+        public IQueryable<Product> GetMyProducts([Service] ShoporiumContext context, ClaimsPrincipal user)
+        {
+            var userId = Convert.ToInt64(user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            return context.Products.Where(s => s.Store != null && s.Store.UserId == userId);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Shoporium.Entities.Enums;
 
-namespace Shoporium.Data._EntityFramework.Entities
+namespace Shoporium.Entities.DTO.Products
 {
-    public class Product
+    public class ProductDTO
     {
         public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -12,15 +12,15 @@ namespace Shoporium.Data._EntityFramework.Entities
         public int NumberOfViews { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public IEnumerable<string> ProductPhotos { get; set; } = Enumerable.Empty<string>();
+        public List<byte[]?> DownloadedPhotos { get; set; } = new();
+
         public int? CityId { get; set; }
         public ProductCondition Condituon { get; set; }
 
         public int CategoryId { get; set; }
-        public virtual ProductCategory? Category { get; set; }
-        
         public long StoreId { get; set; }
-        public virtual Store? Store { get; set; }
 
-        public virtual IEnumerable<ProductPhoto> ProductPhotos { get; set; } = Enumerable.Empty<ProductPhoto>();
+        //public StoreDTO? Store { get; set; }
     }
 }

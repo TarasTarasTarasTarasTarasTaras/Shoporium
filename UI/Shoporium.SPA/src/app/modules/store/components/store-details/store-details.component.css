@@ -2,7 +2,6 @@
   text-align: center;
   padding: 50px;
   font-family: montserrat;
-  display: flex;
   justify-content: space-around;
 }
 
@@ -11,12 +10,14 @@
   border-radius: 10px;
   overflow: hidden;
   min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .store-background img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -34,7 +35,6 @@
 .store-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
 .store-name {
@@ -60,4 +60,22 @@ h4 {
 .info {
   display: flex;
   flex-direction: column;
+}
+
+.button {
+  display: block;
+  margin: -18px auto 0;
+  background-color: rgb(219, 68, 68);
+  color: white;
+  width: 200px;
+}
+
+.button:hover {
+  background-color: rgb(192, 53, 53);
+}
+
+.owner-block {
+  border-bottom: 1px solid rgb(202, 202, 202);
+  margin-bottom: 50px;
+  padding-bottom: 15px;
 }

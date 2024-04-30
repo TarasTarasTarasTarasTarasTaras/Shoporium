@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StoreService } from '../../services/store.service';
 import { Store } from '../../models/store';
 import { Apollo, gql } from 'apollo-angular';
+import { AccountService } from 'src/app/modules/authentication/services/account.service';
 
 @Component({
   selector: 'app-store-details',
@@ -15,6 +16,9 @@ export class StoreDetailsComponent implements OnInit {
   id: number;
   storeCategories;
 
+  isOwner: boolean = false;
+  isNotPreview: boolean = false;
+
   productCategoriesQuery = gql`
     query GetStoreCategories {
       storeCategories {
@@ -24,9 +28,11 @@ export class StoreDetailsComponent implements OnInit {
     }`;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private apollo: Apollo,
-    private storeService: StoreService) { }
+    private storeService: StoreService,
+    private accountService: AccountService ) { }
 
   ngOnInit() {
     this.apollo
@@ -36,10 +42,15 @@ export class StoreDetailsComponent implements OnInit {
       });
 
     if (!this.store) {
+      this.isNotPreview = true;
       this.id = this.route.snapshot.params["id"];
 
       this.storeService.getStoreDetails(this.id).subscribe(store => {
         this.store = store;
+
+        this.accountService.account$.subscribe(user => {
+          this.isOwner = store.userId == user.userId;
+        })
       })
     }
   }
@@ -50,5 +61,9 @@ export class StoreDetailsComponent implements OnInit {
 
   get isPhotoSelected(): boolean {
     return this.store.mainPhoto || this.store.downloadedMainPhoto || this.store.backgroundPhoto || this.store.downloadedBackgroundPhoto;
+  }
+
+  addProduct() {
+    this.router.navigate(['products/add']);
   }
 }

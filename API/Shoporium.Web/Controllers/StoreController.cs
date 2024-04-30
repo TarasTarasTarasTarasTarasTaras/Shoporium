@@ -51,7 +51,6 @@ namespace Shoporium.Web.Controllers
         [HttpGet("my")]
         public async Task<ActionResult> GetMyStores()
         {
-            var test = await _storeFacade.GetMyStores(User.GetId());
             return Ok(await _storeFacade.GetMyStores(User.GetId()));
         }
 

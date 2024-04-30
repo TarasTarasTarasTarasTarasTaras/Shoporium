@@ -24,7 +24,8 @@ namespace Shoporium.Data._EntityFramework
 
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-        
+        public virtual DbSet<ProductPhoto> ProductPhotos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StoreCategory>().HasData(

@@ -11,6 +11,8 @@ export class Store {
     categoryId: number;
     otherCategoryName: string | null;
 
+    userId: number;
+
     downloadedMainPhoto;
     downloadedBackgroundPhoto;
     // status: StoreStatus;
