@@ -26,9 +26,14 @@ namespace Shoporium.Data.Products
             return _mapper.Map<IEnumerable<ProductDTO>>(Context.Products);
         }
 
-        public ProductDTO GetProduct(int storeId)
+        public ProductDTO GetProduct(int productId)
         {
-            return _mapper.Map<ProductDTO>(Context.Stores.FirstOrDefault(s => s.Id == storeId));
+            return _mapper.Map<ProductDTO>(Context.Products.FirstOrDefault(s => s.Id == productId));
+        }
+
+        public IEnumerable<ProductDTO> GetStoreProducts(long storeId)
+        {
+            return _mapper.Map<IEnumerable<ProductDTO>>(Context.Products.Where(s => s.StoreId == storeId));
         }
 
         public long CreateProduct(ProductDTO model)

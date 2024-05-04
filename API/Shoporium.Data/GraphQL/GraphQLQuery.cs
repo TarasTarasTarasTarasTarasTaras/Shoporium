@@ -1,4 +1,5 @@
 ﻿using HotChocolate.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data._EntityFramework.Entities;
 using System.Security.Claims;
@@ -12,7 +13,7 @@ namespace Shoporium.Data.GraphQL
         [UseSorting]
         public IQueryable<ProductCategory> GetProductCategories([Service] ShoporiumContext context)
         {
-            return context.ProductCategories;
+            return context.ProductCategories.Include(p => p.Subcategories);
         }
 
         [UseProjection]

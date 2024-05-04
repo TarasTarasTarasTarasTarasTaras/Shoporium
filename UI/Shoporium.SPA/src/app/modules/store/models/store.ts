@@ -1,5 +1,3 @@
-import { StoreStatus } from "./store-status";
-
 export class Store {
     id: number;
     name: string;

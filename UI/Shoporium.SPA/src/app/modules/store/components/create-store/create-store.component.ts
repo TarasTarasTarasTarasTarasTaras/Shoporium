@@ -16,7 +16,7 @@ export class CreateStoreComponent implements OnInit {
 
   storeCategories;
 
-  productCategoriesQuery = gql`
+  storeCategoriesQuery = gql`
     query GetStoreCategories {
       storeCategories {
         id
@@ -40,7 +40,7 @@ export class CreateStoreComponent implements OnInit {
 
   ngOnInit() {
     this.apollo
-      .query({ query: this.productCategoriesQuery })
+      .query({ query: this.storeCategoriesQuery })
       .subscribe((res: any) => {
         this.storeCategories = res.data.storeCategories;
       });

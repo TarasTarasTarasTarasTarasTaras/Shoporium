@@ -1,0 +1,114 @@
+.main-block {
+    display: flex;
+    font-family: montserrat;
+  }
+  
+  .createDiv,
+  .preview-product {
+    padding: 24px 24px;
+    border-radius: 10px;
+    margin: 50px auto;
+    height: auto;
+    max-width: 40%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  button {
+    color: #5279b4;
+  }
+  
+  .form-create {
+    margin-top: 15px;
+  }
+  
+  .block-input {
+    margin-top: 8px;
+  }
+  
+  .forgot-password {
+    color: #5279b4;
+    font-size: 13px;
+    display: block;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: rgb(219, 68, 68);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: rgb(192, 53, 53);
+  }
+  
+  .block {
+    display: block;
+    margin-bottom: 12px;
+  }
+  
+  .label {
+    width: 180px;
+    display: inline-block;
+    font-size: 14px;
+  }
+  
+  .preview-product {
+    margin-top: 50px;
+  }
+  
+  .create-btn {
+    margin: 40px auto;
+    display: block;
+    width: 250px;
+    background-color: rgb(219, 68, 68);
+    color: white;
+  }
+  
+  .create-btn:hover {
+    background-color: rgb(192, 53, 53);
+  }
+  
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-label,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-input-element {
+    color: gray !important;
+  }
+  
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-underline,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-ripple,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-underline-thick,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-ripple-element,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-ripple,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-underline.mat-form-field-ripple-active,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-underline.mat-form-field-ripple-accent,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-underline.mat-form-field-focused,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-ripple-element.mat-form-field-ripple-active,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-ripple-element.mat-form-field-ripple-accent,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-form-field-ripple-element.mat-form-field-focused,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-focused .mat-form-field-ripple,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-focused .mat-form-field-ripple-element,
+  .mat-form-field.full-width.border-gray ::ng-deep .mat-focused .mat-form-field-ripple-element.mat-form-field-ripple-active {
+    background-color: gray !important;
+  }
+  
+  .mat-form-field.full-width.border-red ::ng-deep .mat-focused .mat-form-field-ripple-element.mat-form-field-ripple-active {
+    animation: none !important;
+  }
+  
+  .my-panel-class {
+    max-height: none !important;
+  }
+  

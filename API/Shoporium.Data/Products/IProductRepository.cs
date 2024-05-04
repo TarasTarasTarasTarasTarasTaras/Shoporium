@@ -7,6 +7,7 @@ namespace Shoporium.Data.Products
         long CreateProduct(ProductDTO model);
         IEnumerable<ProductDTO> GetAllProducts();
         IEnumerable<ProductDTO> GetMyProducts(long userId);
-        ProductDTO GetProduct(int storeId);
+        IEnumerable<ProductDTO> GetStoreProducts(long storeId);
+        ProductDTO GetProduct(int productId);
     }
 }

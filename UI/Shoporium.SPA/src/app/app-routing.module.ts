@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'main', loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule) },
   { path: 'account', loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule) },
-  { path: 'store', loadChildren: () => import('./modules/store/store.module').then(m => m.StoreModule) }
+  { path: 'store', loadChildren: () => import('./modules/store/store.module').then(m => m.StoreModule) },
+  { path: 'product', loadChildren: () => import('./modules/products/product.module').then(m => m.ProductModule) }
 ];
 
 @NgModule({

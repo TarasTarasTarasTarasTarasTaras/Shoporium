@@ -56,6 +56,13 @@ namespace Shoporium.Web.Controllers
             return Ok(await _productFacade.GetMyProducts(User.GetId()));
         }
 
+        [HttpGet("store/{storeId}")]
+        [AllowAnonymous]
+        public ActionResult GetStoreProducts(int storeId)
+        {
+            return Ok(_productFacade.GetStoreProducts(storeId));
+        }
+
         [HttpGet("all")]
         [AllowAnonymous]
         public ActionResult GetAllProducts()

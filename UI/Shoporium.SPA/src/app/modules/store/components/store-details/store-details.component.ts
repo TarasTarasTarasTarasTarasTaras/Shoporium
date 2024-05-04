@@ -63,7 +63,7 @@ export class StoreDetailsComponent implements OnInit {
     return this.store.mainPhoto || this.store.downloadedMainPhoto || this.store.backgroundPhoto || this.store.downloadedBackgroundPhoto;
   }
 
-  addProduct() {
-    this.router.navigate(['products/add']);
+  createProduct() {
+    this.router.navigate([`product/create/${this.store.id}`]);
   }
 }

@@ -43,9 +43,26 @@ namespace Shoporium.Business.Products
             return products;
         }
 
-        public IEnumerable<ProductDTO> GetAllProducts()
+        public async Task<IEnumerable<ProductDTO>> GetAllProducts()
         {
-            return _productRepository.GetAllProducts();
+            var products = _productRepository.GetAllProducts();
+
+            await Task.WhenAll(products
+                .Select(async product =>
+                {
+                    var containerName = _configuration["AWSBucketName"]!;
+
+                    for (int i = 0; i < product.ProductPhotos.Count(); i++)
+                    {
+                        if (!string.IsNullOrEmpty(product.ProductPhotos.ElementAt(i)))
+                        {
+                            var downloadedPhoto = await _azureService.DownloadBlobAsync(containerName, $"products/{product.Name}/{product.ProductPhotos.ElementAt(i)}");
+                            product.DownloadedPhotos.Add(downloadedPhoto);
+                        }
+                    }
+                }));
+
+            return products;
         }
 
         public long CreateProduct(ProductDTO model)
@@ -54,9 +71,31 @@ namespace Shoporium.Business.Products
             return productId;
         }
 
-        public async Task<ProductDTO> GetProduct(int storeId)
+        public async Task<IEnumerable<ProductDTO>> GetStoreProducts(long storeId)
         {
-            var product = _productRepository.GetProduct(storeId);
+            var products = _productRepository.GetStoreProducts(storeId);
+
+            await Task.WhenAll(products
+                .Select(async product =>
+                {
+                    var containerName = _configuration["AWSBucketName"]!;
+
+                    for (int i = 0; i < product.ProductPhotos.Count(); i++)
+                    {
+                        if (!string.IsNullOrEmpty(product.ProductPhotos.ElementAt(i)))
+                        {
+                            var downloadedPhoto = await _azureService.DownloadBlobAsync(containerName, $"products/{product.Name}/{product.ProductPhotos.ElementAt(i)}");
+                            product.DownloadedPhotos.Add(downloadedPhoto);
+                        }
+                    }
+                }));
+
+            return products;
+        }
+
+        public async Task<ProductDTO> GetProduct(int productId)
+        {
+            var product = _productRepository.GetProduct(productId);
             var containerName = _configuration["AWSBucketName"]!;
 
             for (int i = 0; i < product.ProductPhotos.Count(); i++)

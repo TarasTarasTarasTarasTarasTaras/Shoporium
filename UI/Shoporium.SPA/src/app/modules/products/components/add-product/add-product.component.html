@@ -1,3 +1,89 @@
-<p>
-  add-product works!
-</p>
+<div class="main-block">
+  <div class="createDiv">
+    <h2 class="header">Створення нового товару</h2>
+  
+    <form class="form-create" [formGroup]="form">
+      <mat-form-field class="full-width border-gray">
+        <mat-label>Назва товару</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+    
+      <mat-form-field class="full-width border-gray">
+        <mat-label>Опис товару</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width border-gray">
+        <mat-label>Ціна товару</mat-label>
+        <input matInput type="number" formControlName="price">
+      </mat-form-field>
+
+      <mat-form-field class="full-width border-gray">
+        <mat-label>Статус товару</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="1">Активний</mat-option>
+          <mat-option value="0">Неактивний</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="block-input">
+        <mat-form-field class="full-width border-gray">
+          <mat-label>Стан товару</mat-label>
+          <mat-select formControlName="condition">
+            <mat-option value="1">Новий</mat-option>
+            <mat-option value="2">Б/У</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="block-input">
+        <mat-form-field class="full-width border-gray">
+          <mat-label>Головна категорія товару</mat-label>
+          <mat-select formControlName="firstCategoryId" (selectionChange)="onFirstCategoryChange($event.value)">
+            <mat-option *ngFor="let category of mainProductCategories" [value]="category.id" [disabled]="category.mainCategoryId !== null">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="full-width border-gray" *ngIf="selectedFirstCategory">
+          <mat-label>Категорія товару</mat-label>
+          <mat-select formControlName="secondCategoryId" (selectionChange)="onSecondCategoryChange($event.value)">
+            <mat-option *ngFor="let category of subcategories" [value]="category.id">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width border-gray" *ngIf="selectedSecondCategory">
+          <mat-label>Категорія товару</mat-label>
+          <mat-select formControlName="thirdCategoryId">
+            <mat-option *ngFor="let category of subsubcategories" [value]="category.id">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+  
+      <div class="block">
+        <div class="label">Фото товару</div>
+        <input type="file" (change)="onFileSelected($event, 'productPhoto')" accept="image/*">
+      </div>
+      </form>  
+  </div>
+  
+  <div class="preview-product">
+    <div class="info" *ngIf="!form.dirty">
+      Коли ви почнете заповнювати дані, тут відображатиметься попередній вигляд Вашого товару
+    </div>
+    
+    <div *ngIf="form.dirty">
+      <h2 class="header">Ваш товар матиме такий вигляд</h2>
+  
+      <app-product-details [product]="form"></app-product-details>
+    </div>
+  </div>
+</div>
+
+<button mat-stroked-button (click)="submit()" class="create-btn">Створити Товар</button>
