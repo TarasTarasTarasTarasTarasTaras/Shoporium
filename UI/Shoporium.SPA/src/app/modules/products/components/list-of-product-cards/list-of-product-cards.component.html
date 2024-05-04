@@ -1,3 +1,5 @@
+products count: {{ products?.length }}
+
 <div *ngFor="let product of products">
-  {{product.name}}
+  <app-product-card [product]="product"></app-product-card>
 </div>

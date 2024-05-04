@@ -26,7 +26,8 @@ import { ListOfProductCardsComponent } from './components/list-of-product-cards/
     MaterialModule
   ],
   exports: [
-    ListOfProductCardsComponent
+    ListOfProductCardsComponent,
+    ProductCardComponent
   ],
   providers: [
   ],

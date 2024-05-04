@@ -57,7 +57,7 @@
 
         <mat-form-field class="full-width border-gray" *ngIf="selectedSecondCategory">
           <mat-label>Категорія товару</mat-label>
-          <mat-select formControlName="thirdCategoryId">
+          <mat-select formControlName="thirdCategoryId" (selectionChange)="onThirdCategoryChange($event.value)">
             <mat-option *ngFor="let category of subsubcategories" [value]="category.id">
               {{category.name}}
             </mat-option>
@@ -66,9 +66,9 @@
       </div>
       
   
-      <div class="block">
-        <div class="label">Фото товару</div>
-        <input type="file" (change)="onFileSelected($event, 'productPhoto')" accept="image/*">
+      <div class="block-input">
+        <div class="label">Фото товару (до 8 фото)</div>
+        <input type="file" (change)="onFileSelected($event, 'productPhotos')" multiple accept="image/*">
       </div>
       </form>  
   </div>
@@ -81,7 +81,7 @@
     <div *ngIf="form.dirty">
       <h2 class="header">Ваш товар матиме такий вигляд</h2>
   
-      <app-product-details [product]="form"></app-product-details>
+      <app-product-card [product]="product" [mainPhotoUrl]="mainPhotoUrl"></app-product-card>
     </div>
   </div>
 </div>

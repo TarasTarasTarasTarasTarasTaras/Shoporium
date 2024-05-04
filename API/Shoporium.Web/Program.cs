@@ -7,12 +7,14 @@ using Microsoft.IdentityModel.Tokens;
 using Shoporium.Business.Auth;
 using Shoporium.Business.Helpers;
 using Shoporium.Business.Logins;
+using Shoporium.Business.Products;
 using Shoporium.Business.Services;
 using Shoporium.Business.Stores;
 using Shoporium.Business.Users;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data.GraphQL;
 using Shoporium.Data.Logins;
+using Shoporium.Data.Products;
 using Shoporium.Data.RefreshTokens;
 using Shoporium.Data.Stores;
 using Shoporium.Data.Users;
@@ -87,11 +89,13 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<ILoginFacade, LoginFacade>();
 builder.Services.AddScoped<IStoreFacade, StoreFacade>();
 builder.Services.AddScoped<IAuthManagerFactory, AuthManagerFactory>();
+builder.Services.AddScoped<IProductFacade, ProductFacade>();
 
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 builder.Services.AddAWSService<IAmazonS3>();

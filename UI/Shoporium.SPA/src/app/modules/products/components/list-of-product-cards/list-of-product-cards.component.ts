@@ -20,5 +20,4 @@ export class ListOfProductCardsComponent implements OnInit {
       this.products = res;
     })
   }
-
 }

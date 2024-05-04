@@ -9,6 +9,7 @@ import { AllStoresComponent } from './components/all-stores/all-stores.component
 import { CreateStoreComponent } from './components/create-store/create-store.component';
 import { MyStoresComponent } from './components/my-stores/my-stores.component';
 import { StoreDetailsComponent } from './components/store-details/store-details.component';
+import { ProductModule } from '../products/product.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { StoreDetailsComponent } from './components/store-details/store-details.
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ProductModule
   ],
   providers: [
   ],

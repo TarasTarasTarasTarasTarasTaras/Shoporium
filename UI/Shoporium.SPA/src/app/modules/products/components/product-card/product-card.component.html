@@ -1,3 +1,15 @@
-<p>
-  product-card works!
-</p>
+<div class="product-container" *ngIf="product" [ngStyle]="isNotPreview ? {'display': 'flex'} : {}">
+  <div *ngIf="product.productPhotos?.length" class="store-photo">
+    <div class="photo-container">
+      <img *ngIf="product.productPhotos[0]" [src]="mainPhotoUrl" alt="Main Photo" class="photo">
+    </div>
+  </div>
+  
+  <p *ngIf="product.price" class="price">{{ product.price }} ₴</p>
+</div>
+
+<div class="info">
+  <div class="product-name">
+    <h3>{{ product.name }}</h3>
+  </div>
+</div>  

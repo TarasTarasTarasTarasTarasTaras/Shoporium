@@ -35,7 +35,7 @@ namespace Shoporium.Web.Controllers
         public async Task<ActionResult> Create([FromForm] CreateProductModel model)
         {
             model.UserId = User.GetId();
-            var storeId = _productFacade.CreateProduct(_mapper.Map<ProductDTO>(model));
+            var productId = _productFacade.CreateProduct(_mapper.Map<ProductDTO>(model));
             var containerName = _configuration["AWSBucketName"]!;
 
             for (int i = 0; i < model.ProductPhotos.Count(); i++)
@@ -47,7 +47,7 @@ namespace Shoporium.Web.Controllers
                 }
             }
 
-            return Ok(storeId);
+            return Ok(productId);
         }
 
         [HttpGet("my")]
@@ -58,16 +58,16 @@ namespace Shoporium.Web.Controllers
 
         [HttpGet("store/{storeId}")]
         [AllowAnonymous]
-        public ActionResult GetStoreProducts(int storeId)
+        public async Task<ActionResult> GetStoreProducts(int storeId)
         {
-            return Ok(_productFacade.GetStoreProducts(storeId));
+            return Ok(await _productFacade.GetStoreProducts(storeId));
         }
 
         [HttpGet("all")]
         [AllowAnonymous]
-        public ActionResult GetAllProducts()
+        public async Task<ActionResult> GetAllProducts()
         {
-            return Ok(_productFacade.GetAllProducts());
+            return Ok(await _productFacade.GetAllProducts());
         }
 
         [HttpGet("details/{id}")]
