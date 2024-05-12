@@ -29,17 +29,7 @@ namespace Shoporium.Business.Helpers
                 .ReverseMap()
                 .ForMember(dest => dest.ProductPhotos, opt => opt.MapFrom(src => src.ProductPhotos.Select(photo => photo.Name)));
 
-            //CreateMap<ProductDTO, Product>()
-            //    .ForMember(dest => dest.ProductPhotos, opt => opt.MapFrom(src =>
-            //        src.ProductPhotos.Select(photo => new ProductPhoto { Name = photo.Name })));
-            //
-            //CreateMap<Product, ProductDTO>()
-            //    .ForMember(dest => dest.ProductPhotos, opt => opt.MapFrom(src =>
-            //        src.ProductPhotos.Select(photo => new ProductPhotoDTO { Name = photo.Name })));
-
-
             CreateMap<ProductPhoto, string>().ConstructUsing(src => src.Name);
-
         }
     }
 }

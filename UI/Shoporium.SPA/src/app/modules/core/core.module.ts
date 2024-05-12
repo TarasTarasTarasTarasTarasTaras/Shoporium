@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    PhotoSliderComponent
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PhotoSliderComponent
   ]
 })
 export class CoreModule { }

@@ -1,0 +1,10 @@
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.product-item {
+    flex: 0 0 calc(25% - 10px);
+    margin-bottom: 20px;
+}

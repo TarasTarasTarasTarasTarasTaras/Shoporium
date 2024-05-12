@@ -1,0 +1,24 @@
+<div class="product-container" *ngIf="product">
+  <div *ngIf="product.downloadedPhotos?.length" class="product-photo">
+    <div class="photo-container">
+      <app-photo-slider [photos]="product.downloadedPhotos"></app-photo-slider>
+    </div>
+  </div>
+
+  <div class="info">
+    <div *ngIf="category">
+      <h4>Категорія товару: {{ category }}</h4>
+    </div>
+
+    <div class="product-name">
+      <h3>{{ product.name }}</h3>
+      <p class="price">{{ product.price }}₴</p>
+    </div>
+
+    <div class="product-description">
+      <p>{{ product.description }}</p>
+    </div>
+
+    <button mat-stroked-button class="button" (click)="buy()">Купити</button>  
+  </div>
+</div>

@@ -9,13 +9,16 @@ import { ListOfProductsComponent } from './components/list-of-products/list-of-p
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { ListOfProductCardsComponent } from './components/list-of-product-cards/list-of-product-cards.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
     ListOfProductsComponent,
     ListOfProductCardsComponent,
     ProductCardComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ import { ListOfProductCardsComponent } from './components/list-of-product-cards/
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    CoreModule
   ],
   exports: [
     ListOfProductCardsComponent,

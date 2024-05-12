@@ -1,4 +1,6 @@
-<div class="main-container" style="padding: 25px;">
+<div class="main-container">
+  <button class="create-store-button" mat-stroked-button (click)="createNewStore()">Створити новий магазин</button>
+  
   <div class="store-container" *ngFor="let store of myStores" (click)="storeDetails(store.id)">
     <h3>{{ store.name }}</h3>
     <p>{{ store.description }}</p>
@@ -11,6 +13,4 @@
       <img src="data:image/png;base64,{{store.downloadedMainPhoto}}" alt="{{ store.name }}"/>
     </div>
   </div>
-  
-  <button class="create-store-button" mat-stroked-button (click)="createNewStore()">Створити новий магазин</button>
 </div>

@@ -1,0 +1,114 @@
+.main {
+    position: relative;
+}
+
+.slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.slides img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.slide {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.buttons {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: -200px;
+    top: 172px;
+}
+
+.btn-arrow {
+    color: transparent;
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, .05);
+    transition: all 150ms ease-out;
+    margin: 0 160px;
+    border-radius: 5px;
+}
+
+.btn-arrow::before,
+.btn-arrow::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(219, 68, 68);
+    transition: all 150ms ease-out;
+    border-radius: 5px;
+}
+
+.btn-arrow::before {
+    width: 75%;
+    height: 25%;
+}
+
+.btn-arrow::after {
+    width: 25%;
+    height: 75%;
+}
+
+.btn-arrow:hover,
+.btn-arrow:focus {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.btn-arrow:hover::before,
+.btn-arrow:focus::before,
+.btn-arrow:hover::after,
+.btn-arrow:focus::after {
+    background-color: rgb(226, 53, 53);
+}
+
+.btn-arrow.btn-arrow-left::before,
+.btn-arrow.btn-arrow-right::before,
+.btn-arrow.btn-arrow-left::after,
+.btn-arrow.btn-arrow-right::after {
+    top: 12.5%;
+    left: 12.5%;
+}
+
+.btn-arrow.btn-arrow-left {
+    transform: rotate(-45deg);
+}
+
+.btn-arrow.btn-arrow-right {
+    transform: rotate(135deg);
+}

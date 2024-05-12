@@ -21,6 +21,6 @@ namespace Shoporium.Data._EntityFramework.Entities
         public long StoreId { get; set; }
         public virtual Store? Store { get; set; }
 
-        public virtual IEnumerable<ProductPhoto> ProductPhotos { get; set; } = Enumerable.Empty<ProductPhoto>();
+        public virtual ICollection<ProductPhoto> ProductPhotos { get; set; } = new List<ProductPhoto>();
     }
 }

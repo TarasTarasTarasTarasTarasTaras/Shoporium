@@ -1,5 +1,5 @@
-products count: {{ products?.length }}
-
-<div *ngFor="let product of products">
-  <app-product-card [product]="product"></app-product-card>
+<div class="products-container">
+  <div *ngFor="let product of products; let i = index" class="product-item">
+    <app-product-card [product]="product" (click)="openProduct(i)"></app-product-card>
+  </div>
 </div>
