@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AccountService } from 'src/app/modules/authentication/services/account.service';
 import { ProductService } from '../../services/products.service';
 import { Apollo, gql } from 'apollo-angular';
@@ -25,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
     }`;
 
   constructor(
+    private renderer: Renderer2,
     private router: Router,
     private route: ActivatedRoute,
     private apollo: Apollo,

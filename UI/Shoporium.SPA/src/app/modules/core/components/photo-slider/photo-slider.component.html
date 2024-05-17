@@ -7,7 +7,7 @@
     </div>
   </div>
   
-  <div class="buttons">
+  <div class="buttons" *ngIf="photos.length > 1">
     <button (click)="prevSlide()" [disabled]="currentIndex === 0" class="btn-arrow btn-arrow-left" title="Previous">Previous</button>
     <button (click)="nextSlide()" [disabled]="currentIndex === photos.length - 1" class="btn-arrow btn-arrow-right" title="Next">Next</button>
   </div>

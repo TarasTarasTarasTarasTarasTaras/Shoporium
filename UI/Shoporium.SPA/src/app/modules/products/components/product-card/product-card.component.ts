@@ -20,6 +20,8 @@ export class ProductCardComponent implements OnInit {
   isOwner: boolean = false;
   isNotPreview: boolean = false;
 
+  showSecondPhoto: boolean = false;
+
   productCategoriesQuery = gql`
     query GetProductCategories {
       productCategories {
@@ -54,6 +56,12 @@ export class ProductCardComponent implements OnInit {
       this.productService.getProductDetails(this.id).subscribe(product => {
         this.product = product;
       })
+    }
+  }
+
+  togglePhoto(show: boolean) {
+    if (this.product?.productPhotos?.length > 1 || this.product?.downloadedPhotos?.length > 1) {
+      this.showSecondPhoto = show;
     }
   }
 }

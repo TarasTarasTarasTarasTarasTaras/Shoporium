@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
+import { BuyInOneClickButtonComponent } from './buttons/buy-in-one-click-button/buy-in-one-click-button.component';
 
 @NgModule({
   imports: [
@@ -18,12 +19,14 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     HeaderComponent,
     FooterComponent,
     AboutComponent,
-    PhotoSliderComponent
+    PhotoSliderComponent,
+    BuyInOneClickButtonComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    PhotoSliderComponent
+    PhotoSliderComponent,
+    BuyInOneClickButtonComponent
   ]
 })
 export class CoreModule { }
