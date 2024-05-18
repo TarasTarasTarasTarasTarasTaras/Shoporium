@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shoporium.Business.Logins;
+using Shoporium.Business.Users;
 using Shoporium.Entities.DTO.Users;
 using Shoporium.Web.Extensions;
 using Shoporium.Web.Models.User;
@@ -16,10 +17,15 @@ namespace Shoporium.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ILoginFacade _loginFacade;
+        private readonly IUserFacade _userFacade;
 
-        public AccountController(IMapper mapper, ILoginFacade loginFacade)
+        public AccountController(
+            IMapper mapper,
+            IUserFacade userFacade,
+            ILoginFacade loginFacade)
         {
             _mapper = mapper;
+            _userFacade = userFacade;
             _loginFacade = loginFacade;
         }
 
@@ -67,11 +73,27 @@ namespace Shoporium.Web.Controllers
                 Id = User.GetId(),
                 FirstName = User.FindFirstValue("FirstName"),
                 LastName = User.FindFirstValue("LastName"),
+                MobileNumber = User.FindFirstValue("MobileNumber"),
                 Role = User.FindFirstValue(ClaimTypes.Role),
                 Email = User.FindFirstValue(ClaimTypes.Email)
             };
 
             return Ok(res);
+        }
+
+        [HttpGet("info")]
+        public ActionResult GetUserInfo()
+        {
+            var user = _userFacade.GetUserById(User.GetId());
+            return Ok(user);
+        }
+
+        [HttpPut("update")]
+        public ActionResult UpdateUserInfo(UpdateUserInfoModel model)
+        {
+            model.UserId = User.GetId();
+            _userFacade.UpdateUserInfo(_mapper.Map<UpdateUserInfoDTO>(model));
+            return Ok();
         }
 
         private string GetIpAddress()

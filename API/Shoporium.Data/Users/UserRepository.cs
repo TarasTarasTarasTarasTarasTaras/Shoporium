@@ -34,6 +34,22 @@ namespace Shoporium.Data.Users
             Context.SaveChanges();
         }
 
+        public UserDTO? GetUserById(long userId)
+        {
+            var user = Context.Users
+                .FirstOrDefault(_ => _.Status == GeneralStatus.Active && _.Id == userId);
+
+            return user == null ? null : _mapper.Map<UserDTO>(user);
+        }
+
+        public void UpdateUserInfo(UpdateUserInfoDTO model)
+        {
+            var entity = Context.Users.FirstOrDefault(u => u.Id == model.UserId);
+            _mapper.Map(model, entity);
+
+            Context.SaveChanges();
+        }
+
         public UserDTO? GetUserByEmail(string email)
         {
             var user = Context.Users

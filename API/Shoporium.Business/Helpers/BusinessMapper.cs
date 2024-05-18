@@ -11,6 +11,7 @@ namespace Shoporium.Business.Helpers
         public BusinessMapper()
         {
             CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<UpdateUserInfoDTO, User>().ReverseMap();
 
             CreateMap<LoginDetailDTO, LoginDetail>()
                 .ReverseMap()

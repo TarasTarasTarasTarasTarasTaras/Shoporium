@@ -12,6 +12,8 @@ namespace Shoporium.Web.Helpers
     {
         public WebMapper()
         {
+            CreateMap<UpdateUserInfoModel, UpdateUserInfoDTO>();
+
             CreateMap<LoginModel, LoginDTO>();
             CreateMap<RegisterModel, RegisterDTO>();
             CreateMap<RegisterModel, LoginDTO>();

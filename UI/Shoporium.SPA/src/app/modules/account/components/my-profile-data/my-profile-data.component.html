@@ -1,0 +1,55 @@
+<div class="main">
+  <form class="login-form" [formGroup]="form">
+    <h3>Редагування вашого профілю</h3>
+  
+    <div class="inputs-block">
+      <div class="input">
+        <p class="input-name">Ім'я</p>
+        <div class="input-wrapper">
+            <input placeholder="Ім'я" formControlName="firstName">
+        </div>
+      </div>
+    
+      <div class="input">
+        <p class="input-name">Прізвище</p>
+        <div class="input-wrapper">
+            <input placeholder="Прізвище" formControlName="lastName">
+        </div>
+      </div>
+    </div>
+  
+    <div class="inputs-block">
+      <div class="input">
+        <p class="input-name">Номер телефону</p>
+        <div class="input-wrapper">
+            <input placeholder="Номер телефону" formControlName="mobileNumber">
+        </div>
+      </div>
+    
+      <div class="input">
+        <p class="input-name">Email</p>
+        <div class="input-wrapper">
+            <input placeholder="Email" formControlName="email">
+        </div>
+      </div>
+    </div>
+
+    <p class="input-name">Зміна паролю</p>
+    <div class="input-wrapper">
+        <input type="password" placeholder="Поточний пароль">
+    </div>
+
+    <div class="input-wrapper">
+      <input type="password" placeholder="Новий пароль">
+    </div>
+
+    <div class="input-wrapper">
+      <input type="password" placeholder="Повторіть пароль">
+    </div>
+
+    <div class="buttons">
+      <button class="cancel-button" mat-stroked-button>Скасувати</button>
+      <button class="save-button" mat-stroked-button (click)="save()">Зберегти</button>
+    </div>
+  </form>
+</div>

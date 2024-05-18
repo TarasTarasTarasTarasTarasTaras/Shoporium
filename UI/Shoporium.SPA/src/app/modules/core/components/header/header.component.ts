@@ -21,8 +21,7 @@ export class HeaderComponent implements OnInit {
     private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.accountService.account$.subscribe(
-      (res: Account) => {
+    this.accountService.account$.subscribe((res: Account) => {
         this.currentUserName = `${res.firstName} ${res.lastName}`;
       }
     );
@@ -47,5 +46,9 @@ export class HeaderComponent implements OnInit {
 
   myStores() {
     this.router.navigate(['store/my']);
+  }
+
+  account() {
+    this.router.navigate(['account/profile/data']);
   }
 }

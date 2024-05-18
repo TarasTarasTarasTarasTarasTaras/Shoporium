@@ -5,7 +5,6 @@ import { BehaviorSubject, EMPTY, Observable, of, Subscription } from 'rxjs';
 import { catchError, concatMap, delay, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Account } from '../models/account';
-import { Role } from '../models/role';
 import { LoginResult } from '../models/login-result';
 
 @Injectable({
@@ -42,6 +41,18 @@ export class AccountService {
     window.removeEventListener('storage', this.storageEventListener.bind(this));
   }
 
+  getUserInfo() {
+    return this.http.get<Account>(`${this.apiUrl}/info`).pipe(map(res => {
+      return res;
+    }))
+  }
+
+  updateUserInfo(model) {
+    return this.http.put(`${this.apiUrl}/update`, model).pipe(map(res => {
+      return res;
+    }))
+  }
+
   login(email: string, password: string) {
     return this.http.post<LoginResult>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true }).pipe(
       concatMap((tokens: any) => {
@@ -65,7 +76,6 @@ export class AccountService {
   logout(useReturnUrl: boolean = true) {
     this.clearLocalStorage();
     this._accountSubject.next(null);
-    // this.dialogRef.closeAll();
 
     this.stopTokenTimer();
 
@@ -120,11 +130,11 @@ export class AccountService {
   getCurrentUser() {
     return this.http.get<LoginResult>(`${this.apiUrl}/user`).pipe(map(x => {
       this._accountSubject.next({
-        userId: x.role != Role.HealthCardOwner ? x.id : 0,
-        healthCardId: x.role == Role.HealthCardOwner ? x.id : 0,
+        userId: x.id,
         firstName: x.firstName,
         lastName: x.lastName,
         email: x.email,
+        mobileNumber: x.mobileNumber,
         role: x.role
       });
     }));

@@ -26,9 +26,19 @@ namespace Shoporium.Business.Users
             _userRepository.Register(model);
         }
 
+        public UserDTO? GetUserById(long userId)
+        {
+            return _userRepository.GetUserById(userId);
+        }
+
         public UserDTO? GetUserByEmail(string email)
         {
             return _userRepository.GetUserByEmail(email);
+        }
+
+        public void UpdateUserInfo(UpdateUserInfoDTO model)
+        {
+            _userRepository.UpdateUserInfo(model);
         }
 
         public bool IsValidUserCredentials(long userId, string password)

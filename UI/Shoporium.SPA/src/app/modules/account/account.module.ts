@@ -9,12 +9,16 @@ import { AccountRoutingModule } from './account-routing.module';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
+import { MyProfileDataComponent } from './components/my-profile-data/my-profile-data.component';
 
 @NgModule({
   declarations: [
-    MyProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountSidebarComponent,
+    MyProfileComponent,
+    MyProfileDataComponent
   ],
   imports: [
     CommonModule,

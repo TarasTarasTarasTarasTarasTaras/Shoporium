@@ -1,0 +1,38 @@
+.sidebar {
+    width: 400px;
+    font-family: Montserrat;
+}
+
+.sidebar h2 {
+    font-size: 1.2em;
+    margin: 22px 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 40px;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar ul li a.active {
+    color: red; 
+}
+
+.sidebar ul li a.disabled {
+    color: grey;
+}
+
+.sidebar ul li a:hover {
+    color: rgb(255, 30, 30);
+    transform: translateX(10px);
+}

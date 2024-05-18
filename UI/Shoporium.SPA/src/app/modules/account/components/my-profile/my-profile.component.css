@@ -1,0 +1,14 @@
+.main {
+    display: flex;
+    padding: 75px;
+    width: 100%;
+}
+
+.left {
+    width: 30%;
+}
+
+.right {
+    width: 70%;
+    max-width: 850px;
+}

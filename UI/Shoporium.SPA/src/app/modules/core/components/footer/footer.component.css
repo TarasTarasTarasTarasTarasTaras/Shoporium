@@ -25,6 +25,11 @@ h2 {
     padding-bottom: 10px;
 }
 
+.value:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .rights {
     color: #FFFFFF;
     text-align: center;

@@ -33,6 +33,7 @@ namespace Shoporium.Business.Auth
                 new(ClaimTypes.Email, user.Email),
                 new("FirstName", user.FirstName),
                 new("LastName", user.LastName),
+                new("MobileNumber", user.MobileNumber),
 
                 new(ClaimTypes.Role, user.UserType.ToString())
             };

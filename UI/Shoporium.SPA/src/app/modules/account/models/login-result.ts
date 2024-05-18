@@ -6,6 +6,7 @@ export interface LoginResult {
     lastName?: string;
     role: Role;
     email?: string;
+    mobileNumber: string;
     accessToken: string;
     refreshToken: string;
   }
