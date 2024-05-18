@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { AccountService } from 'src/app/modules/authentication/services/account.service';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
+import { AccountService } from 'src/app/modules/account/services/account.service';
 import { ProductService } from '../../services/products.service';
 import { Apollo, gql } from 'apollo-angular';
 import { ActivatedRoute, Router } from '@angular/router';

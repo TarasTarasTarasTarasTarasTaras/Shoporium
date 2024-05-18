@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StoreService } from '../../services/store.service';
 import { Store } from '../../models/store';
 import { Apollo, gql } from 'apollo-angular';
-import { AccountService } from 'src/app/modules/authentication/services/account.service';
+import { AccountService } from 'src/app/modules/account/services/account.service';
 
 @Component({
   selector: 'app-store-details',

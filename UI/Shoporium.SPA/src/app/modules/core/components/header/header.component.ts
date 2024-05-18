@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Account } from 'src/app/modules/authentication/models/account';
-import { AccountService } from 'src/app/modules/authentication/services/account.service';
+import { Account } from 'src/app/modules/account/models/account';
+import { AccountService } from 'src/app/modules/account/services/account.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.account$.subscribe(
       (res: Account) => {
-        this.currentUserName = res.firstName;
+        this.currentUserName = `${res.firstName} ${res.lastName}`;
       }
     );
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AccountService } from '../../authentication/services/account.service';
+import { AccountService } from '../../account/services/account.service';
 import { Router } from '@angular/router';
 
 @Injectable()
