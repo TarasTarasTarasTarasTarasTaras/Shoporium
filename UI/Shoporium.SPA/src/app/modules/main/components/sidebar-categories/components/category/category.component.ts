@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { StaticDataService } from 'src/app/modules/core/services/static-data.service';
 
 @Component({
   selector: 'app-category',
@@ -10,7 +11,7 @@ export class CategoryComponent implements OnInit {
 
   activeCategory = null;
 
-  constructor() { }
+  constructor(private staticDataService: StaticDataService) { }
 
   ngOnInit() {
   }
@@ -24,32 +25,25 @@ export class CategoryComponent implements OnInit {
   }
 
   changeColor(hovered: boolean) {
-    const hoveredCategoryId = this.activeCategory.id;
-
-    let subsubcategoryId = this.category.id;
-    let subcategoryId = this.category.mainCategoryId;
-
-    if (hovered) {
-      if (subsubcategoryId) {
-        var element = document.getElementById(`categoryId-${subsubcategoryId}`);
-        element.style.color = "red";
-      }
-  
-      if (subcategoryId) {
-        var element = document.getElementById(`categoryId-${subcategoryId}`);
-        element.style.color = "red";
-      }
-    }
-    else {
-      if (subsubcategoryId) {
-        var element = document.getElementById(`categoryId-${subsubcategoryId}`);
-        element.style.color = "black";
-      }
-  
-      if (subcategoryId) {
-        var element = document.getElementById(`categoryId-${subcategoryId}`);
-        element.style.color = "black";
-      }
-    }
+    this.staticDataService.getProductCategories().subscribe(categories => {
+      const hoveredCategoryId = this.activeCategory.id;
+      const subcategory = categories.find(c => c.id == this.activeCategory.mainCategoryId);
+      const mainCategory = categories.find(c => c.id == subcategory?.mainCategoryId);
+      
+      const color = hovered ? "red" : "black";
+      
+      const changeElementColor = (id: string | undefined) => {
+        if (id) {
+          const element = document.getElementById(`categoryId-${id}`);
+          if (element) {
+            element.style.color = color;
+          }
+        }
+      };
+      
+      changeElementColor(hoveredCategoryId);
+      changeElementColor(subcategory?.id);
+      changeElementColor(mainCategory?.id);
+    });
   }
 }

@@ -3,7 +3,7 @@
     {{ category.name }}
   </p>
 
-  <ul *ngIf="activeCategory === category && category.subcategories.length > 0">
+  <ul *ngIf="activeCategory === category && category?.subcategories?.length > 0">
     <app-category
       *ngFor="let subcategory of category.subcategories"
       [category]="subcategory">

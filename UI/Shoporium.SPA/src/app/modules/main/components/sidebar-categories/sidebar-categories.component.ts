@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { StaticDataService } from 'src/app/modules/core/services/static-data.service';
 
 @Component({
   selector: 'app-sidebar-categories',
@@ -7,40 +7,15 @@ import { Apollo, gql } from 'apollo-angular';
   styleUrls: ['./sidebar-categories.component.css']
 })
 export class SidebarCategoriesComponent implements OnInit {
-  productCategories;
   mainCategories;
+  productCategories;
 
   expandedCategory: any = null;
-
-  productCategoriesQuery = gql`
-    query GetProductCategories {
-      productCategories {
-        id
-        name
-        iconName
-        mainCategoryId
-        subcategories {
-          id
-          name
-          mainCategoryId
-          subcategories {
-            id
-            name
-            mainCategoryId
-          }
-        }
-      }
-    }`;
-
-  constructor(private apollo: Apollo) { }
+  constructor(private staticDataService: StaticDataService) { }
 
   ngOnInit() {
-    this.apollo
-    .query({ query: this.productCategoriesQuery })
-    .subscribe((res: any) => {
-      this.productCategories = res.data.productCategories;
-      this.mainCategories = res.data.productCategories.filter(c => c.iconName);
-    });
+    this.staticDataService.getMainCategories().subscribe(res => this.mainCategories = res);
+    this.staticDataService.getProductCategories().subscribe(res => this.productCategories = res);
   }
 
   isCategoryHasSubcategories(category: any): boolean {
