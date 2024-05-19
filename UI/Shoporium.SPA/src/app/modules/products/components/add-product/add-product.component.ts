@@ -115,7 +115,7 @@ export class AddProductComponent implements OnInit {
     this.productService.createProduct(formData).subscribe(() => {
       this.router.navigate([`store/details/${this.storeId}`]);
     })
-}
+  }
 
   onCategorySelectionChange(): void {
     const selectedCategoryId = this.form.get('categoryId')!.value;

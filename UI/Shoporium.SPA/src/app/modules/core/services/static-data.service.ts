@@ -41,7 +41,14 @@ export class StaticDataService {
       map((res: any) => res.data.productCategories),
       mergeMap((categories) => {
         this.productCategories = categories;
-        this.mainCategories = categories.filter((c) => c.iconName);
+        
+        let filteredCategories = categories.filter((c) => c.iconName);
+
+        if (filteredCategories.length > 4) {
+            filteredCategories = filteredCategories.slice(0, -4);
+        }
+
+        this.mainCategories = filteredCategories;
         return of(this.productCategories);
       })
     );
@@ -56,7 +63,14 @@ export class StaticDataService {
       map((res: any) => res.data.productCategories),
       mergeMap((categories) => {
         this.productCategories = categories;
-        this.mainCategories = categories.filter((c) => c.iconName);
+
+        let filteredCategories = categories.filter((c) => c.iconName);
+
+        if (filteredCategories.length > 4) {
+            filteredCategories = filteredCategories.slice(0, -4);
+        }
+
+        this.mainCategories = filteredCategories;
         return of(this.mainCategories);
       })
     );

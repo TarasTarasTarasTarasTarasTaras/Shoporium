@@ -38,6 +38,6 @@
   <button mat-stroked-button class="button" *ngIf="isOwner" (click)="createProduct()">Додати новий товар</button>
 </div>
 
-<div *ngIf="store">
+<div *ngIf="store && isNotPreview">
   <app-list-of-product-cards [storeId]="store.id"></app-list-of-product-cards>
 </div>

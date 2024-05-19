@@ -11,6 +11,7 @@ import { MaterialModule } from './shared/material.module';
 import { appInitializer } from 'src/_helpers/app.initializer';
 import { GraphQLModule } from './graphql.module';
 import { CoreModule } from './modules/core/core.module';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CoreModule } from './modules/core/core.module';
     HttpClientModule,
     MaterialModule,
     GraphQLModule,
-    CoreModule
+    CoreModule,
+    SlickCarouselModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },

@@ -24,8 +24,11 @@
     "apollo-angular": "^5.0.2",
     "graphql": "^16",
     "gsap": "^3.12.5",
+    "jquery": "^3.7.1",
     "material-icons": "^1.13.12",
+    "ngx-slick-carousel": "^0.4.7",
     "rxjs": "~7.4.0",
+    "slick-carousel": "^1.7.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

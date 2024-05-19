@@ -1,8 +1,9 @@
 .main {
-    padding: 50px;
+    padding: 20px 50px;
     font-family: montserrat;
-    /* background-color: white; */
     border-right: 1px solid gray;
+    position: relative;
+    z-index: auto !important; /* змініть це значення на те, яке потрібно, щоб категорії були поверх слайдера */
 }
 
 ul {

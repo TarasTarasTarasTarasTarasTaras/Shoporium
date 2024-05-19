@@ -9,6 +9,7 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { SidebarCategoriesComponent } from './components/sidebar-categories/sidebar-categories.component';
 import { MainComponent } from './components/main/main.component';
 import { CategoryComponent } from './components/sidebar-categories/components/category/category.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CategoryComponent } from './components/sidebar-categories/components/ca
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    SlickCarouselModule
   ],
   exports: [
     ProductCategoriesWindowComponent

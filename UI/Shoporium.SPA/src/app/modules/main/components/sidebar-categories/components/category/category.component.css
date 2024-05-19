@@ -6,6 +6,7 @@ ul {
     padding: 20px 5px;
     border: 1px solid gray;
     border-radius: 10px;
+    z-index: auto !important;
 }
 
 li {
@@ -13,6 +14,7 @@ li {
     width: 300px;
     margin: 0;
     padding-top: 5px;
+    z-index: auto !important;
 }
 
 li ul {
@@ -21,8 +23,10 @@ li ul {
     margin-left: 250px;
     margin-top: -55px;
     background-color: white;
+    z-index: auto !important;
 }
 
 li:hover ul {
     display: block;
+    z-index: auto !important;
 }

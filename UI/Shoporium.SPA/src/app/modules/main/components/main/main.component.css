@@ -5,6 +5,34 @@
 .left {
     width: 30%;
     position: sticky;
-    z-index: 99;
+    z-index: 9999999999999999 !important;
     max-width: 335px;
+}
+
+.right {
+    width: 70%;
+    position: sticky;
+    z-index: 99;
+    max-width: 975px;
+}
+
+
+.banners {
+    max-width: 950px;
+    margin: 50px;
+}
+
+.carousel {
+    max-width: 100%;
+    height: auto;
+}
+
+.slide {
+    max-width: 100%;
+}
+
+.slide img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
