@@ -9,7 +9,7 @@
 
   <div class="flex">  
     <div *ngIf="!currentUserName" style="margin-bottom: 50px;">
-      <button mat-button class="button-link">Home</button>
+      <button mat-button class="button-link" (click)="home()">Головна</button>
       <button mat-button class="button-link">Контакти</button>
       <button mat-button class="button-link" (click)="about()">Про нас</button>
       <button mat-button class="button-link" (click)="authorize()">Увійти</button>
@@ -17,7 +17,7 @@
     </div>
 
     <div *ngIf="currentUserName">
-      <button mat-button class="button-link">Home</button>
+      <button mat-button class="button-link" (click)="home()">Головна</button>
       <button mat-button class="button-link">Контакти</button>
       <button mat-button class="button-link" (click)="about()">Про нас</button>
       <button mat-button class="button-link username" (click)="myStores()">Мої магазини</button>

@@ -1,0 +1,11 @@
+.main {
+    padding: 50px;
+    font-family: montserrat;
+    /* background-color: white; */
+    border-right: 1px solid gray;
+}
+
+ul {
+    margin: 10px 0;
+    list-style-type: none;
+}

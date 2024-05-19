@@ -6,10 +6,16 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ProductCategoriesWindowComponent } from './components/product-categories-window/product-categories-window.component';
 import { MainRoutingModule } from './main-routing.module';
 import { MaterialModule } from 'src/app/shared/material.module';
+import { SidebarCategoriesComponent } from './components/sidebar-categories/sidebar-categories.component';
+import { MainComponent } from './components/main/main.component';
+import { CategoryComponent } from './components/sidebar-categories/components/category/category.component';
 
 @NgModule({
   declarations: [
-    ProductCategoriesWindowComponent
+    MainComponent,
+    ProductCategoriesWindowComponent,
+    SidebarCategoriesComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,

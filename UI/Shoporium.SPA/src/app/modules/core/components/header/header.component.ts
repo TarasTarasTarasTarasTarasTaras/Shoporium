@@ -51,4 +51,8 @@ export class HeaderComponent implements OnInit {
   account() {
     this.router.navigate(['account/profile/data']);
   }
+
+  home() {
+    this.router.navigate(['']);
+  }
 }

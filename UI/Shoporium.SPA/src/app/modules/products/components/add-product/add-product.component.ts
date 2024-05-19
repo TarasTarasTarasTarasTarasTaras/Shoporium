@@ -66,7 +66,6 @@ export class AddProductComponent implements OnInit {
         this.mainProductCategories = this.productCategories.filter(c => !c.mainCategoryId)
       });
 
-    console.log(this.route.snapshot.paramMap.get('storeId'))
     this.storeId = this.route.snapshot.paramMap.get('storeId');
   }
 
