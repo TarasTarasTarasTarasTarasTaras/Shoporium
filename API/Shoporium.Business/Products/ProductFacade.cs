@@ -43,9 +43,9 @@ namespace Shoporium.Business.Products
             return products;
         }
 
-        public async Task<IEnumerable<ProductDTO>> GetAllProducts()
+        public async Task<IEnumerable<ProductDTO>> GetAllProducts(int count = 30)
         {
-            var products = _productRepository.GetAllProducts();
+            var products = _productRepository.GetAllProducts(count);
 
             await Task.WhenAll(products
                 .Select(async product =>
@@ -74,6 +74,50 @@ namespace Shoporium.Business.Products
         public async Task<IEnumerable<ProductDTO>> GetStoreProducts(long storeId)
         {
             var products = _productRepository.GetStoreProducts(storeId);
+
+            await Task.WhenAll(products
+                .Select(async product =>
+                {
+                    var containerName = _configuration["AWSBucketName"]!;
+
+                    for (int i = 0; i < product.ProductPhotos.Count(); i++)
+                    {
+                        if (!string.IsNullOrEmpty(product.ProductPhotos.ElementAt(i)))
+                        {
+                            var downloadedPhoto = await _azureService.DownloadBlobAsync(containerName, $"products/{product.Name}/{product.ProductPhotos.ElementAt(i)}");
+                            product.DownloadedPhotos.Add(downloadedPhoto);
+                        }
+                    }
+                }));
+
+            return products;
+        }
+
+        public async Task<IEnumerable<ProductDTO>> GetNewestProducts(int count = 20)
+        {
+            var products = _productRepository.GetNewestProducts(count);
+
+            await Task.WhenAll(products
+                .Select(async product =>
+                {
+                    var containerName = _configuration["AWSBucketName"]!;
+
+                    for (int i = 0; i < product.ProductPhotos.Count(); i++)
+                    {
+                        if (!string.IsNullOrEmpty(product.ProductPhotos.ElementAt(i)))
+                        {
+                            var downloadedPhoto = await _azureService.DownloadBlobAsync(containerName, $"products/{product.Name}/{product.ProductPhotos.ElementAt(i)}");
+                            product.DownloadedPhotos.Add(downloadedPhoto);
+                        }
+                    }
+                }));
+
+            return products;
+        }
+
+        public async Task<IEnumerable<ProductDTO>> GetTheMostPopularProducts(int count = 20)
+        {
+            var products = _productRepository.GetTheMostPopularProducts(count);
 
             await Task.WhenAll(products
                 .Select(async product =>

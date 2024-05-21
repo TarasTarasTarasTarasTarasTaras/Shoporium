@@ -1,5 +1,6 @@
 .main {
     display: flex;
+    border-bottom: 1px solid gray;
 }
 
 .left {
@@ -35,4 +36,106 @@
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+.slider h3 {
+    font-family: montserrat;
+    margin-left: 65px;
+    font-size: 21px;
+}
+
+.slider {
+    max-width: 1250px;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+    padding: 30px 0 20px;
+    border-radius: 10px;
+}
+
+.slider-products {
+    margin: 40px auto;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+    background-position: center; 
+    max-width: 1385px;
+}
+
+.all {
+    max-width: 1293px;
+}
+
+.all-products {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    justify-content: start;
+}
+
+.product {
+    flex: 0 0 25%;
+    max-width: calc(25%);
+}
+
+
+
+/* features */
+
+.image {
+    flex: 0 0 auto;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.features {
+    margin: 70px auto 150px;
+    display: flex;
+    justify-content: space-between;
+    font-family: inter;
+    max-width: 1380px;
+}
+
+.feature {
+    text-align: center;
+    flex-basis: 30%;
+}
+
+.feature img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 14px;
+}
+
+.icon-container {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    position: relative;
+    margin: auto;
+}
+
+.icon-container .icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    left: 30px;
+    color: white;
+    background: none;
 }

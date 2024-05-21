@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { from, map, mergeMap, of } from 'rxjs';
+import { ProductService } from '../../products/services/products.service';
+import { ProductModel } from '../../products/models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +10,8 @@ import { from, map, mergeMap, of } from 'rxjs';
 export class StaticDataService {
   private productCategories = [];
   private mainCategories = [];
+  private newestProducts: ProductModel[] = [];
+  private theMostPopularProducts: ProductModel[] = [];
 
   private productCategoriesQuery = gql`
     query GetProductCategories {
@@ -30,7 +34,9 @@ export class StaticDataService {
     }
   `;
 
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    private productService: ProductService) {}
 
   getProductCategories() {
     if (this.productCategories?.length > 0) {
@@ -74,5 +80,27 @@ export class StaticDataService {
         return of(this.mainCategories);
       })
     );
+  }
+
+  getNewestProducts() {
+    if (this.newestProducts?.length > 0) {
+      return of(this.newestProducts);
+    }
+
+    return this.productService.getNewestProducts().pipe(map(products => {
+      this.newestProducts = products;
+      return products;
+    }));
+  }
+
+  getTheMostPopularProducts() {
+    if (this.theMostPopularProducts?.length > 0) {
+      return of(this.theMostPopularProducts);
+    }
+
+    return this.productService.getTheMostPopularProducts().pipe(map(products => {
+      this.theMostPopularProducts = products;
+      return products;
+    }));
   }
 }

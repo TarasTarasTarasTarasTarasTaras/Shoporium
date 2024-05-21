@@ -3,7 +3,8 @@
     font-family: montserrat;
     border-right: 1px solid gray;
     position: relative;
-    z-index: auto !important; /* змініть це значення на те, яке потрібно, щоб категорії були поверх слайдера */
+    z-index: auto !important;
+    height: 100%;
 }
 
 ul {

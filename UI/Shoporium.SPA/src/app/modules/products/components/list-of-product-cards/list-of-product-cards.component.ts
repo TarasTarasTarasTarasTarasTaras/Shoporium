@@ -11,16 +11,18 @@ import { Router } from '@angular/router';
 export class ListOfProductCardsComponent implements OnInit {
   @Input() storeId: number;
 
-  products: ProductModel[];
+  @Input() products: ProductModel[] = [];
 
   constructor(
     private router: Router,
     private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getStoreProducts(this.storeId).subscribe(res => {
-      this.products = res;
-    })
+    if (!this.products.length) {
+      this.productService.getStoreProducts(this.storeId).subscribe(res => {
+        this.products = res;
+      })
+    }
   }
 
   openProduct(index: number) {

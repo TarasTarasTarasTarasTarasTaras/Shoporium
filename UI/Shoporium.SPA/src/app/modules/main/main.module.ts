@@ -10,6 +10,7 @@ import { SidebarCategoriesComponent } from './components/sidebar-categories/side
 import { MainComponent } from './components/main/main.component';
 import { CategoryComponent } from './components/sidebar-categories/components/category/category.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ProductModule } from '../products/product.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    ProductModule
   ],
   exports: [
     ProductCategoriesWindowComponent

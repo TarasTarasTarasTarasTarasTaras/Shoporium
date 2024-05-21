@@ -31,6 +31,14 @@ export class ProductService {
     return this.http.get<ProductModel[]>(`${this.apiUrl}/store/${storeId}`);
   }
 
+  getNewestProducts() {
+    return this.http.get<ProductModel[]>(`${this.apiUrl}/newest`);
+  }
+
+  getTheMostPopularProducts() {
+    return this.http.get<ProductModel[]>(`${this.apiUrl}/most-popular`);
+  }
+
   createProduct(model: FormData) {
     return this.http.post(`${this.apiUrl}`, model);
   }

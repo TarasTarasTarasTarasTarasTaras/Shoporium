@@ -63,6 +63,20 @@ namespace Shoporium.Web.Controllers
             return Ok(await _productFacade.GetStoreProducts(storeId));
         }
 
+        [HttpGet("newest")]
+        [AllowAnonymous]
+        public async Task<ActionResult> GetNewestProducts()
+        {
+            return Ok(await _productFacade.GetNewestProducts());
+        }
+
+        [HttpGet("most-popular")]
+        [AllowAnonymous]
+        public async Task<ActionResult> GetTheMostPopularProducts()
+        {
+            return Ok(await _productFacade.GetTheMostPopularProducts());
+        }
+
         [HttpGet("all")]
         [AllowAnonymous]
         public async Task<ActionResult> GetAllProducts()
