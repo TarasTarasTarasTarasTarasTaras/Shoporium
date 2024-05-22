@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StaticDataService } from 'src/app/modules/core/services/static-data.service';
 
 @Component({
@@ -11,7 +12,13 @@ export class CategoryComponent implements OnInit {
 
   activeCategory = null;
 
-  constructor(private staticDataService: StaticDataService) { }
+  constructor(
+    private router: Router,
+    private staticDataService: StaticDataService) { }
+
+  categoryNavigate(category) {
+    this.router.navigate(['searchBy'], { queryParams: { key: 'category', categoryName: category.name } });
+  }
 
   ngOnInit() {
   }

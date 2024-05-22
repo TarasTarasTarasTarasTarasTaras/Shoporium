@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Router } from '@angular/router';
 import { StaticDataService } from 'src/app/modules/core/services/static-data.service';
 import { ProductModel } from 'src/app/modules/products/models/product.model';
 import { ProductService } from 'src/app/modules/products/services/products.service';
@@ -34,6 +35,7 @@ export class MainComponent implements OnInit {
   allProducts: ProductModel[] = [];
 
   constructor(
+    private router: Router,
     private staticDataService: StaticDataService,
     private productService: ProductService) { }
   
@@ -65,5 +67,9 @@ export class MainComponent implements OnInit {
     this.staticDataService.getTheMostPopularProducts().subscribe(products => {
       this.theMostPopularProducts = products;
     })
+  }
+
+  openProduct(product: ProductModel) {
+    this.router.navigate([`product/details/${product.id}`]);
   }
 }

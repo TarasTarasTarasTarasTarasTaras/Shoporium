@@ -25,8 +25,7 @@ export class ListOfProductCardsComponent implements OnInit {
     }
   }
 
-  openProduct(index: number) {
-    const productId = this.products[index].id;
-    this.router.navigate([`product/details/${productId}`]);
+  openProduct(product: ProductModel) {
+    this.router.navigate([`product/details/${product.id}`]);
   }
 }

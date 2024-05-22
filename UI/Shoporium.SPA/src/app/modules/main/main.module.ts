@@ -11,13 +11,15 @@ import { MainComponent } from './components/main/main.component';
 import { CategoryComponent } from './components/sidebar-categories/components/category/category.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ProductModule } from '../products/product.module';
+import { SearchByComponent } from './components/search-by/search-by.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     ProductCategoriesWindowComponent,
     SidebarCategoriesComponent,
-    CategoryComponent
+    CategoryComponent,
+    SearchByComponent
   ],
   imports: [
     CommonModule,

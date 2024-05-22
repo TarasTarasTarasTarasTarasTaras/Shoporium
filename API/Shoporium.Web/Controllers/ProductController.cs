@@ -84,6 +84,13 @@ namespace Shoporium.Web.Controllers
             return Ok(await _productFacade.GetAllProducts());
         }
 
+        [HttpGet("by-category/{categoryId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> GetProductsByCategory(int categoryId)
+        {
+            return Ok(await _productFacade.GetProductsByCategory(categoryId));
+        }
+
         [HttpGet("details/{id}")]
         [AllowAnonymous]
         public async Task<ActionResult> GetProduct(int id)

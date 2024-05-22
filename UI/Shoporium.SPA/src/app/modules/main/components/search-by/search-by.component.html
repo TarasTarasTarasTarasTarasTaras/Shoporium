@@ -16,34 +16,10 @@
   </div>
 </div>
 
-<div class="slider-products" *ngIf="newestProducts.length">
+<div class="slider-products all" *ngIf="allProducts.length">
   <div class="slider">
-    <h3>Найновіші товари</h3>
+    <h3 *ngIf="queryKey == 'category'">Товари з категорії <span class="category-name">{{ categoryName }}</span></h3>
 
-    <ngx-slick-carousel class="carousel" 
-                    #slickModal="slick-carousel" 
-                    [config]="slideProductsConfig">
-      <div ngxSlickItem *ngFor="let product of newestProducts" class="slide">
-        <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
-      </div>
-    </ngx-slick-carousel>
-  </div>
-</div>
-
-<div class="slider-products" *ngIf="newestProducts.length">
-  <div class="slider">
-    <h3>Найпопулярніші товари</h3>
-
-    <ngx-slick-carousel class="carousel" 
-                    #slickModal="slick-carousel" 
-                    [config]="slideProductsConfig">
-      <div ngxSlickItem *ngFor="let product of theMostPopularProducts" class="slide">
-        <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
-      </div>
-    </ngx-slick-carousel>
-  </div>
-
-  <div class="slider-products all" *ngIf="allProducts.length">
     <div class="all-products">
       <div class="product" *ngFor="let product of allProducts">
         <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
@@ -52,6 +28,10 @@
   </div>
 </div>
 
+<div class="not-founded" *ngIf="!allProducts.length">
+  <p>Товарів у категорії <span class="category-name">{{ categoryName }}</span> на жаль не знайдено.</p>
+  <p>Поверніться будь ласка пізніше.</p>
+</div>
 
 <div class="features">
   <div class="feature">

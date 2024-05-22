@@ -1,6 +1,6 @@
 <li (mouseenter)="onMouseEnter(category)" (mouseleave)="onMouseLeave()">
   <p id="categoryId-{{category.id}}" (mouseenter)="changeColor(true)" (mouseleave)="changeColor(false)">
-    {{ category.name }}
+    <span (click)="categoryNavigate(category)">{{ category.name }}</span>
   </p>
 
   <ul *ngIf="activeCategory === category && category?.subcategories?.length > 0">

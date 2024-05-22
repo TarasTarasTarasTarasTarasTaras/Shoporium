@@ -47,6 +47,21 @@ namespace Shoporium.Data.Products
             return _mapper.Map<IEnumerable<ProductDTO>>(Context.Products.Include(p => p.ProductPhotos).Take(count));
         }
 
+        public IEnumerable<ProductDTO> GetProductsByCategory(int categoryId, int count = 20)
+        {
+            var innerCategories = Context.ProductCategories.Where(pc => pc.Id == categoryId || pc.MainCategoryId == categoryId);
+            var mergedCategories = innerCategories.Concat(Context.ProductCategories
+                .Where(pc => innerCategories.Any(ic => ic.Id == pc.MainCategoryId)));
+
+            return _mapper.Map<IEnumerable<ProductDTO>>(
+                Context
+                .Products
+                .Where(p => mergedCategories.Any(ic => ic.Id == p.CategoryId))
+                .Include(p => p.ProductPhotos)
+                //.Take(count)
+                .AsEnumerable());
+        }
+
         public long CreateProduct(ProductDTO model)
         {
             var entity = _mapper.Map<Product>(model);

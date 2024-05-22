@@ -23,6 +23,10 @@ export class ProductService {
     return this.http.get<ProductModel[]>(`${this.apiUrl}/all`);
   }
 
+  getProductsByCategoryId(categoryId) {
+    return this.http.get<ProductModel[]>(`${this.apiUrl}/by-category/${categoryId}`);
+  }
+
   getProductDetails(id: number) {
     return this.http.get<ProductModel>(`${this.apiUrl}/details/${id}`);
   }
