@@ -182,9 +182,9 @@ namespace Shoporium.Business.Products
             return products;
         }
 
-        public async Task<ProductDTO> GetProduct(int productId)
+        public async Task<ProductDTO> GetProduct(int productId, bool addView = false)
         {
-            var product = _productRepository.GetProduct(productId);
+            var product = _productRepository.GetProduct(productId, addView);
             var containerName = _configuration["AWSBucketName"]!;
 
             for (int i = 0; i < product.ProductPhotos.Count(); i++)

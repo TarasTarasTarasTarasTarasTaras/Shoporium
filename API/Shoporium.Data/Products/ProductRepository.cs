@@ -28,9 +28,18 @@ namespace Shoporium.Data.Products
             return _mapper.Map<IEnumerable<ProductDTO>>(Context.Products.Take(count).Include(p => p.ProductPhotos));
         }
 
-        public ProductDTO GetProduct(int productId)
+        public ProductDTO GetProduct(int productId, bool addView = false)
         {
-            return _mapper.Map<ProductDTO>(Context.Products.Include(p => p.ProductPhotos).FirstOrDefault(s => s.Id == productId));
+            var product = Context.Products.Include(p => p.ProductPhotos).FirstOrDefault(s => s.Id == productId);
+
+            if (product != null && addView)
+            {
+                product.NumberOfViews++;
+                Context.Entry(product).State = EntityState.Modified;
+                Context.SaveChanges();
+            }
+
+            return _mapper.Map<ProductDTO>(product);
         }
 
         public IEnumerable<ProductDTO> GetStoreProducts(long storeId)
@@ -56,11 +65,11 @@ namespace Shoporium.Data.Products
 
             return _mapper.Map<IEnumerable<ProductDTO>>(
                 Context
-                .Products
-                .Where(p => mergedCategories.Any(ic => ic.Id == p.CategoryId))
-                .Include(p => p.ProductPhotos)
-                //.Take(count)
-                .AsEnumerable());
+               .Products
+               .Where(p => mergedCategories.Any(ic => ic.Id == p.CategoryId))
+               .Include(p => p.ProductPhotos)
+               //.Take(count)
+               .AsEnumerable());
         }
 
         public IEnumerable<ProductDTO> GetProductsByInput(string input, int count = 20)

@@ -12,6 +12,6 @@ namespace Shoporium.Data.Products
         IEnumerable<ProductDTO> GetTheMostPopularProducts(int count = 20);
         IEnumerable<ProductDTO> GetProductsByCategory(int categoryId, int count = 20);
         IEnumerable<ProductDTO> GetProductsByInput(string input, int count = 20);
-        ProductDTO GetProduct(int productId);
+        ProductDTO GetProduct(int productId, bool addView = false);
     }
 }

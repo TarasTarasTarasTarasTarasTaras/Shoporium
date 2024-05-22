@@ -102,7 +102,7 @@ namespace Shoporium.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> GetProduct(int id)
         {
-            return Ok(await _productFacade.GetProduct(id));
+            return Ok(await _productFacade.GetProduct(id, true));
         }
     }
 }

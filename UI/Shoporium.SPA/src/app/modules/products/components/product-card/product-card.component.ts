@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductModel } from '../../models/product.model';
 import { Apollo, gql } from 'apollo-angular';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../services/products.service';
 import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -36,11 +34,7 @@ export class ProductCardComponent implements OnInit {
       }
     }`;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private apollo: Apollo,
-    private productService: ProductService) { }
+  constructor(private apollo: Apollo) { }
 
   ngOnInit() {
     this.apollo
@@ -48,15 +42,6 @@ export class ProductCardComponent implements OnInit {
       .subscribe((res: any) => {
         this.productCategories = res.data.productCategories;
       });
-
-    if (!this.product) {
-      this.isNotPreview = true;
-      this.id = this.route.snapshot.params["id"];
-
-      this.productService.getProductDetails(this.id).subscribe(product => {
-        this.product = product;
-      })
-    }
   }
 
   togglePhoto(show: boolean) {

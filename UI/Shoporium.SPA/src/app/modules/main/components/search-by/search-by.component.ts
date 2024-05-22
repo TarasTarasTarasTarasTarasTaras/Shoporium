@@ -25,7 +25,18 @@ export class SearchByComponent implements OnInit {
     'assets/images/main/banners/banner_3.png'
   ];
 
+  slideProductsConfig = {
+    "slidesToShow": 4,
+    "slidesToScroll": 1,
+    "autoplay": true,
+    "autoplaySpeed": 3500,
+    "dots": false,
+    "arrows": true
+  };
+
   allProducts: ProductModel[] = [];
+  newestProducts: ProductModel[] = [];
+  theMostPopularProducts: ProductModel[] = [];
 
   searchTerm: string = '';
   queryKey: string = '';
@@ -38,6 +49,9 @@ export class SearchByComponent implements OnInit {
     private staticDataService: StaticDataService) { }
 
   ngOnInit() {
+    this.getNewestProducts();
+    this.getTheMostPopularProducts();
+
     this.route.queryParams.subscribe(params => {
       this.queryKey = params['key'];
 
@@ -73,5 +87,17 @@ export class SearchByComponent implements OnInit {
 
   openProduct(product: ProductModel) {
     this.router.navigate([`product/details/${product.id}`]);
+  }
+
+  getNewestProducts() {
+    this.staticDataService.getNewestProducts().subscribe(products => {
+      this.newestProducts = products;
+    })
+  }
+
+  getTheMostPopularProducts() {
+    this.staticDataService.getTheMostPopularProducts().subscribe(products => {
+      this.theMostPopularProducts = products;
+    })
   }
 }

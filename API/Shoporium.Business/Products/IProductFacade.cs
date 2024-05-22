@@ -13,6 +13,6 @@ namespace Shoporium.Business.Products
         Task<IEnumerable<ProductDTO>> GetProductsByCategory(int categoryId, int count = 20);
         Task<IEnumerable<ProductDTO>> GetProductsByInput(string input, int count = 20);
         Task<IEnumerable<ProductDTO>> GetTheMostPopularProducts(int count = 20);
-        Task<ProductDTO> GetProduct(int productId);
+        Task<ProductDTO> GetProduct(int productId, bool addView = false);
     }
 }

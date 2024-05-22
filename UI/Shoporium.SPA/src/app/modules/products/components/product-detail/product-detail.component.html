@@ -19,6 +19,10 @@
       <p>{{ product.description }}</p>
     </div>
 
+    <div class="product-name">
+      <p>Кількість переглядів: {{ product.numberOfViews }}</p>
+    </div>
+
     <app-buy-in-one-click-button (clicked)="buy()"></app-buy-in-one-click-button>
   </div>
 </div>
