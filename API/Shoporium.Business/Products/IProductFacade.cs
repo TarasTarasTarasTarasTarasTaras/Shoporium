@@ -11,6 +11,7 @@ namespace Shoporium.Business.Products
         Task<IEnumerable<ProductDTO>> GetStoreProducts(long storeId);
         Task<IEnumerable<ProductDTO>> GetNewestProducts(int count = 20);
         Task<IEnumerable<ProductDTO>> GetProductsByCategory(int categoryId, int count = 20);
+        Task<IEnumerable<ProductDTO>> GetProductsByInput(string input, int count = 20);
         Task<IEnumerable<ProductDTO>> GetTheMostPopularProducts(int count = 20);
         Task<ProductDTO> GetProduct(int productId);
     }

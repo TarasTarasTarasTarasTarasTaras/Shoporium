@@ -18,7 +18,8 @@
 
 <div class="slider-products all" *ngIf="allProducts.length">
   <div class="slider">
-    <h3 *ngIf="queryKey == 'category'">Товари з категорії <span class="category-name">{{ categoryName }}</span></h3>
+    <h3 *ngIf="queryKey == 'category'">Товари з категорії <span class="search-value">{{ categoryName }}</span></h3>
+    <h3 *ngIf="queryKey == 'input'">Товари за значенням <span class="search-value">{{ searchTerm }}</span></h3>
 
     <div class="all-products">
       <div class="product" *ngFor="let product of allProducts">
@@ -28,8 +29,13 @@
   </div>
 </div>
 
-<div class="not-founded" *ngIf="!allProducts.length">
-  <p>Товарів у категорії <span class="category-name">{{ categoryName }}</span> на жаль не знайдено.</p>
+<div class="not-founded" *ngIf="!allProducts.length && queryKey == 'category'">
+  <p>Товарів у категорії <span class="search-value">{{ categoryName }}</span> на жаль не знайдено.</p>
+  <p>Поверніться будь ласка пізніше.</p>
+</div>
+
+<div class="not-founded" *ngIf="!allProducts.length && queryKey == 'input'">
+  <p>Товарів за значенням <span class="search-value">"{{ searchTerm }}"</span> на жаль не знайдено.</p>
   <p>Поверніться будь ласка пізніше.</p>
 </div>
 

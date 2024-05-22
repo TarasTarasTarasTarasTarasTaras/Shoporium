@@ -138,6 +138,28 @@ namespace Shoporium.Business.Products
             return products;
         }
 
+        public async Task<IEnumerable<ProductDTO>> GetProductsByInput(string input, int count = 20)
+        {
+            var products = _productRepository.GetProductsByInput(input, count);
+
+            await Task.WhenAll(products
+                .Select(async product =>
+                {
+                    var containerName = _configuration["AWSBucketName"]!;
+
+                    for (int i = 0; i < product.ProductPhotos.Count(); i++)
+                    {
+                        if (!string.IsNullOrEmpty(product.ProductPhotos.ElementAt(i)))
+                        {
+                            var downloadedPhoto = await _azureService.DownloadBlobAsync(containerName, $"products/{product.Name}/{product.ProductPhotos.ElementAt(i)}");
+                            product.DownloadedPhotos.Add(downloadedPhoto);
+                        }
+                    }
+                }));
+
+            return products;
+        }
+
         public async Task<IEnumerable<ProductDTO>> GetTheMostPopularProducts(int count = 20)
         {
             var products = _productRepository.GetTheMostPopularProducts(count);

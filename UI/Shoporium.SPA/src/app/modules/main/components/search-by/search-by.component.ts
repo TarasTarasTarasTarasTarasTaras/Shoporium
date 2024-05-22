@@ -26,6 +26,8 @@ export class SearchByComponent implements OnInit {
   ];
 
   allProducts: ProductModel[] = [];
+
+  searchTerm: string = '';
   queryKey: string = '';
   categoryName: string = '';
 
@@ -41,22 +43,31 @@ export class SearchByComponent implements OnInit {
 
       if (this.queryKey == 'category') {
         this.categoryName = params['categoryName'];
-        console.log(this.categoryName)
         this.staticDataService.getProductCategories().subscribe(res => {
           const category = res.find(c => c.name == this.categoryName);
-          console.log(category)
           if (category) {
             this.getProductsByCategoryId(category.id);
           }
         })
       }
+      else if (this.queryKey == 'input') {
+        this.searchTerm = params['searchTerm'];
+        if (this.searchTerm) {
+          this.getProductsByInput(this.searchTerm);
+        }
+      }
     });
   }
 
-  getProductsByCategoryId(categoryId) {
+  getProductsByCategoryId(categoryId: number) {
     this.productService.getProductsByCategoryId(categoryId).subscribe(products => {
       this.allProducts = products;
-      console.log(products)
+    })
+  }
+
+  getProductsByInput(input: string) {
+    this.productService.getProductsByInput(input).subscribe(products => {
+      this.allProducts = products;
     })
   }
 

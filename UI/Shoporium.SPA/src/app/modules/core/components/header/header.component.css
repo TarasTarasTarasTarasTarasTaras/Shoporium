@@ -170,4 +170,5 @@ input[type="submit"] {
     position: absolute;
     right: 10px;
     top: 7px;
+    cursor: pointer;
 }

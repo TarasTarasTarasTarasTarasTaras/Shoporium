@@ -27,18 +27,9 @@
   </div>
 
   <div class="search-container">
-    <input type="text" placeholder="Що ви шукаєте?" />
-    <a class="button" class="search-icon">
+    <input type="text" placeholder="Що ви шукаєте?" (keydown.enter)="onSearch(searchInput.value)" #searchInput />
+    <a class="button search-icon" (click)="onSearch(searchInput.value)">
       <img src="../../../../../assets/images/icon_search.png" alt="Button">
     </a>
-  </div>    
-
-  <!-- <div class="bbbootstrap">
-    <div class="container">
-      <form>
-        <input type="text" id="Form_Search" value="" placeholder="Я хочу купити ..." role="searchbox" class="InputBox" autocomplete="off"/>
-        <input type="submit" id="Form_Go" class="Button" value="Пошук" />
-      </form>
-    </div>
-  </div> -->
+  </div>
 </div>

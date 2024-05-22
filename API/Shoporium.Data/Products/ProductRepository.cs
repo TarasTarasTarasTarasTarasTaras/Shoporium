@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data._EntityFramework.Entities;
 using Shoporium.Entities.DTO.Products;
+using System.Data.SqlTypes;
 
 namespace Shoporium.Data.Products
 {
@@ -60,6 +61,18 @@ namespace Shoporium.Data.Products
                 .Include(p => p.ProductPhotos)
                 //.Take(count)
                 .AsEnumerable());
+        }
+
+        public IEnumerable<ProductDTO> GetProductsByInput(string input, int count = 20)
+        {
+            return _mapper.Map<IEnumerable<ProductDTO>>(
+                Context
+                .Products
+                .Include(p => p.ProductPhotos)
+                .ToList()  // todo
+                .Where(p => p.Name.Contains(input, StringComparison.OrdinalIgnoreCase))
+                //.Take(count)
+            );
         }
 
         public long CreateProduct(ProductDTO model)

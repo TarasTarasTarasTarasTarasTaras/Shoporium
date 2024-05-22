@@ -27,6 +27,10 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  onSearch(searchTerm: string): void {
+    this.router.navigate(['searchBy'], { queryParams: { key: 'input', searchTerm: searchTerm } });
+  }
+
   authorize() {
     this.router.navigate(['account/login']);
   }

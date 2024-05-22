@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ProductModel } from '../models/product.model';
 
@@ -10,10 +9,7 @@ import { ProductModel } from '../models/product.model';
 export class ProductService {
   private readonly apiUrl = `${environment.apiUrl}product`;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router) {
-  }
+  constructor(private http: HttpClient) { }
 
   getMyProducts() {
     return this.http.get<ProductModel[]>(`${this.apiUrl}/my`);
@@ -23,8 +19,12 @@ export class ProductService {
     return this.http.get<ProductModel[]>(`${this.apiUrl}/all`);
   }
 
-  getProductsByCategoryId(categoryId) {
+  getProductsByCategoryId(categoryId: number) {
     return this.http.get<ProductModel[]>(`${this.apiUrl}/by-category/${categoryId}`);
+  }
+
+  getProductsByInput(input: string) {
+    return this.http.get<ProductModel[]>(`${this.apiUrl}/by-input/${input}`);
   }
 
   getProductDetails(id: number) {
