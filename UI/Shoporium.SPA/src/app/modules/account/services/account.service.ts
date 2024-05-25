@@ -53,6 +53,18 @@ export class AccountService {
     }))
   }
 
+  getUserCity() {
+    return this.http.get<number>(`${this.apiUrl}/city`).pipe(map(res => {
+      return res;
+    }))
+  }
+
+  updateUserCity(cityId: number) {
+    return this.http.put(`${this.apiUrl}/set-city/${cityId}`, {}).pipe(map(res => {
+      return res;
+    }))
+  }
+
   login(email: string, password: string) {
     return this.http.post<LoginResult>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true }).pipe(
       concatMap((tokens: any) => {

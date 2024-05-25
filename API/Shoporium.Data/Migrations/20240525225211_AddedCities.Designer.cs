@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shoporium.Data._EntityFramework;
 
@@ -11,9 +12,11 @@ using Shoporium.Data._EntityFramework;
 namespace Shoporium.Data.Migrations
 {
     [DbContext(typeof(ShoporiumContext))]
-    partial class ShoporiumContextModelSnapshot : ModelSnapshot
+    [Migration("20240525225211_AddedCities")]
+    partial class AddedCities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -11271,9 +11274,6 @@ namespace Shoporium.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InnerCityId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsEmailVerified")
                         .HasColumnType("bit");
 
@@ -11295,8 +11295,6 @@ namespace Shoporium.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InnerCityId");
 
                     b.ToTable("Users");
                 });
@@ -11399,15 +11397,6 @@ namespace Shoporium.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Shoporium.Data._EntityFramework.Entities.User", b =>
-                {
-                    b.HasOne("Shoporium.Data._EntityFramework.Entities.InnerCity", "InnerCity")
-                        .WithMany()
-                        .HasForeignKey("InnerCityId");
-
-                    b.Navigation("InnerCity");
-                });
-
             modelBuilder.Entity("Shoporium.Data._EntityFramework.Entities.Product", b =>
                 {
                     b.Navigation("ProductPhotos");
@@ -11432,7 +11421,8 @@ namespace Shoporium.Data.Migrations
 
             modelBuilder.Entity("Shoporium.Data._EntityFramework.Entities.User", b =>
                 {
-                    b.Navigation("LoginDetail");
+                    b.Navigation("LoginDetail")
+                        .IsRequired();
 
                     b.Navigation("Stores");
                 });

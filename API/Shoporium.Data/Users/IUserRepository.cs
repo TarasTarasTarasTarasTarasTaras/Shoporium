@@ -9,5 +9,7 @@ namespace Shoporium.Data.Users
         UserDTO? GetUserByEmail(string email);
         UserDTO? GetUser(long userId);
         void UpdateUserInfo(UpdateUserInfoDTO model);
+        int GetUserCity(long userId);
+        void UpdateCityForUser(int cityId, long userId);
     }
 }

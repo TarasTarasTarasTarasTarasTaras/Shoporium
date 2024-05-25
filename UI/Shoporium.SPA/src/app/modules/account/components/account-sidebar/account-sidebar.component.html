@@ -1,28 +1,28 @@
 <div class="sidebar">
   <h2>Налаштування акаунту</h2>
   <ul>
-    <li><a href="account/profile/data" class="active">Мій Профіль</a></li>
-    <li><a href="account/profile/first">Адреса доставки</a></li>
-    <li><a href="#">Варіанти оплати</a></li>
+    <li><a [ngClass]="{'active': isActive('profile/data')}" [routerLink]="['/account/profile/data']">Мій Профіль</a></li>
+    <li><a [ngClass]="{'active': isActive('profile/address')}" [routerLink]="['/account/profile/address']">Адреса доставки</a></li>
+    <li><a [ngClass]="{'active': isActive('payment-options')}" [routerLink]="['/account/payment-options']">Варіанти оплати</a></li>
   </ul>
 
   <h2>Мої замовлення</h2>
   <ul>
-    <li><a href="#">В процесі</a></li>
-    <li><a href="#">Успішно</a></li>
-    <li><a href="#">Відхилено</a></li>
+    <li><a [ngClass]="{'active': isActive('orders/in-progress')}" [routerLink]="['/account/orders/in-progress']">В процесі</a></li>
+    <li><a [ngClass]="{'active': isActive('orders/successful')}" [routerLink]="['/account/orders/successful']">Успішно</a></li>
+    <li><a [ngClass]="{'active': isActive('orders/rejected')}" [routerLink]="['/account/orders/rejected']">Відхилено</a></li>
   </ul>
 
   <h2>Мої продажі</h2>
   <ul>
-    <li><a href="#">В процесі</a></li>
-    <li><a href="#">Успішно</a></li>
-    <li><a href="#">Відхилено</a></li>
+    <li><a [ngClass]="{'active': isActive('sales/in-progress')}" [routerLink]="['/account/sales/in-progress']">В процесі</a></li>
+    <li><a [ngClass]="{'active': isActive('sales/successful')}" [routerLink]="['/account/sales/successful']">Успішно</a></li>
+    <li><a [ngClass]="{'active': isActive('sales/rejected')}" [routerLink]="['/account/sales/rejected']">Відхилено</a></li>
   </ul>
 
   <h2>Список бажань</h2>
   <ul>
-    <li><a href="#">Кошик</a></li>
-    <li><a href="#">Уподобано</a></li>
+    <li><a [ngClass]="{'active': isActive('wishlist/cart')}" [routerLink]="['/account/wishlist/cart']">Кошик</a></li>
+    <li><a [ngClass]="{'active': isActive('wishlist/favorites')}" [routerLink]="['/account/wishlist/favorites']">Уподобано</a></li>
   </ul>
 </div>

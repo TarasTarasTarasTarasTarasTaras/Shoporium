@@ -8,6 +8,8 @@ namespace Shoporium.Business.Users
         UserDTO? GetUserById(long userId);
         UserDTO? GetUserByEmail(string email);
         void UpdateUserInfo(UpdateUserInfoDTO model);
+        int GetUserCity(long userId);
+        void UpdateCityForUser(int cityId, long userId);
         bool IsValidUserCredentials(long userId, string password);
     }
 }

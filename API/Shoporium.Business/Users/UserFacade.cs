@@ -41,6 +41,16 @@ namespace Shoporium.Business.Users
             _userRepository.UpdateUserInfo(model);
         }
 
+        public int GetUserCity(long userId)
+        {
+            return _userRepository.GetUserCity(userId);
+        }
+
+        public void UpdateCityForUser(int cityId, long userId)
+        {
+            _userRepository.UpdateCityForUser(cityId, userId);
+        }
+
         public bool IsValidUserCredentials(long userId, string password)
         {
             var loginDetail = _loginRepository.GetLoginDetail(userId);

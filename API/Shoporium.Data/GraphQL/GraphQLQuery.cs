@@ -43,5 +43,21 @@ namespace Shoporium.Data.GraphQL
             var userId = Convert.ToInt64(user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             return context.Products.Where(s => s.Store != null && s.Store.UserId == userId);
         }
+
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<City> GetCities([Service] ShoporiumContext context)
+        {
+            return context.Cities;
+        }
+
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<InnerCity> GetInnerCities([Service] ShoporiumContext context)
+        {
+            return context.InnerCities;
+        }
     }
 }

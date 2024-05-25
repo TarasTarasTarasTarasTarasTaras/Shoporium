@@ -1,0 +1,30 @@
+<div class="main">
+  <form class="login-form" [formGroup]="form">
+    <h3>Редагування вашого профілю</h3>
+  
+    <div class="inputs-block">
+      <mat-form-field class="input">
+        <mat-label>Ваша область</mat-label>
+        <mat-select formControlName="cityId" (selectionChange)="onChange()">
+            <mat-option *ngFor="let city of cities" [value]="city.id">
+                {{city.region}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="input">
+        <mat-label>Ваше місто</mat-label>
+        <mat-select formControlName="innerCityId">
+            <mat-option *ngFor="let innerCity of selectInnerCities" [value]="innerCity.id">
+                {{innerCity.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons">
+      <button class="cancel-button" mat-stroked-button>Скасувати</button>
+      <button class="save-button" mat-stroked-button (click)="save()">Зберегти</button>
+    </div>
+  </form>
+</div>

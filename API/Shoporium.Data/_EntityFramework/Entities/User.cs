@@ -14,7 +14,10 @@ namespace Shoporium.Data._EntityFramework.Entities
         public bool IsEmailVerified { get; set; }
         public bool IsMobileVerified { get; set; }
 
-        public virtual LoginDetail LoginDetail { get; set; }
+        public int? InnerCityId { get; set; }
+        public virtual InnerCity? InnerCity { get; set; }
+
+        public virtual LoginDetail? LoginDetail { get; set; }
         public virtual IEnumerable<Store>? Stores { get; set; } = Enumerable.Empty<Store>();
     }
 }

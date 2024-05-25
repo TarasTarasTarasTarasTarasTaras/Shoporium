@@ -19,6 +19,9 @@ namespace Shoporium.Data._EntityFramework
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<InnerCity> InnerCities { get; set; }
+
         public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<StoreCategory> StoreCategories { get; set; }
 
@@ -28,6 +31,531 @@ namespace Shoporium.Data._EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Області
+            modelBuilder.Entity<City>().HasData(
+                new City { Id = 1, Name = "Київ", Region = "Київська область" },
+                new City { Id = 2, Name = "Харків", Region = "Харківська область" },
+                new City { Id = 3, Name = "Одеса", Region = "Одеська область" },
+                new City { Id = 4, Name = "Дніпро", Region = "Дніпропетровська область" },
+                new City { Id = 5, Name = "Львів", Region = "Львівська область" },
+                new City { Id = 6, Name = "Запоріжжя", Region = "Запорізька область" },
+                new City { Id = 7, Name = "Миколаїв", Region = "Миколаївська область" },
+                new City { Id = 8, Name = "Донецьк", Region = "Донецька область" },
+                new City { Id = 9, Name = "Вінниця", Region = "Вінницька область" },
+                new City { Id = 10, Name = "Чернігів", Region = "Чернігівська область" },
+                new City { Id = 11, Name = "Полтава", Region = "Полтавська область" },
+                new City { Id = 12, Name = "Черкаси", Region = "Черкаська область" },
+                new City { Id = 13, Name = "Херсон", Region = "Херсонська область" },
+                new City { Id = 14, Name = "Чернівці", Region = "Чернівецька область" },
+                new City { Id = 15, Name = "Житомир", Region = "Житомирська область" },
+                new City { Id = 16, Name = "Суми", Region = "Сумська область" },
+                new City { Id = 17, Name = "Рівне", Region = "Рівненська область" },
+                new City { Id = 18, Name = "Івано-Франківськ", Region = "Івано-Франківська область" },
+                new City { Id = 19, Name = "Тернопіль", Region = "Тернопільська область" },
+                new City { Id = 20, Name = "Луцьк", Region = "Волинська область" },
+                new City { Id = 21, Name = "Ужгород", Region = "Закарпатська область" },
+                new City { Id = 22, Name = "Хмельницький", Region = "Хмельницька область" },
+                new City { Id = 23, Name = "Кропивницький", Region = "Кіровоградська область" },
+                new City { Id = 24, Name = "Луганськ", Region = "Луганська область" },
+                new City { Id = 25, Name = "Сімферополь", Region = "Автономна Республіка Крим" });
+            #endregion
+
+            #region Київська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 1, Name = "Київ", RegionId = 1 },
+                new InnerCity { Id = 2, Name = "Буча", RegionId = 1 },
+                new InnerCity { Id = 3, Name = "Васильків", RegionId = 1 },
+                new InnerCity { Id = 4, Name = "Боярка", RegionId = 1 },
+                new InnerCity { Id = 5, Name = "Бориспіль", RegionId = 1 },
+                new InnerCity { Id = 6, Name = "Вишгород", RegionId = 1 },
+                new InnerCity { Id = 7, Name = "Ірпінь", RegionId = 1 },
+                new InnerCity { Id = 8, Name = "Обухів", RegionId = 1 },
+                new InnerCity { Id = 9, Name = "Фастів", RegionId = 1 },
+                new InnerCity { Id = 10, Name = "Переяслав-Хмельницький", RegionId = 1 },
+                new InnerCity { Id = 11, Name = "Біла Церква", RegionId = 1 },
+                new InnerCity { Id = 12, Name = "Володарка", RegionId = 1 },
+                new InnerCity { Id = 13, Name = "Яготин", RegionId = 1 },
+                new InnerCity { Id = 14, Name = "Сквира", RegionId = 1 },
+                new InnerCity { Id = 15, Name = "Миронівка", RegionId = 1 },
+                new InnerCity { Id = 16, Name = "Тараща", RegionId = 1 },
+                new InnerCity { Id = 17, Name = "Вишневе", RegionId = 1 });
+            #endregion
+
+            #region Харківська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 18, Name = "Харків", RegionId = 2 },
+                new InnerCity { Id = 19, Name = "Ізюм", RegionId = 2 },
+                new InnerCity { Id = 20, Name = "Лозова", RegionId = 2 },
+                new InnerCity { Id = 21, Name = "Південне", RegionId = 2 },
+                new InnerCity { Id = 22, Name = "Чугуїв", RegionId = 2 },
+                new InnerCity { Id = 23, Name = "Балаклія", RegionId = 2 },
+                new InnerCity { Id = 24, Name = "Первомайський", RegionId = 2 },
+                new InnerCity { Id = 25, Name = "Вовчанськ", RegionId = 2 },
+                new InnerCity { Id = 26, Name = "Дергачі", RegionId = 2 },
+                new InnerCity { Id = 27, Name = "Зміїв", RegionId = 2 },
+                new InnerCity { Id = 28, Name = "Куп'янськ", RegionId = 2 },
+                new InnerCity { Id = 29, Name = "Пісочин", RegionId = 2 },
+                new InnerCity { Id = 30, Name = "Шевченківське", RegionId = 2 },
+                new InnerCity { Id = 31, Name = "Богодухів", RegionId = 2 },
+                new InnerCity { Id = 32, Name = "Барвінкове", RegionId = 2 },
+                new InnerCity { Id = 33, Name = "Мерефа", RegionId = 2 },
+                new InnerCity { Id = 34, Name = "Нова Водолага", RegionId = 2 });
+            #endregion
+
+            #region Одеська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 35, Name = "Одеса", RegionId = 3 },
+                new InnerCity { Id = 36, Name = "Іллічівськ", RegionId = 3 },
+                new InnerCity { Id = 37, Name = "Білгород-Дністровський", RegionId = 3 },
+                new InnerCity { Id = 38, Name = "Роздільна", RegionId = 3 },
+                new InnerCity { Id = 39, Name = "Теплодар", RegionId = 3 },
+                new InnerCity { Id = 40, Name = "Ширяєве", RegionId = 3 },
+                new InnerCity { Id = 41, Name = "Чорноморськ", RegionId = 3 },
+                new InnerCity { Id = 42, Name = "Овідіополь", RegionId = 3 },
+                new InnerCity { Id = 43, Name = "Котовськ", RegionId = 3 },
+                new InnerCity { Id = 44, Name = "Татарбунари", RegionId = 3 },
+                new InnerCity { Id = 45, Name = "Ізмаїл", RegionId = 3 },
+                new InnerCity { Id = 46, Name = "Балта", RegionId = 3 },
+                new InnerCity { Id = 47, Name = "Кілія", RegionId = 3 },
+                new InnerCity { Id = 48, Name = "Рені", RegionId = 3 },
+                new InnerCity { Id = 49, Name = "Білопілля", RegionId = 3 },
+                new InnerCity { Id = 50, Name = "Южне", RegionId = 3 });
+            #endregion
+
+            #region Дніпропетровська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 51, Name = "Дніпро", RegionId = 4 },
+                new InnerCity { Id = 52, Name = "Кривий Ріг", RegionId = 4 },
+                new InnerCity { Id = 53, Name = "Кам'янське", RegionId = 4 },
+                new InnerCity { Id = 54, Name = "Нікополь", RegionId = 4 },
+                new InnerCity { Id = 55, Name = "Марганець", RegionId = 4 },
+                new InnerCity { Id = 56, Name = "Павлоград", RegionId = 4 },
+                new InnerCity { Id = 57, Name = "Дніпрорудне", RegionId = 4 },
+                new InnerCity { Id = 58, Name = "Кринички", RegionId = 4 },
+                new InnerCity { Id = 59, Name = "Верхівцеве", RegionId = 4 },
+                new InnerCity { Id = 60, Name = "Жовті Води", RegionId = 4 },
+                new InnerCity { Id = 61, Name = "Мар'їнка", RegionId = 4 },
+                new InnerCity { Id = 62, Name = "Широке", RegionId = 4 },
+                new InnerCity { Id = 63, Name = "Синельникове", RegionId = 4 },
+                new InnerCity { Id = 64, Name = "Новомосковськ", RegionId = 4 },
+                new InnerCity { Id = 65, Name = "П'ятихатки", RegionId = 4 },
+                new InnerCity { Id = 66, Name = "Тернівка", RegionId = 4 });
+            #endregion
+
+            #region Львівська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 67, Name = "Львів", RegionId = 5 },
+                new InnerCity { Id = 68, Name = "Дрогобич", RegionId = 5 },
+                new InnerCity { Id = 69, Name = "Стрий", RegionId = 5 },
+                new InnerCity { Id = 70, Name = "Самбір", RegionId = 5 },
+                new InnerCity { Id = 71, Name = "Моршин", RegionId = 5 },
+                new InnerCity { Id = 72, Name = "Трускавець", RegionId = 5 },
+                new InnerCity { Id = 73, Name = "Жидачів", RegionId = 5 },
+                new InnerCity { Id = 74, Name = "Перемишляни", RegionId = 5 },
+                new InnerCity { Id = 75, Name = "Броди", RegionId = 5 },
+                new InnerCity { Id = 76, Name = "Сколе", RegionId = 5 },
+                new InnerCity { Id = 77, Name = "Золочів", RegionId = 5 },
+                new InnerCity { Id = 78, Name = "Миколаїв", RegionId = 5 },
+                new InnerCity { Id = 79, Name = "Рава-Руська", RegionId = 5 },
+                new InnerCity { Id = 80, Name = "Яворів", RegionId = 5 },
+                new InnerCity { Id = 81, Name = "Буськ", RegionId = 5 },
+                new InnerCity { Id = 82, Name = "Судова Вишня", RegionId = 5 },
+                new InnerCity { Id = 83, Name = "Дубляни", RegionId = 5 });
+            #endregion
+
+            #region Запорізька область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 84, Name = "Запоріжжя", RegionId = 6 },
+                new InnerCity { Id = 85, Name = "Мелітополь", RegionId = 6 },
+                new InnerCity { Id = 86, Name = "Бердянськ", RegionId = 6 },
+                new InnerCity { Id = 87, Name = "Бердянськ", RegionId = 6 },
+                new InnerCity { Id = 88, Name = "Енергодар", RegionId = 6 },
+                new InnerCity { Id = 89, Name = "Приморськ", RegionId = 6 },
+                new InnerCity { Id = 90, Name = "Василівка", RegionId = 6 },
+                new InnerCity { Id = 91, Name = "Пологи", RegionId = 6 },
+                new InnerCity { Id = 92, Name = "Гуляйполе", RegionId = 6 },
+                new InnerCity { Id = 93, Name = "Кам'янка-Дніпровська", RegionId = 6 },
+                new InnerCity { Id = 94, Name = "Оріхів", RegionId = 6 },
+                new InnerCity { Id = 95, Name = "Вільногірськ", RegionId = 6 },
+                new InnerCity { Id = 96, Name = "Дніпрорудне", RegionId = 6 },
+                new InnerCity { Id = 97, Name = "Молочанськ", RegionId = 6 },
+                new InnerCity { Id = 98, Name = "Токмак", RegionId = 6 },
+                new InnerCity { Id = 99, Name = "Запорізька Січ", RegionId = 6 });
+            #endregion
+
+            #region Миколаївська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 100, Name = "Миколаїв", RegionId = 7 },
+                new InnerCity { Id = 101, Name = "Первомайськ", RegionId = 7 },
+                new InnerCity { Id = 102, Name = "Вознесенськ", RegionId = 7 },
+                new InnerCity { Id = 103, Name = "Южноукраїнськ", RegionId = 7 },
+                new InnerCity { Id = 104, Name = "Новий Буг", RegionId = 7 },
+                new InnerCity { Id = 105, Name = "Очаків", RegionId = 7 },
+                new InnerCity { Id = 106, Name = "Снігурівка", RegionId = 7 },
+                new InnerCity { Id = 107, Name = "Баштанка", RegionId = 7 },
+                new InnerCity { Id = 108, Name = "Криве Озеро", RegionId = 7 },
+                new InnerCity { Id = 109, Name = "Нова Одеса", RegionId = 7 },
+                new InnerCity { Id = 110, Name = "Підгородне", RegionId = 7 },
+                new InnerCity { Id = 111, Name = "Снігурівка", RegionId = 7 },
+                new InnerCity { Id = 112, Name = "Врадіївка", RegionId = 7 },
+                new InnerCity { Id = 113, Name = "Доманівка", RegionId = 7 },
+                new InnerCity { Id = 114, Name = "Казанка", RegionId = 7 },
+                new InnerCity { Id = 115, Name = "Жовтневе", RegionId = 7 });
+            #endregion
+
+            #region Донецька область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 116, Name = "Донецьк", RegionId = 8 },
+                new InnerCity { Id = 117, Name = "Маріуполь", RegionId = 8 },
+                new InnerCity { Id = 118, Name = "Макіївка", RegionId = 8 },
+                new InnerCity { Id = 119, Name = "Харцизьк", RegionId = 8 },
+                new InnerCity { Id = 120, Name = "Дружківка", RegionId = 8 },
+                new InnerCity { Id = 121, Name = "Дебальцеве", RegionId = 8 },
+                new InnerCity { Id = 122, Name = "Добропілля", RegionId = 8 },
+                new InnerCity { Id = 123, Name = "Краматорськ", RegionId = 8 },
+                new InnerCity { Id = 124, Name = "Слов'янськ", RegionId = 8 },
+                new InnerCity { Id = 125, Name = "Бахмут", RegionId = 8 },
+                new InnerCity { Id = 126, Name = "Торез", RegionId = 8 },
+                new InnerCity { Id = 127, Name = "Авдіївка", RegionId = 8 },
+                new InnerCity { Id = 128, Name = "Красноармійськ", RegionId = 8 },
+                new InnerCity { Id = 129, Name = "Сніжне", RegionId = 8 },
+                new InnerCity { Id = 130, Name = "Торецьк", RegionId = 8 },
+                new InnerCity { Id = 131, Name = "Ясинувата", RegionId = 8 });
+            #endregion
+
+            #region Вінницька область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 132, Name = "Вінниця", RegionId = 9 },
+                new InnerCity { Id = 133, Name = "Хмільник", RegionId = 9 },
+                new InnerCity { Id = 134, Name = "Козятин", RegionId = 9 },
+                new InnerCity { Id = 135, Name = "Жмеринка", RegionId = 9 },
+                new InnerCity { Id = 136, Name = "Могилів-Подільський", RegionId = 9 },
+                new InnerCity { Id = 137, Name = "Крижопіль", RegionId = 9 },
+                new InnerCity { Id = 138, Name = "Ладижин", RegionId = 9 },
+                new InnerCity { Id = 139, Name = "Гайсин", RegionId = 9 },
+                new InnerCity { Id = 140, Name = "Бар", RegionId = 9 },
+                new InnerCity { Id = 141, Name = "Тульчин", RegionId = 9 },
+                new InnerCity { Id = 142, Name = "Теплик", RegionId = 9 },
+                new InnerCity { Id = 143, Name = "Муровані Курилівці", RegionId = 9 },
+                new InnerCity { Id = 144, Name = "Немирів", RegionId = 9 },
+                new InnerCity { Id = 145, Name = "Ямпіль", RegionId = 9 },
+                new InnerCity { Id = 146, Name = "Тиврів", RegionId = 9 },
+                new InnerCity { Id = 147, Name = "Калинівка", RegionId = 9 });
+            #endregion
+
+            #region Чернігівська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 148, Name = "Чернігів", RegionId = 10 },
+                new InnerCity { Id = 149, Name = "Ніжин", RegionId = 10 },
+                new InnerCity { Id = 150, Name = "Прилуки", RegionId = 10 },
+                new InnerCity { Id = 151, Name = "Новгород-Сіверський", RegionId = 10 },
+                new InnerCity { Id = 152, Name = "Седнів", RegionId = 10 },
+                new InnerCity { Id = 153, Name = "Бахмач", RegionId = 10 },
+                new InnerCity { Id = 154, Name = "Корюківка", RegionId = 10 },
+                new InnerCity { Id = 155, Name = "Мена", RegionId = 10 },
+                new InnerCity { Id = 156, Name = "Носівка", RegionId = 10 },
+                new InnerCity { Id = 157, Name = "Щорс", RegionId = 10 },
+                new InnerCity { Id = 158, Name = "Батурин", RegionId = 10 },
+                new InnerCity { Id = 159, Name = "Бобровиця", RegionId = 10 },
+                new InnerCity { Id = 160, Name = "Макарів", RegionId = 10 },
+                new InnerCity { Id = 161, Name = "Варва", RegionId = 10 },
+                new InnerCity { Id = 162, Name = "Козелець", RegionId = 10 },
+                new InnerCity { Id = 163, Name = "Городня", RegionId = 10 });
+            #endregion
+
+            #region Полтавська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 164, Name = "Полтава", RegionId = 11 },
+                new InnerCity { Id = 165, Name = "Кременчук", RegionId = 11 },
+                new InnerCity { Id = 166, Name = "Миргород", RegionId = 11 },
+                new InnerCity { Id = 167, Name = "Лубни", RegionId = 11 },
+                new InnerCity { Id = 168, Name = "Горішні Плавні", RegionId = 11 },
+                new InnerCity { Id = 169, Name = "Карлівка", RegionId = 11 },
+                new InnerCity { Id = 170, Name = "Гребінка", RegionId = 11 },
+                new InnerCity { Id = 171, Name = "Кременчук", RegionId = 11 },
+                new InnerCity { Id = 172, Name = "Лохвиця", RegionId = 11 },
+                new InnerCity { Id = 173, Name = "Машівка", RegionId = 11 },
+                new InnerCity { Id = 174, Name = "Нові Санжари", RegionId = 11 },
+                new InnerCity { Id = 175, Name = "Оржиця", RegionId = 11 },
+                new InnerCity { Id = 176, Name = "Гадяч", RegionId = 11 },
+                new InnerCity { Id = 177, Name = "Решетилівка", RegionId = 11 },
+                new InnerCity { Id = 178, Name = "Велика Багачка", RegionId = 11 },
+                new InnerCity { Id = 179, Name = "Пирятин", RegionId = 11 });
+            #endregion
+
+            #region Черкаська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 180, Name = "Черкаси", RegionId = 12 },
+                new InnerCity { Id = 181, Name = "Канів", RegionId = 12 },
+                new InnerCity { Id = 182, Name = "Умань", RegionId = 12 },
+                new InnerCity { Id = 183, Name = "Жашків", RegionId = 12 },
+                new InnerCity { Id = 184, Name = "Сміла", RegionId = 12 },
+                new InnerCity { Id = 185, Name = "Золотоноша", RegionId = 12 },
+                new InnerCity { Id = 186, Name = "Христинівка", RegionId = 12 },
+                new InnerCity { Id = 187, Name = "Корсунь-Шевченківський", RegionId = 12 },
+                new InnerCity { Id = 188, Name = "Кам'янка", RegionId = 12 },
+                new InnerCity { Id = 189, Name = "Канів", RegionId = 12 },
+                new InnerCity { Id = 190, Name = "Маньківка", RegionId = 12 },
+                new InnerCity { Id = 191, Name = "Сміла", RegionId = 12 },
+                new InnerCity { Id = 192, Name = "Тальне", RegionId = 12 },
+                new InnerCity { Id = 193, Name = "Умань", RegionId = 12 },
+                new InnerCity { Id = 194, Name = "Чигирин", RegionId = 12 },
+                new InnerCity { Id = 195, Name = "Чорнобай", RegionId = 12 });
+            #endregion
+
+            #region Херсонська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 196, Name = "Херсон", RegionId = 13 },
+                new InnerCity { Id = 197, Name = "Каховка", RegionId = 13 },
+                new InnerCity { Id = 198, Name = "Нова Каховка", RegionId = 13 },
+                new InnerCity { Id = 199, Name = "Новий Білозерський", RegionId = 13 },
+                new InnerCity { Id = 200, Name = "Гола Пристань", RegionId = 13 },
+                new InnerCity { Id = 201, Name = "Скадовськ", RegionId = 13 },
+                new InnerCity { Id = 202, Name = "Берислав", RegionId = 13 },
+                new InnerCity { Id = 203, Name = "Таврійськ", RegionId = 13 },
+                new InnerCity { Id = 204, Name = "Велика Лепетиха", RegionId = 13 },
+                new InnerCity { Id = 205, Name = "Велика Олександрівка", RegionId = 13 },
+                new InnerCity { Id = 206, Name = "Високопілля", RegionId = 13 },
+                new InnerCity { Id = 207, Name = "Генічеськ", RegionId = 13 },
+                new InnerCity { Id = 208, Name = "Кам'янка", RegionId = 13 },
+                new InnerCity { Id = 209, Name = "Нововоронцовка", RegionId = 13 },
+                new InnerCity { Id = 210, Name = "Цюрупинськ", RegionId = 13 },
+                new InnerCity { Id = 211, Name = "Чаплинка", RegionId = 13 });
+            #endregion
+
+            #region Чернівецька область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 212, Name = "Чернівці", RegionId = 14 },
+                new InnerCity { Id = 213, Name = "Чернівці", RegionId = 14 },
+                new InnerCity { Id = 214, Name = "Новоселиця", RegionId = 14 },
+                new InnerCity { Id = 215, Name = "Сторожинець", RegionId = 14 },
+                new InnerCity { Id = 216, Name = "Кіцмань", RegionId = 14 },
+                new InnerCity { Id = 217, Name = "Вижниця", RegionId = 14 },
+                new InnerCity { Id = 218, Name = "Заставна", RegionId = 14 },
+                new InnerCity { Id = 219, Name = "Сокиряни", RegionId = 14 },
+                new InnerCity { Id = 220, Name = "Хотин", RegionId = 14 },
+                new InnerCity { Id = 221, Name = "Сторожинець", RegionId = 14 },
+                new InnerCity { Id = 222, Name = "Путила", RegionId = 14 },
+                new InnerCity { Id = 223, Name = "Новодністровськ", RegionId = 14 },
+                new InnerCity { Id = 224, Name = "Кельменці", RegionId = 14 },
+                new InnerCity { Id = 225, Name = "Заставна", RegionId = 14 },
+                new InnerCity { Id = 226, Name = "Мамаївці", RegionId = 14 },
+                new InnerCity { Id = 227, Name = "Кіцмань", RegionId = 14 });
+            #endregion
+
+            #region Житомирська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 228, Name = "Житомир", RegionId = 15 },
+                new InnerCity { Id = 229, Name = "Бердичів", RegionId = 15 },
+                new InnerCity { Id = 230, Name = "Коростень", RegionId = 15 },
+                new InnerCity { Id = 231, Name = "Новоград-Волинський", RegionId = 15 },
+                new InnerCity { Id = 232, Name = "Малин", RegionId = 15 },
+                new InnerCity { Id = 233, Name = "Новоград-Волинський", RegionId = 15 },
+                new InnerCity { Id = 234, Name = "Овруч", RegionId = 15 },
+                new InnerCity { Id = 235, Name = "Олевськ", RegionId = 15 },
+                new InnerCity { Id = 236, Name = "Коростишів", RegionId = 15 },
+                new InnerCity { Id = 237, Name = "Радомишль", RegionId = 15 },
+                new InnerCity { Id = 238, Name = "Житомир", RegionId = 15 },
+                new InnerCity { Id = 239, Name = "Чуднів", RegionId = 15 },
+                new InnerCity { Id = 240, Name = "Баранівка", RegionId = 15 },
+                new InnerCity { Id = 241, Name = "Іршанськ", RegionId = 15 },
+                new InnerCity { Id = 242, Name = "Черняхів", RegionId = 15 },
+                new InnerCity { Id = 243, Name = "Малин", RegionId = 15 });
+            #endregion
+
+            #region Сумська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 244, Name = "Суми", RegionId = 16 },
+                new InnerCity { Id = 245, Name = "Охтирка", RegionId = 16 },
+                new InnerCity { Id = 246, Name = "Шостка", RegionId = 16 },
+                new InnerCity { Id = 247, Name = "Конотоп", RegionId = 16 },
+                new InnerCity { Id = 248, Name = "Ромни", RegionId = 16 },
+                new InnerCity { Id = 249, Name = "Кролевець", RegionId = 16 },
+                new InnerCity { Id = 250, Name = "Лебедин", RegionId = 16 },
+                new InnerCity { Id = 251, Name = "Білопілля", RegionId = 16 },
+                new InnerCity { Id = 252, Name = "Путивль", RegionId = 16 },
+                new InnerCity { Id = 253, Name = "Глухів", RegionId = 16 },
+                new InnerCity { Id = 254, Name = "Тростянець", RegionId = 16 },
+                new InnerCity { Id = 255, Name = "Ворожба", RegionId = 16 },
+                new InnerCity { Id = 256, Name = "Буринь", RegionId = 16 },
+                new InnerCity { Id = 257, Name = "Середина-Буда", RegionId = 16 },
+                new InnerCity { Id = 258, Name = "Краснопілля", RegionId = 16 },
+                new InnerCity { Id = 259, Name = "Глухів", RegionId = 16 });
+            #endregion
+
+            #region Рівненська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 260, Name = "Рівне", RegionId = 17 },
+                new InnerCity { Id = 261, Name = "Дубно", RegionId = 17 },
+                new InnerCity { Id = 262, Name = "Острог", RegionId = 17 },
+                new InnerCity { Id = 263, Name = "Корець", RegionId = 17 },
+                new InnerCity { Id = 264, Name = "Дубровиця", RegionId = 17 },
+                new InnerCity { Id = 265, Name = "Здолбунів", RegionId = 17 },
+                new InnerCity { Id = 266, Name = "Костопіль", RegionId = 17 },
+                new InnerCity { Id = 267, Name = "Радивилів", RegionId = 17 },
+                new InnerCity { Id = 268, Name = "Березне", RegionId = 17 },
+                new InnerCity { Id = 269, Name = "Сарни", RegionId = 17 },
+                new InnerCity { Id = 270, Name = "Гоща", RegionId = 17 },
+                new InnerCity { Id = 271, Name = "Вараш", RegionId = 17 },
+                new InnerCity { Id = 272, Name = "Здолбунів", RegionId = 17 },
+                new InnerCity { Id = 273, Name = "Демидівка", RegionId = 17 },
+                new InnerCity { Id = 274, Name = "Корець", RegionId = 17 },
+                new InnerCity { Id = 275, Name = "Дубно", RegionId = 17 });
+            #endregion
+
+            #region Івано-Франківська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 276, Name = "Івано-Франківськ", RegionId = 18 },
+                new InnerCity { Id = 277, Name = "Коломия", RegionId = 18 },
+                new InnerCity { Id = 278, Name = "Калуш", RegionId = 18 },
+                new InnerCity { Id = 279, Name = "Болехів", RegionId = 18 },
+                new InnerCity { Id = 280, Name = "Косів", RegionId = 18 },
+                new InnerCity { Id = 281, Name = "Яремче", RegionId = 18 },
+                new InnerCity { Id = 282, Name = "Надвірна", RegionId = 18 },
+                new InnerCity { Id = 283, Name = "Галич", RegionId = 18 },
+                new InnerCity { Id = 284, Name = "Тисмениця", RegionId = 18 },
+                new InnerCity { Id = 285, Name = "Рогатин", RegionId = 18 },
+                new InnerCity { Id = 286, Name = "Долина", RegionId = 18 },
+                new InnerCity { Id = 287, Name = "Бурштин", RegionId = 18 },
+                new InnerCity { Id = 288, Name = "Калуш", RegionId = 18 },
+                new InnerCity { Id = 289, Name = "Тлумач", RegionId = 18 },
+                new InnerCity { Id = 290, Name = "Снятин", RegionId = 18 },
+                new InnerCity { Id = 291, Name = "Долина", RegionId = 18 });
+            #endregion
+
+            #region Тернопільська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 292, Name = "Тернопіль", RegionId = 19 },
+                new InnerCity { Id = 293, Name = "Чортків", RegionId = 19 },
+                new InnerCity { Id = 294, Name = "Бережани", RegionId = 19 },
+                new InnerCity { Id = 295, Name = "Кременець", RegionId = 19 },
+                new InnerCity { Id = 296, Name = "Збараж", RegionId = 19 },
+                new InnerCity { Id = 297, Name = "Теребовля", RegionId = 19 },
+                new InnerCity { Id = 298, Name = "Подільськ", RegionId = 19 },
+                new InnerCity { Id = 299, Name = "Зборів", RegionId = 19 },
+                new InnerCity { Id = 300, Name = "Монастириська", RegionId = 19 },
+                new InnerCity { Id = 301, Name = "Шумськ", RegionId = 19 },
+                new InnerCity { Id = 302, Name = "Заліщики", RegionId = 19 },
+                new InnerCity { Id = 303, Name = "Бучач", RegionId = 19 },
+                new InnerCity { Id = 304, Name = "Тернопіль", RegionId = 19 },
+                new InnerCity { Id = 305, Name = "Ланівці", RegionId = 19 },
+                new InnerCity { Id = 306, Name = "Підволочиськ", RegionId = 19 },
+                new InnerCity { Id = 307, Name = "Чортків", RegionId = 19 });
+            #endregion
+
+            #region Волинська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 308, Name = "Луцьк", RegionId = 20 },
+                new InnerCity { Id = 309, Name = "Ковель", RegionId = 20 },
+                new InnerCity { Id = 310, Name = "Нововолинськ", RegionId = 20 },
+                new InnerCity { Id = 311, Name = "Володимир-Волинський", RegionId = 20 },
+                new InnerCity { Id = 312, Name = "Ковель", RegionId = 20 },
+                new InnerCity { Id = 313, Name = "Камінь-Каширський", RegionId = 20 },
+                new InnerCity { Id = 314, Name = "Рожище", RegionId = 20 },
+                new InnerCity { Id = 315, Name = "Ківерці", RegionId = 20 },
+                new InnerCity { Id = 316, Name = "Любомль", RegionId = 20 },
+                new InnerCity { Id = 317, Name = "Володимир-Волинський", RegionId = 20 },
+                new InnerCity { Id = 318, Name = "Шацьк", RegionId = 20 },
+                new InnerCity { Id = 319, Name = "Ковель", RegionId = 20 },
+                new InnerCity { Id = 320, Name = "Любешів", RegionId = 20 },
+                new InnerCity { Id = 321, Name = "Маневичі", RegionId = 20 },
+                new InnerCity { Id = 322, Name = "Турійськ", RegionId = 20 },
+                new InnerCity { Id = 323, Name = "Володимирець", RegionId = 20 });
+            #endregion
+
+            #region Закарпатська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 324, Name = "Ужгород", RegionId = 21 },
+                new InnerCity { Id = 325, Name = "Мукачево", RegionId = 21 },
+                new InnerCity { Id = 326, Name = "Хуст", RegionId = 21 },
+                new InnerCity { Id = 327, Name = "Берегово", RegionId = 21 },
+                new InnerCity { Id = 328, Name = "Виноградів", RegionId = 21 },
+                new InnerCity { Id = 329, Name = "Рахів", RegionId = 21 },
+                new InnerCity { Id = 330, Name = "Тячів", RegionId = 21 },
+                new InnerCity { Id = 331, Name = "Свалява", RegionId = 21 },
+                new InnerCity { Id = 332, Name = "Мукачево", RegionId = 21 },
+                new InnerCity { Id = 333, Name = "Ужгород", RegionId = 21 },
+                new InnerCity { Id = 334, Name = "Міжгір'я", RegionId = 21 },
+                new InnerCity { Id = 335, Name = "Солотвино", RegionId = 21 },
+                new InnerCity { Id = 336, Name = "Перечин", RegionId = 21 },
+                new InnerCity { Id = 337, Name = "Свалява", RegionId = 21 },
+                new InnerCity { Id = 338, Name = "Іршава", RegionId = 21 },
+                new InnerCity { Id = 339, Name = "Хуст", RegionId = 21 });
+            #endregion
+
+            #region Хмельницька область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 340, Name = "Хмельницький", RegionId = 22 },
+                new InnerCity { Id = 341, Name = "Кам'янець-Подільський", RegionId = 22 },
+                new InnerCity { Id = 342, Name = "Шепетівка", RegionId = 22 },
+                new InnerCity { Id = 343, Name = "Нетішин", RegionId = 22 },
+                new InnerCity { Id = 344, Name = "Волочиськ", RegionId = 22 },
+                new InnerCity { Id = 345, Name = "Старокостянтинів", RegionId = 22 },
+                new InnerCity { Id = 346, Name = "Красилів", RegionId = 22 },
+                new InnerCity { Id = 347, Name = "Красилів", RegionId = 22 },
+                new InnerCity { Id = 348, Name = "Кам'янець-Подільський", RegionId = 22 },
+                new InnerCity { Id = 349, Name = "Славута", RegionId = 22 },
+                new InnerCity { Id = 350, Name = "Деражня", RegionId = 22 },
+                new InnerCity { Id = 351, Name = "Новоград-Волинський", RegionId = 22 },
+                new InnerCity { Id = 352, Name = "Чемерівці", RegionId = 22 },
+                new InnerCity { Id = 353, Name = "Ізяслав", RegionId = 22 },
+                new InnerCity { Id = 354, Name = "Красилів", RegionId = 22 },
+                new InnerCity { Id = 355, Name = "Старокостянтинів", RegionId = 22 });
+            #endregion
+
+            #region Кіровоградська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 356, Name = "Кропивницький", RegionId = 23 },
+                new InnerCity { Id = 357, Name = "Олександрія", RegionId = 23 },
+                new InnerCity { Id = 358, Name = "Світловодськ", RegionId = 23 },
+                new InnerCity { Id = 359, Name = "Знам'янка", RegionId = 23 },
+                new InnerCity { Id = 360, Name = "Долинська", RegionId = 23 },
+                new InnerCity { Id = 361, Name = "Гайворон", RegionId = 23 },
+                new InnerCity { Id = 362, Name = "Мала Виска", RegionId = 23 },
+                new InnerCity { Id = 363, Name = "Новомиргород", RegionId = 23 },
+                new InnerCity { Id = 364, Name = "Олександрівка", RegionId = 23 },
+                new InnerCity { Id = 365, Name = "Світловодськ", RegionId = 23 },
+                new InnerCity { Id = 366, Name = "Благовіщенка", RegionId = 23 },
+                new InnerCity { Id = 367, Name = "Знам'янка", RegionId = 23 },
+                new InnerCity { Id = 368, Name = "Голованівськ", RegionId = 23 },
+                new InnerCity { Id = 369, Name = "Компаніївка", RegionId = 23 },
+                new InnerCity { Id = 370, Name = "Новгородка", RegionId = 23 },
+                new InnerCity { Id = 371, Name = "Светлодарськ", RegionId = 23 });
+            #endregion
+
+            #region Луганська область
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 372, Name = "Луганськ", RegionId = 24 },
+                new InnerCity { Id = 373, Name = "Алчевськ", RegionId = 24 },
+                new InnerCity { Id = 374, Name = "Антрацит", RegionId = 24 },
+                new InnerCity { Id = 375, Name = "Сєвєродонецьк", RegionId = 24 },
+                new InnerCity { Id = 376, Name = "Лисичанськ", RegionId = 24 },
+                new InnerCity { Id = 377, Name = "Сорокине", RegionId = 24 },
+                new InnerCity { Id = 378, Name = "Стаханов", RegionId = 24 },
+                new InnerCity { Id = 379, Name = "Брянка", RegionId = 24 },
+                new InnerCity { Id = 380, Name = "Сєвєродонецьк", RegionId = 24 },
+                new InnerCity { Id = 381, Name = "Рубіжне", RegionId = 24 },
+                new InnerCity { Id = 382, Name = "Сватове", RegionId = 24 },
+                new InnerCity { Id = 383, Name = "Зимогір'я", RegionId = 24 },
+                new InnerCity { Id = 384, Name = "Новоайдар", RegionId = 24 },
+                new InnerCity { Id = 385, Name = "Красний Луч", RegionId = 24 },
+                new InnerCity { Id = 386, Name = "Попасна", RegionId = 24 },
+                new InnerCity { Id = 387, Name = "Старобільськ", RegionId = 24 });
+            #endregion
+
+            #region Автономна Республіка Крим
+            modelBuilder.Entity<InnerCity>().HasData(
+                new InnerCity { Id = 388, Name = "Сімферополь", RegionId = 25 },
+                new InnerCity { Id = 389, Name = "Севастополь", RegionId = 25 },
+                new InnerCity { Id = 390, Name = "Ялта", RegionId = 25 },
+                new InnerCity { Id = 391, Name = "Алушта", RegionId = 25 },
+                new InnerCity { Id = 392, Name = "Феодосія", RegionId = 25 },
+                new InnerCity { Id = 393, Name = "Керч", RegionId = 25 },
+                new InnerCity { Id = 394, Name = "Евпаторія", RegionId = 25 },
+                new InnerCity { Id = 395, Name = "Судак", RegionId = 25 },
+                new InnerCity { Id = 396, Name = "Щолкіне", RegionId = 25 });
+            #endregion
+
             modelBuilder.Entity<StoreCategory>().HasData(
                 new StoreCategory { Id = 1, Name = "Електроніка" },
                 new StoreCategory { Id = 2, Name = "Хобі та спорт" },

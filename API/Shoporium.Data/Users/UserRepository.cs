@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Shoporium.Data._EntityFramework;
 using Shoporium.Data._EntityFramework.Entities;
 using Shoporium.Entities.DTO.Users;
@@ -46,6 +47,29 @@ namespace Shoporium.Data.Users
         {
             var entity = Context.Users.FirstOrDefault(u => u.Id == model.UserId);
             _mapper.Map(model, entity);
+
+            Context.SaveChanges();
+        }
+
+        public int GetUserCity(long userId)
+        {
+            var entity = Context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (entity == null || entity.InnerCityId == null)
+                return 0;
+
+            return entity.InnerCityId.Value;
+        }
+
+        public void UpdateCityForUser(int cityId, long userId)
+        {
+            var entity = Context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (entity == null)
+                return;
+
+            entity.InnerCityId = cityId;
+            Context.Entry(entity).State = EntityState.Modified;
 
             Context.SaveChanges();
         }

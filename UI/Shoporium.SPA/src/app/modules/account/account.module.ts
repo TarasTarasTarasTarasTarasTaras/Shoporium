@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { MyProfileDataComponent } from './components/my-profile-data/my-profile-data.component';
+import { MyAddressDataComponent } from './components/my-address-data/my-address-data.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MyProfileDataComponent } from './components/my-profile-data/my-profile-
     RegisterComponent,
     AccountSidebarComponent,
     MyProfileComponent,
-    MyProfileDataComponent
+    MyProfileDataComponent,
+    MyAddressDataComponent
   ],
   imports: [
     CommonModule,

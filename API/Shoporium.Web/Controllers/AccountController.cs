@@ -96,6 +96,22 @@ namespace Shoporium.Web.Controllers
             return Ok();
         }
 
+        [HttpGet("city")]
+        public ActionResult GetUserCity()
+        {
+            long userId = User.GetId();
+            int cityId = _userFacade.GetUserCity(userId);
+            return Ok(cityId);
+        }
+
+        [HttpPut("set-city/{cityId}")]
+        public ActionResult UpdateCityForUser(int cityId)
+        {
+            long userId = User.GetId();
+            _userFacade.UpdateCityForUser(cityId, userId);
+            return Ok();
+        }
+
         private string GetIpAddress()
         {
             if (Request.Headers.ContainsKey("X-Forwarded-For"))
