@@ -1,5 +1,5 @@
-<div class="product-container" *ngIf="product" [ngStyle]="isNotPreview ? {'display': 'flex'} : {}" (mouseenter)="togglePhoto(true)" (mouseleave)="togglePhoto(false)">
-  <div class="product-photo">
+<div class="product-container" *ngIf="product" [ngStyle]="isNotPreview ? {'display': 'flex'} : {}" (mouseenter)="togglePhoto(true)" (mouseleave)="togglePhoto(false)">  
+  <div class="product-photo" (click)="clicked.emit()">
     <div class="photo-container">
       <img [ngClass]="{'hidden': showSecondPhoto}" src="data:image/png;base64,{{ product.downloadedPhotos[0] }}" alt="Main Photo" class="photo" *ngIf="product.downloadedPhotos?.length">
       <img [ngClass]="{'hidden': showSecondPhoto}" [src]="mainPhotoUrl" alt="Main Photo" class="photo" *ngIf="!product.downloadedPhotos?.length && product.productPhotos[0]">
@@ -8,11 +8,12 @@
     </div>
   </div>
   
-  <p *ngIf="product.price" class="price">{{ product.price }} ₴</p>
+  <span class="like-btn" [class.liked]="isLiked" (click)="likeProduct()"></span>
+  <p *ngIf="product.price" class="price" (click)="clicked.emit()">{{ product.price }} ₴</p>
 </div>
 
 
-<div class="info">
+<div class="info" (click)="clicked.emit()">
   <div class="product-name">
     <h3>{{ product.name }}</h3>
   </div>

@@ -1,5 +1,5 @@
 <div class="products-container">
   <div *ngFor="let product of products" class="product-item">
-    <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
+    <app-product-card [product]="product" (clicked)="openProduct(product)"></app-product-card>
   </div>
 </div>

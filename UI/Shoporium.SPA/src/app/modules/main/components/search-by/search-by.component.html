@@ -23,7 +23,7 @@
 
     <div class="all-products">
       <div class="product" *ngFor="let product of allProducts">
-        <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
+        <app-product-card [product]="product" (clicked)="openProduct(product)"></app-product-card>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
                       #slickModal="slick-carousel" 
                       [config]="slideProductsConfig">
         <div ngxSlickItem *ngFor="let product of newestProducts" class="slide">
-          <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
+          <app-product-card [product]="product" (clicked)="openProduct(product)"></app-product-card>
         </div>
       </ngx-slick-carousel>
     </div>
@@ -62,7 +62,7 @@
                       #slickModal="slick-carousel" 
                       [config]="slideProductsConfig">
         <div ngxSlickItem *ngFor="let product of theMostPopularProducts" class="slide">
-          <app-product-card [product]="product" (click)="openProduct(product)"></app-product-card>
+          <app-product-card [product]="product" (clicked)="openProduct(product)"></app-product-card>
         </div>
       </ngx-slick-carousel>
     </div>
