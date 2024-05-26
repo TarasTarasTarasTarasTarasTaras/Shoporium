@@ -82,3 +82,7 @@ h3 {
 .save-button:hover {
     background-color: rgb(196, 47, 52)
 }
+
+.full-width {
+    width: 100%;
+}

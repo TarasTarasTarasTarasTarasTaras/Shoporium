@@ -5,7 +5,7 @@
     <div class="inputs-block">
       <mat-form-field class="input">
         <mat-label>Ваша область</mat-label>
-        <mat-select formControlName="cityId" (selectionChange)="onChange()">
+        <mat-select formControlName="cityId" (selectionChange)="onRegionChange()">
             <mat-option *ngFor="let city of cities" [value]="city.id">
                 {{city.region}}
             </mat-option>
@@ -14,9 +14,20 @@
     
       <mat-form-field class="input">
         <mat-label>Ваше місто</mat-label>
-        <mat-select formControlName="innerCityId">
+        <mat-select formControlName="innerCityId" (selectionChange)="onCityNameChange()">
             <mat-option *ngFor="let innerCity of selectInnerCities" [value]="innerCity.id">
                 {{innerCity.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="inputs-block full-width">
+      <mat-form-field class="input" style="width: 100%;">
+        <mat-label>Відділення Нової пошти</mat-label>
+        <mat-select formControlName="cityId">
+            <mat-option *ngFor="let postOffice of postOffices" [value]="postOffice.id">
+                {{postOffice.description}}
             </mat-option>
         </mat-select>
       </mat-form-field>

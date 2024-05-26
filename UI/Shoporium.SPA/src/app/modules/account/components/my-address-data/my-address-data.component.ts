@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StaticDataService } from 'src/app/modules/core/services/static-data.service';
 import { AccountService } from '../../services/account.service';
 import { forkJoin, switchMap } from 'rxjs';
+import { NovaPostApiService } from 'src/app/modules/core/services/nova-post-api.service';
 
 @Component({
   selector: 'app-my-address-data',
@@ -13,6 +14,7 @@ export class MyAddressDataComponent implements OnInit {
   cities = [];
   innerCities = [];
   selectInnerCities = [];
+  postOffices = [];
 
   cityId: number;
   innerCityId: number;
@@ -24,6 +26,7 @@ export class MyAddressDataComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
+    private novaPostApiService: NovaPostApiService,
     private staticDataService: StaticDataService) { }
 
     ngOnInit() {
@@ -41,9 +44,10 @@ export class MyAddressDataComponent implements OnInit {
         this.cityId = this.innerCities.find(c => c.id == innerCityId).regionId;
 
         this.form.controls['cityId'].setValue(this.cityId);
-        this.onChange();
-        
+        this.onRegionChange();
+
         this.form.controls['innerCityId'].setValue(this.innerCityId);
+        this.onCityNameChange();
       });
     }
 
@@ -51,8 +55,16 @@ export class MyAddressDataComponent implements OnInit {
     this.accountService.updateUserCity(this.form.value.innerCityId).subscribe();
   }
 
-  onChange() {
+  onRegionChange() {
     const cityId = this.form.value.cityId;
     this.selectInnerCities = this.innerCities.filter(c => c.regionId == cityId);
+    this.postOffices = [];
+  }
+
+  onCityNameChange() {
+    const cityName = this.selectInnerCities.find(c => c.id == this.form.value.innerCityId).name;
+    this.novaPostApiService.getPostOffices(cityName).subscribe((res: any[]) => {
+      this.postOffices = res;
+    })
   }
 }
